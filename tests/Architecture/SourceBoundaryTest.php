@@ -135,4 +135,13 @@ final class SourceBoundaryTest extends TestCase
         }
     }
 
+    public function testGeneratedGraphArtifactsAreIgnoredAtAnyDepth(): void
+    {
+        $projectRoot = dirname(__DIR__, 2);
+        $gitignore = (string) file_get_contents($projectRoot.'/.gitignore');
+
+        self::assertStringContainsString('graphify-out/', $gitignore);
+        self::assertStringNotContainsString('/graphify-out/', $gitignore);
+    }
+
 }
