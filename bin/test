@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+set -eu
+
+image=project-symfony-build
+docker build --tag "$image" .
+docker run --rm --env APP_SECRET=build-only-secret --volume "$(pwd):/app" --workdir /app "$image" sh -lc 'composer install --no-interaction --prefer-dist --no-progress && vendor/bin/phpunit'
