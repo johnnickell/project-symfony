@@ -53,9 +53,31 @@ final class SourceBoundaryTest extends TestCase
             'LICENSE',
             'SECURITY.md',
             'CONTRIBUTING.md',
-            'planning/PRD-00018.md',
-            'planning/BOARD.md',
+            'bin/composer',
+            'bin/console',
+            'bin/down',
+            'bin/exec',
+            'scripts/console.php',
+            'bin/phpunit',
+            'bin/planning-check',
+            'scripts/planning-check.php',
+            'scripts/production-autoload-check.php',
+            'bin/up',
+            'bin/build',
+            'compose.yaml',
+            'config/bundles.php',
+            'config/packages/framework.php',
+            'config/routes.php',
+            'public/index.php',
+            'src/Controller/HomeController.php',
+            'planning/README.md',
             'planning/ROADMAP.md',
+            'planning/specs/00001-PRD.md',
+            'planning/specs/README.md',
+            'planning/tickets/00001-TICKET.md',
+            'planning/tickets/00002-TICKET.md',
+            'planning/tickets/README.md',
+            'planning/tickets/BOARD.md',
             'planning/agents/issue-tracker.md',
             'planning/agents/triage-labels.md',
             'planning/agents/domain.md',
@@ -66,12 +88,16 @@ final class SourceBoundaryTest extends TestCase
         }
 
         $agents = (string) file_get_contents($projectRoot.'/AGENTS.md');
-        self::assertStringContainsString('Future detailed tickets and status live in this repository.', $agents);
+        self::assertStringContainsString('planning/tickets/', $agents);
         self::assertStringContainsString('no Fight bundle', $agents);
 
-        $prd = (string) file_get_contents($projectRoot.'/planning/PRD-00018.md');
+        $prd = (string) file_get_contents($projectRoot.'/planning/specs/00001-PRD.md');
         self::assertStringNotContainsString('source_commit:', $prd);
         self::assertStringContainsString('hosted build', $prd);
+
+        $board = (string) file_get_contents($projectRoot.'/planning/tickets/BOARD.md');
+        self::assertStringContainsString('Ready Frontier', $board);
+        self::assertStringContainsString('00001-TICKET.md', $board);
 
         $kernel = (string) file_get_contents($projectRoot.'/src/Kernel.php');
         self::assertStringContainsString('ProjectServicePass', $kernel);
@@ -83,7 +109,30 @@ final class SourceBoundaryTest extends TestCase
         $projectRoot = dirname(__DIR__, 2);
 
         self::assertFileExists($projectRoot.'/config/services.php');
-        self::assertFileDoesNotExist($projectRoot.'/config/reference.php');
+        $gitignore = (string) file_get_contents($projectRoot.'/.gitignore');
+        self::assertStringContainsString('/config/reference.php', $gitignore);
+    }
+
+    public function testToolCachesUseTheRuntimeCacheDirectory(): void
+    {
+        $projectRoot = dirname(__DIR__, 2);
+
+        $phpunitConfiguration = (string) file_get_contents($projectRoot.'/phpunit.xml.dist');
+        self::assertStringContainsString('cacheDirectory="var/cache/phpunit"', $phpunitConfiguration);
+
+        $gitignore = (string) file_get_contents($projectRoot.'/.gitignore');
+        self::assertStringContainsString('/var/', $gitignore);
+
+        foreach ([
+            '/.phpunit.result.cache',
+            '/.phpunit.cache/',
+            '/.phpstan.cache',
+            '/.phpstan.result.cache',
+            '/.php-cs-fixer.cache',
+            '/.rector.cache',
+        ] as $rootCachePath) {
+            self::assertStringNotContainsString($rootCachePath, $gitignore);
+        }
     }
 
 }

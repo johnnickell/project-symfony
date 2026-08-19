@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App;
 
-use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use App\Composition\Compiler\ProjectServicePass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -14,15 +13,19 @@ final class Kernel extends BaseKernel
 {
     public function registerBundles(): iterable
     {
-        yield new FrameworkBundle();
+        /** @var array<class-string, array<string, bool>> $bundles */
+        $bundles = require dirname(__DIR__).'/config/bundles.php';
+
+        foreach ($bundles as $class => $environments) {
+            if (($environments['all'] ?? false) || ($environments[$this->environment] ?? false)) {
+                yield new $class();
+            }
+        }
     }
 
     protected function configureContainer(ContainerConfigurator $container): void
     {
-        $container->extension('framework', [
-            'secret' => '%env(APP_SECRET)%',
-        ]);
-
+        $container->import(dirname(__DIR__).'/config/packages/*.php');
         $container->import(dirname(__DIR__).'/config/services.php');
     }
 
