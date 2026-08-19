@@ -3,10 +3,16 @@ set -eu
 
 image=project-symfony-build
 docker build --tag "$image" .
-docker run --rm --env APP_SECRET=build-only-secret --volume "$(pwd):/app" --workdir /app "$image" sh -lc '
+docker run --rm --env APP_SECRET=build-only-secret --volume "$(pwd):/app" --workdir /app "$image" sh -ec '
     composer validate --strict
     composer install --no-interaction --prefer-dist --no-progress
+    php scripts/planning-check.php
     vendor/bin/phpunit
+
+    production_root=$(mktemp -d)
+    trap "rm -rf \"$production_root\"" EXIT
+    cp -a . "$production_root"
+    cd "$production_root"
     composer install --no-dev --no-interaction --prefer-dist --no-progress
-    php bin/production-autoload-check.php
+    php scripts/production-autoload-check.php
 '

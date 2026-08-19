@@ -1,0 +1,34 @@
+services:
+  api:
+    build: ./etc/docker/fpm
+    restart: unless-stopped
+    tty: true
+    working_dir: /app
+    environment:
+      APP_ENV: dev
+      APP_DEBUG: "1"
+      APP_SECRET: dev-only-secret
+    volumes:
+      - ./:/app
+      - ./etc/docker/fpm/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - app-network
+
+  server:
+    build: ./etc/docker/nginx
+    ports:
+      - "18083:80"
+    restart: unless-stopped
+    tty: true
+    volumes:
+      - ./:/app
+      - ./etc/docker/nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - app-network
+    depends_on:
+      api:
+        condition: service_started
+
+networks:
+  app-network:
+    driver: bridge

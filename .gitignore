@@ -1,5 +1,10 @@
 /.idea/
+/\.DS_Store
 /vendor/
 /var/
 /.runs/
-/.phpunit.result.cache
+/coverage/
+/graphify-out/
+/.composer/
+/auth.json
+/config/reference.php
