@@ -1,9 +1,13 @@
 # Roadmap
 
-1. Governed Symfony starter foundation (T-00001) and runnable full-stack web baseline (T-00002).
-2. Login walking slice after the required public-package contracts and local ticket are green.
-3. Subsequent repository-owned use cases as local vertical tickets, preserving the shared package boundary.
-4. Separate security, documentation, clean-clone, visibility, and release decisions.
+## In progress
 
-No roadmap item authorizes release, publication, template enablement, or public visibility. Ticket status and
-execution order are canonical only in `tickets/`.
+No epics are currently active.
+
+## Route to 1.0
+
+The bootstrap foundation is complete. Future walking slices will be defined through the Wayfinder process and charted via local planning tickets.
+
+## Completed / Released
+
+The governed Symfony Starter Foundation is complete: T-00001 and T-00002 have successful repository-local and hosted `./bin/build` receipts.
