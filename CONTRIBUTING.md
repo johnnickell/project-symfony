@@ -1,6 +1,6 @@
 # Contributing
 
-Read `AGENTS.md`, `CONTEXT.md`, `planning/README.md`, and the focused local planning rules before proposing a
+Read `AGENTS.md`, `CONTEXT.md`, `planning/README.md`, `planning/CONVENTIONS.md`, and the focused local planning rules before proposing a
 change. Create or update a repository-local ticket, keep the change to one vertical slice, update capability
 documentation with behavior, and run `./bin/build` before requesting review.
 

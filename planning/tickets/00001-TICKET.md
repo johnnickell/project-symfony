@@ -3,18 +3,23 @@ id: T-00001
 prd: PRD-00001
 title: Establish the Canonical Symfony Starter Foundation
 status: done
-blocked_by: []
+blocked_by:
 ---
 
 # Establish the Canonical Symfony Starter Foundation
 
-## What to build
+## Outcome
 
-Establish the reusable Symfony-starter baseline: native composition through public Fight packages, a canonical
+Established the reusable Symfony-starter baseline: native composition through public Fight packages, a canonical
 local planning surface, Docker-backed developer commands, and a clean-clone build without implementing a product
 journey.
 
-## Acceptance criteria
+## Scope
+
+- In scope: planning authority, Docker-backed tooling, Composer/PHPUnit/console wrappers, `.gitignore`, architecture boundary
+- Out of scope: login, persistence, browser journeys, releases, publishing, template enablement, public visibility
+
+## Acceptance Criteria
 
 - [x] `planning/specs/00001-PRD.md` is the locally numbered PRD authority and `planning/tickets/BOARD.md` is the
       operational execution board.
@@ -31,14 +36,8 @@ journey.
 Run `./bin/composer install`, `./bin/phpunit`, `./bin/planning-check`, and `./bin/build` from a clean checkout.
 Review the full diff for copied shared source, credentials, generated vendor files, and untracked build output.
 
+## Completion Notes
+
 Verified 2026-08-18: `./bin/composer install`, `./bin/planning-check`, `./bin/phpunit` (4 tests, 44 assertions),
 and `./bin/build` passed. The build leaves the development vendor directory intact while testing the production
 installation in an isolated temporary copy.
-
-## Documentation impact
-
-Update the root README, contribution guide, agent guidance, PRD, ticket board, and planning authority map together.
-
-## Explicit exclusions
-
-No login, database, browser, release, publishing, template, or public-visibility work is authorized by this ticket.

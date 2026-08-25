@@ -1,4 +1,5 @@
-# Specifications
+# Specs
 
-Specifications define the durable product boundary for this repository. They do not contain day-to-day execution
-status; that belongs in `../tickets/`.
+| ID | Title | Status |
+| --- | --- | --- |
+| [00001](00001-PRD.md) | Symfony Starter Product and Walking-Slice Acceptance | done |
