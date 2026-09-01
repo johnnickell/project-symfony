@@ -2,7 +2,7 @@
 id: T-00003
 prd: PRD-00002
 title: Adopt Fight Common 1.2
-status: ready-for-agent
+status: done
 blocked_by:
 ---
 
@@ -20,12 +20,13 @@ capabilities, run lowest/latest booted journeys, and commit this repository's ca
 
 ## Acceptance Criteria
 
-- [ ] The installed candidate is 1.2-compatible under the existing `^1.1` constraint and recorded with its exact reference.
-- [ ] Lowest and latest compatible resolutions boot the selected Symfony compiler-pass, Messenger, response, routing,
+- [x] The installed candidate is 1.2-compatible under the existing `^1.1` constraint and recorded with its exact reference.
+- [x] Lowest and latest compatible resolutions boot the selected Symfony compiler-pass, Messenger, response, routing,
       transaction, and selected provider journeys.
-- [ ] `evidence/framework-support/receipt-v1.json` is canonical, records lock and evidence digests, and passes receipt validation.
-- [ ] `./bin/planning-check` and `./bin/build` pass before the receipt is committed.
+- [x] `evidence/framework-support/receipt-v1.json` is canonical, records lock and evidence digests, and passes receipt validation.
+- [x] `./bin/planning-check` and `./bin/build` pass before the receipt is committed.
 
 ## Verification
 
-Run the documented lowest/latest Composer and booted journeys, receipt canonicalization, `./bin/planning-check`, and `./bin/build`.
+Verified 2026-08-31: isolated lowest resolution, latest booted journeys (6 tests, 23 assertions), receipt
+canonicalization, `./bin/planning-check`, and `./bin/build` (13 tests, 98 assertions plus production autoload/kernel boot).

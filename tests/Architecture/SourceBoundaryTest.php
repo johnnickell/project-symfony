@@ -17,6 +17,10 @@ final class SourceBoundaryTest extends TestCase
         $manifest = json_decode((string) file_get_contents($projectRoot.'/composer.json'), true, flags: JSON_THROW_ON_ERROR);
 
         self::assertSame('^1.1', $manifest['require']['johnnickell/fight-common']);
+        self::assertSame(
+            'vendor/johnnickell/fight-common/src/',
+            $manifest['autoload']['psr-4']['Fight\\Common\\'],
+        );
         self::assertSame('dev-develop', $manifest['require']['johnnickell/fight-access-control']);
         self::assertContains(
             'https://github.com/johnnickell/fight-access-control',
@@ -67,6 +71,8 @@ final class SourceBoundaryTest extends TestCase
             'compose.yaml',
             'config/bundles.php',
             'config/packages/framework.php',
+            'config/packages/doctrine.php',
+            'config/common/services.php',
             'config/routes.php',
             'public/index.php',
             'src/Controller/HomeController.php',
@@ -101,6 +107,7 @@ final class SourceBoundaryTest extends TestCase
 
         $kernel = (string) file_get_contents($projectRoot.'/src/Kernel.php');
         self::assertStringContainsString('ProjectServicePass', $kernel);
+        self::assertStringContainsString("config/common/*.php", $kernel);
         self::assertStringContainsString("config/services.php", $kernel);
     }
 

@@ -1,0 +1,45 @@
+{
+    "schema_version": "fight-common.framework-support-receipt/v1",
+    "content_id": "d2f5efcdfdd4d01a1036bf71bed8aaca5361aa613e1a3a7e7a380e27c31dc748",
+    "candidate": {
+        "package": "johnnickell/fight-common",
+        "version": "1.2.0-dev",
+        "reference": "4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16"
+    },
+    "framework": {
+        "name": "symfony",
+        "version": "v8.1.6",
+        "providers": [
+            "doctrine/doctrine-bundle@3.3.1",
+            "doctrine/orm@3.6.8",
+            "symfony/messenger@v8.1.6"
+        ]
+    },
+    "lock_sha256": "ea63f3f29c73c4fa7733f480958b5e590bbd1f28575a71cf5cd5adeb0e2adc09",
+    "capabilities": {
+        "container.event_mapping_provider": "ship",
+        "messaging.async_commands_events": "ship",
+        "persistence.doctrine_unit_of_work": "ship",
+        "request_response.jsend_middleware": "ship",
+        "routing.native_url_generation": "ship"
+    },
+    "journeys": [
+        {
+            "name": "lowest_booted_symfony_capabilities",
+            "status": "passed",
+            "evidence": ".runs/2026-08-31-t00003-lowest/FightCommonCapabilityTest.log"
+        },
+        {
+            "name": "latest_booted_symfony_capabilities",
+            "status": "passed",
+            "evidence": "tests/Integration/FightCommonCapabilityTest.php"
+        }
+    ],
+    "result": "passed",
+    "evidence": {
+        "build": "./bin/build",
+        "planning_check": "./bin/planning-check",
+        "receipt_sha256": "55daf2f8a93ff68fb89c1df563958766021fc7cdcbc62d25f750c52e23128209"
+    },
+    "next_action": null
+}

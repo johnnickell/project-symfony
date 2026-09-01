@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App;
 
 use App\Composition\Compiler\ProjectServicePass;
+use Fight\Common\Adapter\ServiceContainer\Symfony\EventMappingProviderCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
@@ -27,6 +28,7 @@ final class Kernel extends BaseKernel
     {
         $container->import(dirname(__DIR__).'/config/packages/*.php');
         $container->import(dirname(__DIR__).'/config/services.php');
+        $container->import(dirname(__DIR__).'/config/common/*.php');
     }
 
     protected function build(ContainerBuilder $container): void
@@ -34,5 +36,6 @@ final class Kernel extends BaseKernel
         parent::build($container);
 
         $container->addCompilerPass(new ProjectServicePass());
+        $container->addCompilerPass(new EventMappingProviderCompilerPass());
     }
 }
