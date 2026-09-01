@@ -19,3 +19,10 @@ execution order.
 
 `./bin/up` starts the services in the background and returns. Use `./bin/up --logs` to follow service logs, and
 `./bin/down` to stop the Compose stack.
+
+## Fight Common candidate validation
+
+Fight Common is temporarily consumed from its immutable pre-release commit. `./bin/build` runs ordinary Composer
+validation through `scripts/validate-composer-candidate.php`: it permits only Composer's unavoidable warning about
+that exact commit reference and fails for validation errors or any additional warning. Remove this temporary
+allowlist when Fight Common 1.2 receives its release tag.

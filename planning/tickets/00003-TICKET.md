@@ -32,3 +32,8 @@ capability with project-owned defaults, and commit this repository's canonical c
 Verified 2026-08-31: the isolated lowest Composer resolution booted `PlatformProfile` at the selected candidate;
 the latest booted profile and receipt journeys passed (8 tests, 32 assertions); `./bin/planning-check` passed; and
 `./bin/build` passed (15 tests, 110 assertions plus production autoload/kernel boot).
+
+Candidate-validation follow-up verified 2026-08-31: the immutable Composer requirement is
+`dev-develop#4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16 as 1.2.0-dev`. The repository-owned validator runs ordinary
+`composer validate`, permits only Composer's exact commit-reference warning, and rejects validation errors or any
+additional warning. `./bin/build` passed with 15 tests and 112 assertions plus production autoload/kernel boot.

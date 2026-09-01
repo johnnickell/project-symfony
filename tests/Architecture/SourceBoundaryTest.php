@@ -16,7 +16,10 @@ final class SourceBoundaryTest extends TestCase
         $projectRoot = dirname(__DIR__, 2);
         $manifest = json_decode((string) file_get_contents($projectRoot.'/composer.json'), true, flags: JSON_THROW_ON_ERROR);
 
-        self::assertSame('dev-develop as 1.1.9999999-dev', $manifest['require']['johnnickell/fight-common']);
+        self::assertSame(
+            'dev-develop#4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16 as 1.2.0-dev',
+            $manifest['require']['johnnickell/fight-common'],
+        );
         self::assertContains(
             'https://github.com/johnnickell/fight-common',
             array_column($manifest['repositories'], 'url'),
@@ -67,6 +70,7 @@ final class SourceBoundaryTest extends TestCase
             'bin/planning-check',
             'scripts/planning-check.php',
             'scripts/production-autoload-check.php',
+            'scripts/validate-composer-candidate.php',
             'bin/up',
             'bin/build',
             'compose.yaml',
@@ -110,6 +114,9 @@ final class SourceBoundaryTest extends TestCase
         self::assertStringContainsString('ProjectServicePass', $kernel);
         self::assertStringContainsString("config/common/*.php", $kernel);
         self::assertStringContainsString("config/services.php", $kernel);
+
+        $build = (string) file_get_contents($projectRoot.'/bin/build');
+        self::assertStringContainsString('validate-composer-candidate.php', $build);
     }
 
     public function testGeneratedReferenceConfigurationIsNotCommitted(): void

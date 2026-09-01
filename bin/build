@@ -4,7 +4,7 @@ set -eu
 image=project-symfony-build
 docker build --tag "$image" .
 docker run --rm --env APP_SECRET=build-only-secret --volume "$(pwd):/app" --workdir /app "$image" sh -ec '
-    composer validate --strict
+    php scripts/validate-composer-candidate.php
     composer install --no-interaction --prefer-dist --no-progress
     python3 scripts/planning_portfolio.py
     vendor/bin/phpunit
