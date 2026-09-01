@@ -12,7 +12,8 @@ When an unqualified "What's next?" is asked:
 
 ## Now
 
-No local decision is pending. Later product capabilities require separately authorized tickets.
+No local human decision is pending. The Fight Common 2.0 migration remains visible as `needs-info` until its
+owning package publishes the contract, deprecation-removal inventory, and migration guide.
 
 ## Wayfinder Review
 
@@ -21,7 +22,9 @@ When asked for the next wayfinder target, offer to chart a new feature rather th
 
 ## Ready Frontier
 
-No executable local ticket is planned.
+| Rank | Ticket | Parent PRD | Why now |
+| --- | --- | --- | --- |
+| 1 | [T-00003 — Adopt Fight Common 1.2](00003-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Resolve the candidate through this starter, boot the selected Symfony journeys, and commit its receipt. |
 
 ## Waiting
 
@@ -29,7 +32,9 @@ No ticket is currently waiting on an unfinished local dependency.
 
 ## Needs Info
 
-No tickets currently require a decision authority.
+| Ticket | Parent PRD | Missing decision or evidence |
+| --- | --- | --- |
+| [T-00004 — Prepare Fight Common 2.0 Migration](00004-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Fight Common 2.0 contract, deprecation-removal inventory, and migration guide. |
 
 ## Recently Done
 
