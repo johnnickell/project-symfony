@@ -38,6 +38,6 @@ No ticket is currently waiting on an unfinished local dependency.
 
 | Ticket | Parent PRD | Outcome |
 |--------|------------|---------|
-| [T-00003 — Adopt Fight Common 1.2](00003-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Locked the 1.2.0-dev candidate, composed selected Symfony capabilities, and committed canonical support evidence. |
+| [T-00003 — Establish the Symfony Complete Platform Profile](00003-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Resolved the VCS `dev-develop` candidate, composed the complete Symfony profile, and verified canonical support evidence locally. |
 | [T-00002 — Establish the Full-Stack Symfony Web Foundation](00002-TICKET.md) | [PRD-00001](../specs/00001-PRD.md) | Added the Runtime-backed front controller, PHP configuration, Twig-rendered home page, and Compose-managed Nginx-to-PHP-FPM runtime. |
 | [T-00001 — Establish the Canonical Symfony Starter Foundation](00001-TICKET.md) | [PRD-00001](../specs/00001-PRD.md) | Established canonical planning authority, Docker-backed Composer and PHPUnit commands, a `var/cache/<tool>` convention, scoped ignore rules, and a clean production-install check. |

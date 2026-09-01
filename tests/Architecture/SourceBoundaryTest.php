@@ -16,11 +16,12 @@ final class SourceBoundaryTest extends TestCase
         $projectRoot = dirname(__DIR__, 2);
         $manifest = json_decode((string) file_get_contents($projectRoot.'/composer.json'), true, flags: JSON_THROW_ON_ERROR);
 
-        self::assertSame('^1.1', $manifest['require']['johnnickell/fight-common']);
-        self::assertSame(
-            'vendor/johnnickell/fight-common/src/',
-            $manifest['autoload']['psr-4']['Fight\\Common\\'],
+        self::assertSame('dev-develop as 1.1.9999999-dev', $manifest['require']['johnnickell/fight-common']);
+        self::assertContains(
+            'https://github.com/johnnickell/fight-common',
+            array_column($manifest['repositories'], 'url'),
         );
+        self::assertArrayNotHasKey('Fight\\Common\\', $manifest['autoload']['psr-4']);
         self::assertSame('dev-develop', $manifest['require']['johnnickell/fight-access-control']);
         self::assertContains(
             'https://github.com/johnnickell/fight-access-control',

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Tests\Integration;
 
 use App\Composition\EventSourcing\ProjectCapabilityActivated;
+use App\Composition\FrameworkSupport\PlatformProfile;
+use App\Composition\FrameworkSupport\SecurityProfile;
 use App\Composition\FrameworkSupport\ReceiptCanonicalizer;
 use App\Kernel;
 use DateTimeImmutable;
@@ -37,6 +39,55 @@ use Symfony\Component\Messenger\Transport\Sender\SenderInterface;
 
 final class FightCommonCapabilityTest extends TestCase
 {
+    #[RunInSeparateProcess]
+    public function testCredentialBoundSecurityAndPrivatePublicationPortsResolveFromApplicationConfiguration(): void
+    {
+        putenv('FIGHT_COMMON_HMAC_PUBLIC=project-public-key');
+        putenv('FIGHT_COMMON_HMAC_PRIVATE=0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef');
+        putenv('FIGHT_COMMON_JWT_SECRET=0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef');
+        putenv('MERCURE_URL=https://mercure.example.test/.well-known/mercure');
+        putenv('MERCURE_PUBLIC_URL=https://mercure.example.test/.well-known/mercure');
+        putenv('MERCURE_JWT_TOKEN=eyJhbGciOiJIUzI1NiJ9.eyJtZXJjdXJlIjp7fX0.signature');
+
+        $kernel = new Kernel('test', true);
+
+        try {
+            $kernel->boot();
+            $profile = $kernel->getContainer()->get(SecurityProfile::class);
+            $token = $profile->tokenEncoder->encode(['subject' => 'platform'], new DateTimeImmutable('+5 minutes'));
+
+            self::assertSame('platform', $profile->tokenDecoder->decode($token)['subject']);
+            self::assertInstanceOf(SecurityProfile::class, $profile);
+        } finally {
+            $kernel->shutdown();
+        }
+    }
+
+    #[RunInSeparateProcess]
+    public function testTheBootedKernelProvidesTheCompleteDefaultPlatformProfile(): void
+    {
+        $kernel = new Kernel('test', true);
+
+        try {
+            $kernel->boot();
+            $profile = $kernel->getContainer()->get(PlatformProfile::class);
+
+            $hash = $profile->passwordHasher->hash('profile-password');
+            self::assertTrue($profile->passwordValidator->validate('profile-password', $hash));
+            self::assertTrue($profile->validation->validate(
+                ['capability' => 'symfony'],
+                [['field' => 'capability', 'label' => 'Capability', 'rules' => 'required']],
+            )->has('capability'));
+            self::assertSame('https://example.test/platform', (string) $profile->http->createUri('https://example.test/platform'));
+            self::assertSame('/', $profile->routing->generate('homepage'));
+            self::assertSame('', $profile->fileTransfer->getTransport('default')->retrieveFileContents('not-configured'));
+            self::assertNull($profile->mail->createMessage()->getSubject());
+            self::assertCount(0, $profile->health->report()->results());
+        } finally {
+            $kernel->shutdown();
+        }
+    }
+
     #[RunInSeparateProcess]
     public function testTheBootedKernelCollectsTheProjectEventMappingProvider(): void
     {

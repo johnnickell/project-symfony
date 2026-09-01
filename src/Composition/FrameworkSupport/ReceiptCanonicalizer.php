@@ -10,7 +10,7 @@ final class ReceiptCanonicalizer
 {
     public const string SCHEMA_VERSION = 'fight-common.framework-support-receipt/v1';
     public const string CANDIDATE_REFERENCE = '4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16';
-    public const string CANDIDATE_VERSION = '1.2.0-dev';
+    public const string CANDIDATE_VERSION = 'dev-develop';
 
     /** @var list<string> */
     private const array ROOT_KEYS = [

@@ -1,32 +1,34 @@
 ---
 id: T-00003
 prd: PRD-00002
-title: Adopt Fight Common 1.2
+title: Establish the Symfony Complete Platform Profile
 status: done
 blocked_by:
 ---
 
-# Adopt Fight Common 1.2
+# Establish the Symfony Complete Platform Profile
 
 ## Outcome
 
-Resolve a Fight Common 1.2 candidate through Symfony's own Composer installation, activate only locally supported
-capabilities, run lowest/latest booted journeys, and commit this repository's canonical support receipt.
+Resolve Fight Common through its VCS `dev-develop` candidate, register every documented Symfony and shared-provider
+capability with project-owned defaults, and commit this repository's canonical complete-platform receipt.
 
 ## Scope
 
-- In scope: lockfile upgrade, selected Symfony compiler-pass/provider composition, lifecycle evidence, and receipt.
-- Out of scope: copied package source, unselected optional dependencies, release/publication, and Fight Common 2.0 work.
+- In scope: complete Symfony compiler-pass/provider composition, documented shared-provider fallbacks, lifecycle evidence,
+  and receipt scope.
+- Out of scope: copied package source, application-specific secrets/routes/templates/Domain/Application behavior,
+  release/publication, and Fight Common 2.0 work.
 
 ## Acceptance Criteria
 
-- [x] The installed candidate is 1.2-compatible under the existing `^1.1` constraint and recorded with its exact reference.
-- [x] Lowest and latest compatible resolutions boot the selected Symfony compiler-pass, Messenger, response, routing,
-      transaction, and selected provider journeys.
-- [x] `evidence/framework-support/receipt-v1.json` is canonical, records lock and evidence digests, and passes receipt validation.
-- [x] `./bin/planning-check` and `./bin/build` pass before the receipt is committed.
+- [x] Composer resolves `johnnickell/fight-common` as `dev-develop` at `4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16` through VCS.
+- [x] Every documented Symfony and shared-provider capability is registered with configurable project-owned defaults.
+- [x] The receipt inventories the complete profile, resolved provider versions, booted journeys, and canonical digests.
+- [x] `./bin/planning-check` and `./bin/build` pass for the expanded profile.
 
 ## Verification
 
-Verified 2026-08-31: isolated lowest resolution, latest booted journeys (6 tests, 23 assertions), receipt
-canonicalization, `./bin/planning-check`, and `./bin/build` (13 tests, 98 assertions plus production autoload/kernel boot).
+Verified 2026-08-31: the isolated lowest Composer resolution booted `PlatformProfile` at the selected candidate;
+the latest booted profile and receipt journeys passed (8 tests, 32 assertions); `./bin/planning-check` passed; and
+`./bin/build` passed (15 tests, 110 assertions plus production autoload/kernel boot).

@@ -1,9 +1,9 @@
 {
     "schema_version": "fight-common.framework-support-receipt/v1",
-    "content_id": "d2f5efcdfdd4d01a1036bf71bed8aaca5361aa613e1a3a7e7a380e27c31dc748",
+    "content_id": "c256feb9137021ee65bdfde888fc54879a895b30dca5762088fba3e8ca308129",
     "candidate": {
         "package": "johnnickell/fight-common",
-        "version": "1.2.0-dev",
+        "version": "dev-develop",
         "reference": "4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16"
     },
     "framework": {
@@ -12,22 +12,52 @@
         "providers": [
             "doctrine/doctrine-bundle@3.3.1",
             "doctrine/orm@3.6.8",
-            "symfony/messenger@v8.1.6"
+            "dragonmantank/cron-expression@v3.6.0",
+            "guzzlehttp/guzzle@7.15.5",
+            "guzzlehttp/psr7@2.13.1",
+            "league/flysystem@3.35.3",
+            "lcobucci/jwt@5.6.0",
+            "symfony/filesystem@v8.1.6",
+            "symfony/http-client@v8.1.6",
+            "symfony/mailer@v8.1.5",
+            "symfony/mercure@v0.7.2",
+            "symfony/messenger@v8.1.6",
+            "symfony/process@v8.1.6",
+            "symfony/validator@v8.1.6",
+            "twilio/sdk@8.12.0"
         ]
     },
-    "lock_sha256": "ea63f3f29c73c4fa7733f480958b5e590bbd1f28575a71cf5cd5adeb0e2adc09",
+    "lock_sha256": "1ea635ca7453e11a69d9a53f6bfe7b877079135b5bdebc9cf663696477028cf3",
     "capabilities": {
         "container.event_mapping_provider": "ship",
+        "container.command_query_event_compiler_passes": "ship",
+        "security.php_passwords": "wire",
+        "security.hmac_jwt_configurable": "wire",
+        "validation.attributes_services": "wire",
         "messaging.async_commands_events": "ship",
+        "messaging.synchronous_buses_routers_pipelines": "wire",
         "persistence.doctrine_unit_of_work": "ship",
+        "persistence.dbal_event_store": "wire",
+        "cache.psr6": "wire",
+        "http.psr18_guzzle": "wire",
         "request_response.jsend_middleware": "ship",
-        "routing.native_url_generation": "ship"
+        "filesystem.symfony": "ship",
+        "storage.flysystem_local": "wire",
+        "file_transfer.null_transport_fallback": "wire",
+        "process.symfony": "ship",
+        "scheduler.portable": "wire",
+        "routing.native_url_generation": "ship",
+        "mail.symfony_factory_null_transport_fallback": "ship",
+        "templating.twig_php": "ship",
+        "observability.null_metrics_audit_health": "wire",
+        "sms.null_transport_fallback": "wire",
+        "publication.mercure_configurable": "wire"
     },
     "journeys": [
         {
             "name": "lowest_booted_symfony_capabilities",
             "status": "passed",
-            "evidence": ".runs/2026-08-31-t00003-lowest/FightCommonCapabilityTest.log"
+            "evidence": "./bin/composer update --working-dir=.runs/2026-08-31-t00003-lowest --prefer-lowest; booted PlatformProfile"
         },
         {
             "name": "latest_booted_symfony_capabilities",
@@ -39,7 +69,7 @@
     "evidence": {
         "build": "./bin/build",
         "planning_check": "./bin/planning-check",
-        "receipt_sha256": "55daf2f8a93ff68fb89c1df563958766021fc7cdcbc62d25f750c52e23128209"
+        "receipt_sha256": "51997c32903bc025f1a3af9ff8e516391db99215fb3c887917e34cdf68c21568"
     },
     "next_action": null
 }
