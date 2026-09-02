@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Fight\Common\Adapter\Auth\Hmac\HmacAuthenticator;
-use App\Composition\FrameworkSupport\SecurityProfile;
 use Fight\Common\Adapter\Auth\Hmac\HmacRequestService;
 use Fight\Common\Adapter\Auth\Security\JwtDecoder;
 use Fight\Common\Adapter\Auth\Security\JwtEncoder;
@@ -29,8 +28,6 @@ use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 return static function (ContainerConfigurator $container): void {
     $services = $container->services();
     $services->defaults()->autowire()->autoconfigure();
-    $services->set(SecurityProfile::class)->public();
-
     $services->set(PhpPasswordHasher::class)
         ->arg('$algorithm', PASSWORD_ARGON2ID);
     $services->alias(PasswordHasher::class, PhpPasswordHasher::class);

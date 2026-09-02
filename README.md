@@ -26,3 +26,9 @@ Fight Common is temporarily consumed from its immutable pre-release commit. `./b
 validation through `scripts/validate-composer-candidate.php`: it permits only Composer's unavoidable warning about
 that exact commit reference and fails for validation errors or any additional warning. Remove this temporary
 allowlist when Fight Common 1.2 receives its release tag.
+
+The committed `composer-lowest.lock` and digest are the reproducible lowest graph; the root `composer.lock` is
+the latest graph. `./bin/build` installs and boots both in isolated roots, verifies neither lock drifts, and asks
+Fight Common's `StarterSupportReceiptAuthority` from an exact disposable candidate checkout to validate the
+data-only receipt. Run `scripts/verify-dependency-lanes.sh refresh-lowest` inside the build image only when the
+lowest evidence is intentionally refreshed.

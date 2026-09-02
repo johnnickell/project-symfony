@@ -24,7 +24,10 @@ capability with project-owned defaults, and commit this repository's canonical c
 
 - [x] Composer resolves `johnnickell/fight-common` as `dev-develop` at `4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16` through VCS.
 - [x] Every documented Symfony and shared-provider capability is registered with configurable project-owned defaults.
-- [x] The receipt inventories the complete profile, resolved provider versions, booted journeys, and canonical digests.
+- [x] Every configured Fight contract resolves directly from the booted test container; test-only handlers, events,
+  providers, and routes remain outside production source.
+- [x] The receipt inventories the complete profile, resolved provider versions, reproducible lowest/latest journeys,
+  and canonical digests, and Fight Common's exact candidate authority accepts it.
 - [x] `./bin/planning-check` and `./bin/build` pass for the expanded profile.
 
 ## Verification
@@ -37,3 +40,11 @@ Candidate-validation follow-up verified 2026-08-31: the immutable Composer requi
 `dev-develop#4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16 as 1.2.0-dev`. The repository-owned validator runs ordinary
 `composer validate`, permits only Composer's exact commit-reference warning, and rejects validation errors or any
 additional warning. `./bin/build` passed with 15 tests and 112 assertions plus production autoload/kernel boot.
+
+PR #6 architecture repair verified 2026-09-01: removed production profile bags, receipt authority, and synthetic
+event/provider source; registered the JSON middleware as the real `http_kernel` decorator; and moved all proof
+fixtures into `tests/Fixture`. The committed lowest lock and SHA-256 plus the latest root lock both installed without
+drift and booted the focused container, messaging, provider, routing, transaction, and HTTP journeys. The receipt now
+records canonical `1.2.0-dev` while cross-checking Composer's actual `dev-develop` reference, and the exact candidate's
+`StarterSupportReceiptAuthority` accepts both passing and resumable non-passing semantics. The canonical build result
+must remain the final repository-local acceptance gate.

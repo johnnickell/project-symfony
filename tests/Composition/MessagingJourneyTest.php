@@ -1,0 +1,69 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Tests\Composition;
+
+use App\Tests\Fixture\BootedTestKernel;
+use App\Tests\Fixture\Messaging\TestCommand;
+use App\Tests\Fixture\Messaging\TestCommandHandler;
+use App\Tests\Fixture\Messaging\TestEvent;
+use App\Tests\Fixture\Messaging\TestEventSubscriber;
+use Fight\Common\Application\Messaging\Command\AsynchronousCommandBus;
+use Fight\Common\Application\Messaging\Command\SynchronousCommandBus;
+use Fight\Common\Application\Messaging\Event\AsynchronousEventDispatcher;
+use Fight\Common\Application\Messaging\Event\SynchronousEventDispatcher;
+use Fight\Common\Domain\EventSourcing\EventMapper;
+use Fight\Common\Domain\Messaging\Command\CommandMessage;
+use Fight\Common\Domain\Messaging\Event\EventMessage;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Messenger\Transport\InMemory\InMemoryTransport;
+
+final class MessagingJourneyTest extends TestCase
+{
+    use BootedTestKernel;
+
+    public function testCompilerPassesCollectTestOnlyHandlersSubscribersAndMappings(): void
+    {
+        [$kernel, $container] = $this->bootTestKernel();
+
+        try {
+            $command = new TestCommand('handled');
+            $container->get(SynchronousCommandBus::class)->execute($command);
+            self::assertSame($command, $container->get(TestCommandHandler::class)->handled?->payload());
+
+            $event = new TestEvent('observed');
+            $container->get(SynchronousEventDispatcher::class)->trigger($event);
+            self::assertSame($event, $container->get(TestEventSubscriber::class)->handled?->payload());
+
+            $mapped = $container->get(EventMapper::class)->map(EventMessage::create($event));
+            self::assertSame('test.event', $mapped->eventName());
+            self::assertSame(['name' => 'observed'], $mapped->data());
+        } finally {
+            $kernel->shutdown();
+        }
+    }
+
+    public function testMessengerDispatchUsesTheConfiguredSerializedTransport(): void
+    {
+        [$kernel, $container] = $this->bootTestKernel();
+
+        try {
+            $transport = $container->get('messenger.transport.fight_common_async');
+            self::assertInstanceOf(InMemoryTransport::class, $transport);
+            $transport->reset();
+
+            $container->get(AsynchronousCommandBus::class)->execute(new TestCommand('async-command'));
+            $container->get(AsynchronousEventDispatcher::class)->trigger(new TestEvent('async-event'));
+
+            $sent = $transport->getSent();
+            self::assertCount(2, $sent);
+            self::assertInstanceOf(CommandMessage::class, $sent[0]->getMessage());
+            self::assertSame(['name' => 'async-command'], $sent[0]->getMessage()->payload()->toArray());
+            self::assertInstanceOf(EventMessage::class, $sent[1]->getMessage());
+            self::assertSame(['name' => 'async-event'], $sent[1]->getMessage()->payload()->toArray());
+        } finally {
+            $kernel->shutdown();
+        }
+    }
+}

@@ -1,9 +1,9 @@
 {
     "schema_version": "fight-common.framework-support-receipt/v1",
-    "content_id": "b5caee66ffe0a4c0c4410a1724880bc64b378fe07b5ac08b8758e8b3968a1ac8",
+    "content_id": "70ad761035c7e9de7297253ca483aa8b93c9adc5e7d2719956884ec2f1b92ac0",
     "candidate": {
         "package": "johnnickell/fight-common",
-        "version": "dev-develop",
+        "version": "1.2.0-dev",
         "reference": "4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16"
     },
     "framework": {
@@ -29,47 +29,42 @@
     },
     "lock_sha256": "cdcb9eccdf8840b52cfff28bf2b2745a794df3149d5d36bb2b9ab8bba79af6b6",
     "capabilities": {
-        "container.event_mapping_provider": "ship",
-        "container.command_query_event_compiler_passes": "ship",
-        "security.php_passwords": "wire",
-        "security.hmac_jwt_configurable": "wire",
-        "validation.attributes_services": "wire",
-        "messaging.async_commands_events": "ship",
-        "messaging.synchronous_buses_routers_pipelines": "wire",
-        "persistence.doctrine_unit_of_work": "ship",
+        "container.native_contracts": "ship",
+        "container.compiler_passes": "ship",
+        "security.php_hmac_jwt": "wire",
+        "validation.native_services": "wire",
+        "messaging.sync_and_serialized_async": "ship",
+        "persistence.doctrine_transactions": "ship",
         "persistence.dbal_event_store": "wire",
         "cache.psr6": "wire",
-        "http.psr18_guzzle": "wire",
-        "request_response.jsend_middleware": "ship",
+        "http.guzzle_and_jsend_middleware": "ship",
         "filesystem.symfony": "ship",
         "storage.flysystem_local": "wire",
-        "file_transfer.null_transport_fallback": "wire",
-        "process.symfony": "ship",
-        "scheduler.portable": "wire",
+        "file_transfer.null_fallback": "wire",
+        "process_and_scheduler": "wire",
         "routing.native_url_generation": "ship",
-        "mail.symfony_factory_null_transport_fallback": "ship",
+        "mail_and_sms.null_fallbacks": "wire",
         "templating.twig_php": "ship",
-        "observability.null_metrics_audit_health": "wire",
-        "sms.null_transport_fallback": "wire",
+        "observability.null_and_health": "wire",
         "publication.mercure_configurable": "wire"
     },
     "journeys": [
         {
             "name": "lowest_booted_symfony_capabilities",
             "status": "passed",
-            "evidence": "./bin/composer update --working-dir=.runs/2026-08-31-t00003-lowest --prefer-lowest; booted PlatformProfile"
+            "evidence": "composer-lowest.lock; scripts/verify-dependency-lanes.sh"
         },
         {
             "name": "latest_booted_symfony_capabilities",
             "status": "passed",
-            "evidence": "tests/Integration/FightCommonCapabilityTest.php"
+            "evidence": "composer.lock; tests/Composition; tests/Integration; tests/Functional"
         }
     ],
     "result": "passed",
     "evidence": {
         "build": "./bin/build",
         "planning_check": "./bin/planning-check",
-        "receipt_sha256": "ebd1b7ef6130b0ca19578beb04b7cbd858e3dc0634997915d4c466dc15ef77ed"
+        "receipt_sha256": "f9ee2bb6f36de5325bf5bd1587da14da5f6131dc5fac20b8fb0654d02b065b29"
     },
     "next_action": null
 }

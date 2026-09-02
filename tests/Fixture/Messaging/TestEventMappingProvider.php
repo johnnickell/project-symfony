@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Composition\EventSourcing;
+namespace App\Tests\Fixture\Messaging;
 
 use Fight\Common\Domain\EventSourcing\EventMapping;
 use Fight\Common\Domain\EventSourcing\EventMappingProvider;
 
-final class ProjectEventMappingProvider implements EventMappingProvider
+final class TestEventMappingProvider implements EventMappingProvider
 {
     public function namespace(): string
     {
-        return 'project';
+        return 'test';
     }
 
     public function mappings(): iterable
     {
-        return [new EventMapping('capability-activated', ProjectCapabilityActivated::class, 1)];
+        return [new EventMapping('event', TestEvent::class, 1)];
     }
 }

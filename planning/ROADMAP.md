@@ -4,7 +4,7 @@
 
 | PRD | Target | Status | Current outcome |
 | --- | --- | --- | --- |
-| [PRD-00002](specs/00002-PRD.md) | Fight Common 1.2 | needs-info | The complete Symfony profile receipt is locally verified; 2.0 preparation remains blocked on its owning package authority. |
+| [PRD-00002](specs/00002-PRD.md) | Fight Common 1.2 | needs-info | The complete Symfony profile now has reproducible lowest/latest locks and exact receipt-authority proof; 2.0 preparation remains blocked on its owning package authority. |
 
 ## Route to 1.0
 

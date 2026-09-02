@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use Fight\Common\Domain\EventSourcing\EventMapper;
 use Fight\Common\Domain\EventSourcing\EventMappingProvider;
-use App\Composition\FrameworkSupport\PlatformProfile;
+use Fight\Common\Application\Cache\MutableCache;
+use Fight\Common\Application\Messaging\Command\CommandBus;
+use Fight\Common\Application\Messaging\Event\EventDispatcher;
 use Fight\Common\Application\Repository\TransactionalUnitOfWork;
 use Fight\Common\Application\Routing\UrlGenerator;
 use Fight\Common\Application\Serialization\JsonSerializer;
@@ -12,7 +14,6 @@ use Fight\Common\Adapter\Messaging\Symfony\Serializer\SymfonyMessageSerializer;
 use Fight\Common\Adapter\Persistence\Doctrine\DoctrineTransactionalUnitOfWork;
 use Fight\Common\Adapter\Routing\Symfony\SymfonyUrlGenerator;
 use Fight\Common\Domain\Serialization\Serializer;
-use App\Composition\EventSourcing\ProjectEventMappingProvider;
 use Doctrine\DBAL\Connection;
 use Fight\Common\Adapter\Cache\Psr6\Psr6Cache;
 use Fight\Common\Adapter\FileTransfer\Null\NullFileTransport;
@@ -88,6 +89,7 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Messenger\Transport\Sender\SenderInterface;
+use Fight\Common\Adapter\Middleware\Symfony\JsonRequestMiddleware;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
@@ -96,12 +98,9 @@ return static function (ContainerConfigurator $container): void {
     $services->defaults()->autowire()->autoconfigure();
     $services->instanceof(EventMappingProvider::class)
         ->tag('common.event_mapping_provider');
-    $services->set(ProjectEventMappingProvider::class)
-        ->tag('common.event_mapping_provider');
     $services->set(EventMapper::class)
         ->arg('$providers', [])
         ->public();
-    $services->set(PlatformProfile::class)->public();
     $services->set(JsonSerializer::class);
     $services->alias(Serializer::class, JsonSerializer::class);
     $services->set(SymfonyMessageSerializer::class);
@@ -120,6 +119,7 @@ return static function (ContainerConfigurator $container): void {
     $services->set(CommandPipeline::class)
         ->arg('$commandBus', service(RoutingCommandBus::class));
     $services->alias(SynchronousCommandBus::class, CommandPipeline::class);
+    $services->alias(CommandBus::class, SynchronousCommandBus::class);
     $services->set(ServiceAwareQueryRouter::class)
         ->arg('$container', service('service_container'))
         ->public();
@@ -132,6 +132,7 @@ return static function (ContainerConfigurator $container): void {
         ->arg('$container', service('service_container'))
         ->public();
     $services->alias(SynchronousEventDispatcher::class, ServiceAwareEventDispatcher::class);
+    $services->alias(EventDispatcher::class, SynchronousEventDispatcher::class);
     $services->set(SymfonyUrlGenerator::class)
         ->arg('$urlGenerator', service(UrlGeneratorInterface::class))
         ->public();
@@ -140,6 +141,7 @@ return static function (ContainerConfigurator $container): void {
     $services->alias(TransactionalUnitOfWork::class, DoctrineTransactionalUnitOfWork::class);
     $services->set(Psr6Cache::class);
     $services->alias(Cache::class, Psr6Cache::class);
+    $services->alias(MutableCache::class, Psr6Cache::class);
     $services->set(CacheItemPoolInterface::class, FilesystemAdapter::class)
         ->arg('$namespace', 'fight-common')
         ->arg('$defaultLifetime', 0)
@@ -211,4 +213,7 @@ return static function (ContainerConfigurator $container): void {
     $services->set(ErrorController::class);
     $services->set(SymfonyValidationSubscriber::class);
     $services->set(SymfonyExceptionSubscriber::class);
+    $services->set(JsonRequestMiddleware::class)
+        ->decorate('http_kernel')
+        ->arg('$kernel', service('.inner'));
 };

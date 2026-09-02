@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Fight\Common\Domain\Messaging\Command\CommandMessage;
 use Fight\Common\Domain\Messaging\Event\EventMessage;
+use Fight\Common\Adapter\Messaging\Symfony\Serializer\SymfonyMessageSerializer;
 
 return static function (ContainerConfigurator $container): void {
     $container->extension('framework', [
@@ -17,7 +18,10 @@ return static function (ContainerConfigurator $container): void {
         'messenger' => [
             'default_bus' => 'messenger.bus.default',
             'transports' => [
-                'fight_common_async' => 'in-memory://',
+                'fight_common_async' => [
+                    'dsn' => 'in-memory://?serialize=true',
+                    'serializer' => SymfonyMessageSerializer::class,
+                ],
             ],
             'routing' => [
                 CommandMessage::class => 'fight_common_async',

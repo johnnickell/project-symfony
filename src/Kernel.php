@@ -33,8 +33,14 @@ final class Kernel extends BaseKernel
     protected function configureContainer(ContainerConfigurator $container): void
     {
         $container->import(dirname(__DIR__).'/config/packages/*.php');
+        if (is_dir(dirname(__DIR__).'/config/packages/'.$this->environment)) {
+            $container->import(dirname(__DIR__).'/config/packages/'.$this->environment.'/*.php');
+        }
         $container->import(dirname(__DIR__).'/config/services.php');
         $container->import(dirname(__DIR__).'/config/common/*.php');
+        if ($this->environment === 'test') {
+            $container->import(dirname(__DIR__).'/config/services_test.php');
+        }
     }
 
     protected function build(ContainerBuilder $container): void
