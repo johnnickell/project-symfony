@@ -47,7 +47,6 @@ use Fight\Common\Application\Socket\PrivatePublisher;
 use Fight\Common\Application\Socket\Publisher;
 use Fight\Common\Application\Templating\TemplateEngine;
 use Fight\Common\Application\Validation\ValidationService;
-use Fight\Common\Domain\EventSourcing\EventMapper;
 use Fight\Common\Domain\Serialization\Serializer;
 use PHPUnit\Framework\TestCase;
 
@@ -70,19 +69,29 @@ final class ContainerContractsTest extends TestCase
             $contracts = [
                 Authenticator::class, RequestService::class, PasswordHasher::class, PasswordValidator::class,
                 TokenEncoder::class, TokenDecoder::class, Cache::class, MutableCache::class, FileStorage::class,
-                StorageService::class, Filesystem::class, FileTransferService::class, FileTransport::class,
-                HttpService::class, HttpClient::class, MessageFactory::class, StreamFactory::class, UriFactory::class,
-                MailService::class, MailFactory::class, MailTransport::class, CommandBus::class,
+                Filesystem::class, FileTransport::class, HttpClient::class, MessageFactory::class,
+                StreamFactory::class, UriFactory::class, MailFactory::class, MailTransport::class, CommandBus::class,
                 SynchronousCommandBus::class, AsynchronousCommandBus::class, EventDispatcher::class,
                 SynchronousEventDispatcher::class, AsynchronousEventDispatcher::class, QueryBus::class,
                 AuditLog::class, HealthAggregator::class, MetricsCollector::class, ProcessRunner::class,
-                TransactionalUnitOfWork::class, UrlGenerator::class, Scheduler::class, SmsFactory::class,
-                SmsService::class, SmsTransport::class, Publisher::class, PrivatePublisher::class,
-                TemplateEngine::class, ValidationService::class, EventMapper::class, Serializer::class,
+                TransactionalUnitOfWork::class, UrlGenerator::class, SmsFactory::class, SmsTransport::class,
+                Publisher::class, PrivatePublisher::class, TemplateEngine::class, Serializer::class,
             ];
 
             foreach ($contracts as $contract) {
-                self::assertInstanceOf($contract, $container->get($contract), $contract);
+                self::assertInstanceOf($contract, $container->get('test.contract.'.$contract), $contract);
+            }
+
+            foreach ([
+                StorageService::class,
+                FileTransferService::class,
+                HttpService::class,
+                MailService::class,
+                Scheduler::class,
+                SmsService::class,
+                ValidationService::class,
+            ] as $service) {
+                self::assertInstanceOf($service, $container->get('test.service.'.$service), $service);
             }
         } finally {
             $kernel->shutdown();

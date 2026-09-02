@@ -13,7 +13,6 @@ return static function (ContainerConfigurator $container): void {
     $services = $container->services();
     $services->defaults()->autowire()->autoconfigure();
     $services->set(SymfonyUrlGenerator::class)
-        ->arg('$urlGenerator', service(UrlGeneratorInterface::class))
-        ->public();
+        ->arg('$urlGenerator', service(UrlGeneratorInterface::class));
     $services->alias(UrlGenerator::class, SymfonyUrlGenerator::class);
 };

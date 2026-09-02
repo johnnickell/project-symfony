@@ -15,8 +15,7 @@ return static function (ContainerConfigurator $container): void {
     $services = $container->services();
     $services->defaults()->autowire()->autoconfigure();
     $services->set(ServiceAwareQueryRouter::class)
-        ->arg('$container', service('service_container'))
-        ->public();
+        ->arg('$container', service('service_container'));
     $services->alias(QueryRouter::class, ServiceAwareQueryRouter::class);
     $services->set(RoutingQueryBus::class);
     $services->set(QueryPipeline::class)

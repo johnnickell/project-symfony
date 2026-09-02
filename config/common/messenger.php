@@ -10,7 +10,6 @@ use Fight\Common\Application\Messaging\Event\AsynchronousEventDispatcher;
 use Fight\Common\Domain\Messaging\Command\CommandMessage;
 use Fight\Common\Domain\Messaging\Event\EventMessage;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\Messenger\Transport\Sender\SenderInterface;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
@@ -40,5 +39,4 @@ return static function (ContainerConfigurator $container): void {
     $services->set(MessengerEventDispatcher::class)
         ->arg('$sender', service('messenger.transport.fight_common_async'));
     $services->alias(AsynchronousEventDispatcher::class, MessengerEventDispatcher::class);
-    $services->alias(SenderInterface::class, 'messenger.transport.fight_common_async');
 };

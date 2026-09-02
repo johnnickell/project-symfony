@@ -16,8 +16,7 @@ return static function (ContainerConfigurator $container): void {
     $services = $container->services();
     $services->defaults()->autowire()->autoconfigure();
     $services->set(ServiceAwareCommandRouter::class)
-        ->arg('$container', service('service_container'))
-        ->public();
+        ->arg('$container', service('service_container'));
     $services->alias(CommandRouter::class, ServiceAwareCommandRouter::class);
     $services->set(RoutingCommandBus::class);
     $services->set(CommandPipeline::class)

@@ -35,5 +35,5 @@ lowest evidence is intentionally refreshed.
 
 The Symfony adapter boundary lives under `src/Adapter/`. `public/index.php` explicitly composes the canonical
 Fight Common JSON middleware around `App\Adapter\Kernel`, while console and production checks boot the bare Kernel.
-Shared providers are registered by capability under `config/common/`; event mapping and messaging compiler-pass
-proof remains test-owned, and this starter does not configure an event store.
+Shared providers are registered by capability under `config/common/`; messaging and templating compiler-pass proof
+is test-owned, and production has no event-sourcing infrastructure.

@@ -18,7 +18,6 @@ use Fight\Common\Application\Messaging\Command\SynchronousCommandBus;
 use Fight\Common\Application\Messaging\Event\AsynchronousEventDispatcher;
 use Fight\Common\Application\Messaging\Event\SynchronousEventDispatcher;
 use Fight\Common\Application\Messaging\Query\QueryBus;
-use Fight\Common\Domain\EventSourcing\EventMapper;
 use Fight\Common\Domain\Messaging\Command\CommandMessage;
 use Fight\Common\Domain\Messaging\Event\EventMessage;
 use PHPUnit\Framework\TestCase;
@@ -28,7 +27,7 @@ final class MessagingJourneyTest extends TestCase
 {
     use BootedTestKernel;
 
-    public function testCompilerPassesCollectTestOnlyHandlersSubscribersAndMappings(): void
+    public function testCompilerPassesCollectTestOnlyHandlersAndSubscribers(): void
     {
         [$kernel, $container] = $this->bootTestKernel();
 
@@ -46,10 +45,6 @@ final class MessagingJourneyTest extends TestCase
             $event = new TestEvent('observed');
             $container->get(SynchronousEventDispatcher::class)->trigger($event);
             self::assertSame($event, $container->get(TestEventSubscriber::class)->handled?->payload());
-
-            $mapped = $container->get(EventMapper::class)->map(EventMessage::create($event));
-            self::assertSame('test.event', $mapped->eventName());
-            self::assertSame(['name' => 'observed'], $mapped->data());
         } finally {
             $kernel->shutdown();
         }

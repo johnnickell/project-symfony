@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
-use App\Adapter\Kernel;
 use Fight\Common\Adapter\Middleware\Symfony\JsonRequestMiddleware;
 use PHPUnit\Framework\TestCase;
-use ReflectionProperty;
 use Symfony\Component\HttpFoundation\Request;
 
 final class JsonMiddlewareTest extends TestCase
@@ -19,8 +17,6 @@ final class JsonMiddlewareTest extends TestCase
 
         $kernel = $factory(['APP_ENV' => 'test', 'APP_DEBUG' => true]);
         self::assertInstanceOf(JsonRequestMiddleware::class, $kernel);
-        $innerKernel = (new ReflectionProperty(JsonRequestMiddleware::class, 'kernel'))->getValue($kernel);
-        self::assertInstanceOf(Kernel::class, $innerKernel);
 
         $request = Request::create(
             '/_test/json-journey',
@@ -42,7 +38,6 @@ final class JsonMiddlewareTest extends TestCase
             if (isset($response)) {
                 $kernel->terminate($request, $response);
             }
-            $innerKernel->shutdown();
         }
     }
 }

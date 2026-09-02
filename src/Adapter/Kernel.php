@@ -6,7 +6,6 @@ namespace App\Adapter;
 
 use Fight\Common\Adapter\ServiceContainer\Symfony\CommandFilterCompilerPass;
 use Fight\Common\Adapter\ServiceContainer\Symfony\CommandHandlerCompilerPass;
-use Fight\Common\Adapter\ServiceContainer\Symfony\EventMappingProviderCompilerPass;
 use Fight\Common\Adapter\ServiceContainer\Symfony\EventSubscriberCompilerPass;
 use Fight\Common\Adapter\ServiceContainer\Symfony\QueryFilterCompilerPass;
 use Fight\Common\Adapter\ServiceContainer\Symfony\QueryHandlerCompilerPass;
@@ -48,7 +47,6 @@ final class Kernel extends BaseKernel
 
         $container->addCompilerPass(new CommandFilterCompilerPass());
         $container->addCompilerPass(new CommandHandlerCompilerPass());
-        $container->addCompilerPass(new EventMappingProviderCompilerPass());
         $container->addCompilerPass(new EventSubscriberCompilerPass());
         $container->addCompilerPass(new QueryFilterCompilerPass());
         $container->addCompilerPass(new QueryHandlerCompilerPass());

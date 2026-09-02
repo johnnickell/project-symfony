@@ -55,6 +55,7 @@ for lane in latest lowest; do
             tests/Integration/ContainerContractsTest.php \
             tests/Integration/MessagingJourneyTest.php \
             tests/Integration/ProviderJourneyTest.php \
+            tests/Integration/TemplateHelperJourneyTest.php \
             tests/Functional/HomePageTest.php \
             tests/Functional/JsonMiddlewareTest.php
     )

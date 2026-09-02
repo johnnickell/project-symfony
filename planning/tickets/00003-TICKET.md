@@ -51,3 +51,12 @@ storage. Focused verification passed with 10 tests and 100 assertions. The detac
 both committed dependency lanes passed without lock drift, the exact candidate authority accepted the receipt,
 planning validation passed, the full suite passed with 10 tests and 100 assertions, and the production install/kernel
 boot passed. The lowest lane reported 9 upstream PHP 8.5 deprecations without test failures.
+
+PR #6 third-pass repair verified 2026-09-02: removed the remaining event-mapping/event-sourcing composition while
+preserving synchronous messaging and serialized asynchronous Messenger events; restored private-by-default production
+services; exposed production contract IDs to tests instead of replacing their bindings; added booted proof for the
+retained `TemplateHelperCompilerPass`; and removed middleware reflection/private package reach-through. Both committed
+dependency lanes and the full suite passed with 11 tests and 97 assertions; the lowest lane reported 9 upstream PHP
+8.5 deprecations without failures. Canonical receipt bytes and the exact candidate authority passed unchanged, ordinary
+Composer validation emitted only the allowed immutable-reference warning, planning validation and `git diff --check`
+passed, the canonical `./bin/build` exited `0`, and fresh Standards and Spec reviews reported no findings.
