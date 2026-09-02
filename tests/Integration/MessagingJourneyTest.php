@@ -2,17 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Composition;
+namespace App\Tests\Integration;
 
 use App\Tests\Fixture\BootedTestKernel;
 use App\Tests\Fixture\Messaging\TestCommand;
+use App\Tests\Fixture\Messaging\TestCommandFilter;
 use App\Tests\Fixture\Messaging\TestCommandHandler;
 use App\Tests\Fixture\Messaging\TestEvent;
 use App\Tests\Fixture\Messaging\TestEventSubscriber;
+use App\Tests\Fixture\Messaging\TestQuery;
+use App\Tests\Fixture\Messaging\TestQueryFilter;
+use App\Tests\Fixture\Messaging\TestQueryHandler;
 use Fight\Common\Application\Messaging\Command\AsynchronousCommandBus;
 use Fight\Common\Application\Messaging\Command\SynchronousCommandBus;
 use Fight\Common\Application\Messaging\Event\AsynchronousEventDispatcher;
 use Fight\Common\Application\Messaging\Event\SynchronousEventDispatcher;
+use Fight\Common\Application\Messaging\Query\QueryBus;
 use Fight\Common\Domain\EventSourcing\EventMapper;
 use Fight\Common\Domain\Messaging\Command\CommandMessage;
 use Fight\Common\Domain\Messaging\Event\EventMessage;
@@ -31,6 +36,12 @@ final class MessagingJourneyTest extends TestCase
             $command = new TestCommand('handled');
             $container->get(SynchronousCommandBus::class)->execute($command);
             self::assertSame($command, $container->get(TestCommandHandler::class)->handled?->payload());
+            self::assertSame($command, $container->get(TestCommandFilter::class)->filtered?->payload());
+
+            $query = new TestQuery('fetched');
+            self::assertSame(['name' => 'fetched'], $container->get(QueryBus::class)->fetch($query));
+            self::assertSame($query, $container->get(TestQueryHandler::class)->handled?->payload());
+            self::assertSame($query, $container->get(TestQueryFilter::class)->filtered?->payload());
 
             $event = new TestEvent('observed');
             $container->get(SynchronousEventDispatcher::class)->trigger($event);

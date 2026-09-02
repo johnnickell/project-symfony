@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Composition\Service\ProjectClock;
-use App\Composition\Service\SystemClock;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $container): void {
@@ -14,6 +12,5 @@ return static function (ContainerConfigurator $container): void {
     $services = $container->services();
     $services->defaults()->autowire()->autoconfigure();
     $services->load('App\\', '../src/')
-        ->exclude('../src/Kernel.php');
-    $services->alias(ProjectClock::class, SystemClock::class);
+        ->exclude('../src/Adapter/Kernel.php');
 };

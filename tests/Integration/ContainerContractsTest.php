@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Composition;
+namespace App\Tests\Integration;
 
 use App\Tests\Fixture\BootedTestKernel;
 use Fight\Common\Application\Auth\Authenticator;
@@ -48,7 +48,6 @@ use Fight\Common\Application\Socket\Publisher;
 use Fight\Common\Application\Templating\TemplateEngine;
 use Fight\Common\Application\Validation\ValidationService;
 use Fight\Common\Domain\EventSourcing\EventMapper;
-use Fight\Common\Domain\EventSourcing\EventStore;
 use Fight\Common\Domain\Serialization\Serializer;
 use PHPUnit\Framework\TestCase;
 
@@ -79,8 +78,7 @@ final class ContainerContractsTest extends TestCase
                 AuditLog::class, HealthAggregator::class, MetricsCollector::class, ProcessRunner::class,
                 TransactionalUnitOfWork::class, UrlGenerator::class, Scheduler::class, SmsFactory::class,
                 SmsService::class, SmsTransport::class, Publisher::class, PrivatePublisher::class,
-                TemplateEngine::class, ValidationService::class, EventMapper::class, EventStore::class,
-                Serializer::class,
+                TemplateEngine::class, ValidationService::class, EventMapper::class, Serializer::class,
             ];
 
             foreach ($contracts as $contract) {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Integration;
 
-use App\Kernel;
+use App\Adapter\Kernel;
 use PHPUnit\Framework\TestCase;
 
 final class KernelBootTest extends TestCase

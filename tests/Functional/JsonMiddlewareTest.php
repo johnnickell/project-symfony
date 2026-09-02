@@ -4,15 +4,24 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
-use App\Kernel;
+use App\Adapter\Kernel;
+use Fight\Common\Adapter\Middleware\Symfony\JsonRequestMiddleware;
 use PHPUnit\Framework\TestCase;
+use ReflectionProperty;
 use Symfony\Component\HttpFoundation\Request;
 
 final class JsonMiddlewareTest extends TestCase
 {
-    public function testTheDecoratedKernelParsesJsonAndReturnsANativeJSendResponse(): void
+    public function testTheFrontControllerComposesJsonMiddlewareAndReturnsANativeJSendResponse(): void
     {
-        $kernel = new Kernel('test', true);
+        $factory = require dirname(__DIR__, 2).'/public/index.php';
+        self::assertIsCallable($factory);
+
+        $kernel = $factory(['APP_ENV' => 'test', 'APP_DEBUG' => true]);
+        self::assertInstanceOf(JsonRequestMiddleware::class, $kernel);
+        $innerKernel = (new ReflectionProperty(JsonRequestMiddleware::class, 'kernel'))->getValue($kernel);
+        self::assertInstanceOf(Kernel::class, $innerKernel);
+
         $request = Request::create(
             '/_test/json-journey',
             'POST',
@@ -33,7 +42,7 @@ final class JsonMiddlewareTest extends TestCase
             if (isset($response)) {
                 $kernel->terminate($request, $response);
             }
-            $kernel->shutdown();
+            $innerKernel->shutdown();
         }
     }
 }

@@ -50,7 +50,13 @@ for lane in latest lowest; do
     fi
     (
         cd "$lane_root"
-        APP_ENV=test APP_SECRET=lane-only-secret vendor/bin/phpunit tests/Composition tests/Integration tests/Functional
+        APP_ENV=test APP_SECRET=lane-only-secret vendor/bin/phpunit \
+            tests/Integration/KernelBootTest.php \
+            tests/Integration/ContainerContractsTest.php \
+            tests/Integration/MessagingJourneyTest.php \
+            tests/Integration/ProviderJourneyTest.php \
+            tests/Functional/HomePageTest.php \
+            tests/Functional/JsonMiddlewareTest.php
     )
     rm -rf "$lane_root"
 done

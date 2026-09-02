@@ -1,6 +1,6 @@
 {
     "schema_version": "fight-common.framework-support-receipt/v1",
-    "content_id": "70ad761035c7e9de7297253ca483aa8b93c9adc5e7d2719956884ec2f1b92ac0",
+    "content_id": "1c71f6fc74a73a1976b562043630d403bb7e873b5049d64c6d5705b098b027fe",
     "candidate": {
         "package": "johnnickell/fight-common",
         "version": "1.2.0-dev",
@@ -35,9 +35,8 @@
         "validation.native_services": "wire",
         "messaging.sync_and_serialized_async": "ship",
         "persistence.doctrine_transactions": "ship",
-        "persistence.dbal_event_store": "wire",
         "cache.psr6": "wire",
-        "http.guzzle_and_jsend_middleware": "ship",
+        "http.guzzle_and_explicit_jsend_middleware": "ship",
         "filesystem.symfony": "ship",
         "storage.flysystem_local": "wire",
         "file_transfer.null_fallback": "wire",
@@ -57,14 +56,14 @@
         {
             "name": "latest_booted_symfony_capabilities",
             "status": "passed",
-            "evidence": "composer.lock; tests/Composition; tests/Integration; tests/Functional"
+            "evidence": "composer.lock; tests/Integration; tests/Functional"
         }
     ],
     "result": "passed",
     "evidence": {
         "build": "./bin/build",
         "planning_check": "./bin/planning-check",
-        "receipt_sha256": "f9ee2bb6f36de5325bf5bd1587da14da5f6131dc5fac20b8fb0654d02b065b29"
+        "receipt_sha256": "6527874a03c9455372f27ed4210cc0665651387d3bb98c6ed40fb7e627d782c2"
     },
     "next_action": null
 }

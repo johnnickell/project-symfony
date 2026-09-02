@@ -41,10 +41,13 @@ Candidate-validation follow-up verified 2026-08-31: the immutable Composer requi
 `composer validate`, permits only Composer's exact commit-reference warning, and rejects validation errors or any
 additional warning. `./bin/build` passed with 15 tests and 112 assertions plus production autoload/kernel boot.
 
-PR #6 architecture repair verified 2026-09-01: removed production profile bags, receipt authority, and synthetic
-event/provider source; registered the JSON middleware as the real `http_kernel` decorator; and moved all proof
-fixtures into `tests/Fixture`. The committed lowest lock and SHA-256 plus the latest root lock both installed without
-drift and booted the focused container, messaging, provider, routing, transaction, and HTTP journeys. The receipt now
-records canonical `1.2.0-dev` while cross-checking Composer's actual `dev-develop` reference, and the exact candidate's
-`StarterSupportReceiptAuthority` accepts both passing and resumable non-passing semantics. The canonical build result
-must remain the final repository-local acceptance gate.
+PR #6 second-pass architecture repair verified 2026-09-01: moved the public Kernel and controller into
+`App\Adapter`, made `public/index.php` explicitly compose the canonical JSON middleware, replaced the catch-all common
+service registry with capability-scoped configuration, and removed the artificial project clock/compiler pass and all
+event-store wiring. Compiler-pass, serialized Messenger, provider, routing, transaction, container, and HTTP proof now
+lives in focused Integration/Functional journeys with fixtures under `tests/Fixture`. The committed lowest and latest
+locks remained unchanged; the regenerated receipt records the focused journey paths and no longer claims DBAL event
+storage. Focused verification passed with 10 tests and 100 assertions. The detached canonical `./bin/build` exited `0`:
+both committed dependency lanes passed without lock drift, the exact candidate authority accepted the receipt,
+planning validation passed, the full suite passed with 10 tests and 100 assertions, and the production install/kernel
+boot passed. The lowest lane reported 9 upstream PHP 8.5 deprecations without test failures.

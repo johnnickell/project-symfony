@@ -3,8 +3,11 @@
 declare(strict_types=1);
 
 use App\Tests\Fixture\Messaging\TestCommandHandler;
+use App\Tests\Fixture\Messaging\TestCommandFilter;
 use App\Tests\Fixture\Messaging\TestEventMappingProvider;
 use App\Tests\Fixture\Messaging\TestEventSubscriber;
+use App\Tests\Fixture\Messaging\TestQueryFilter;
+use App\Tests\Fixture\Messaging\TestQueryHandler;
 use App\Tests\Fixture\Http\JsonJourneyController;
 use App\Tests\Fixture\Http\RecordingMercureHub;
 use Fight\Common\Adapter\Auth\Hmac\HmacAuthenticator;
@@ -14,7 +17,6 @@ use Fight\Common\Adapter\Auth\Security\JwtEncoder;
 use Fight\Common\Adapter\Auth\Security\PhpPasswordHasher;
 use Fight\Common\Adapter\Auth\Security\PhpPasswordValidator;
 use Fight\Common\Adapter\Cache\Psr6\Psr6Cache;
-use Fight\Common\Adapter\EventSourcing\Dbal\DbalEventStore;
 use Fight\Common\Adapter\FileStorage\FlysystemStorage;
 use Fight\Common\Adapter\Filesystem\Symfony\SymfonyFilesystem;
 use Fight\Common\Adapter\FileTransfer\Null\NullFileTransport;
@@ -72,7 +74,6 @@ use Fight\Common\Application\Sms\Transport\SmsTransport;
 use Fight\Common\Application\Socket\PrivatePublisher;
 use Fight\Common\Application\Socket\Publisher;
 use Fight\Common\Application\Templating\TemplateEngine;
-use Fight\Common\Domain\EventSourcing\EventStore;
 use Fight\Common\Domain\Serialization\Serializer;
 use Fight\Common\Application\Serialization\JsonSerializer;
 use Fight\Common\Application\Sms\SmsService;
@@ -83,9 +84,12 @@ return static function (ContainerConfigurator $container): void {
     $services = $container->services();
     $services->defaults()->autowire()->autoconfigure()->public();
     $services->set(JsonJourneyController::class);
+    $services->set(TestCommandFilter::class)->tag('common.command_filter');
     $services->set(TestCommandHandler::class)->tag('common.command_handler');
     $services->set(TestEventSubscriber::class)->tag('common.event_subscriber');
     $services->set(TestEventMappingProvider::class)->tag('common.event_mapping_provider');
+    $services->set(TestQueryFilter::class)->tag('common.query_filter');
+    $services->set(TestQueryHandler::class)->tag('common.query_handler');
     $services->set(RecordingMercureHub::class);
     $services->alias(HubInterface::class, RecordingMercureHub::class)->public();
 
@@ -125,7 +129,6 @@ return static function (ContainerConfigurator $container): void {
         Publisher::class => \Fight\Common\Adapter\Socket\MercureHubPublisher::class,
         PrivatePublisher::class => \Fight\Common\Adapter\Socket\PrivateMercureHubPublisher::class,
         TemplateEngine::class => TwigEngine::class,
-        EventStore::class => DbalEventStore::class,
         Serializer::class => JsonSerializer::class,
     ] as $alias => $target) {
         $services->alias($alias, $target)->public();

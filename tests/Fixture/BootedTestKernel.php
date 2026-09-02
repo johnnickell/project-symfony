@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Fixture;
 
-use App\Kernel;
+use App\Adapter\Kernel;
 use Psr\Container\ContainerInterface;
 
 trait BootedTestKernel
