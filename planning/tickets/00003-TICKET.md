@@ -68,3 +68,10 @@ before Fight Common's compiler passes run. Test fixtures no longer provide their
 visibility, so the booted messaging and templating journeys prove the production convention. Both committed dependency
 lanes and the canonical `./bin/build` passed with 11 tests and 97 assertions; the lowest lane retained only its 9 known
 upstream deprecations, and fresh Standards and Spec reviews reported no findings.
+
+Final visibility-boundary proof verified 2026-09-02: the mirrored Adapter unit test exercises the project-owned
+`LazyMessagingServiceVisibilityCompilerPass` directly and confirms that command handlers, event subscribers, and query
+handlers become public while command filters, query filters, template helpers, and unrelated services remain private.
+The focused test passed with 1 test and 7 assertions. The detached canonical `./bin/build` exited `0`: both committed
+dependency lanes passed with 11 tests and 97 assertions, planning validation passed, the full suite passed with 12 tests
+and 104 assertions, and production autoload/kernel boot passed.
