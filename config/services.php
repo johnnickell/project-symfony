@@ -12,5 +12,8 @@ return static function (ContainerConfigurator $container): void {
     $services = $container->services();
     $services->defaults()->autowire()->autoconfigure();
     $services->load('App\\', '../src/')
-        ->exclude('../src/Adapter/Kernel.php');
+        ->exclude([
+            '../src/Adapter/DependencyInjection/',
+            '../src/Adapter/Kernel.php',
+        ]);
 };

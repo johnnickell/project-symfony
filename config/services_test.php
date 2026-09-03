@@ -60,14 +60,16 @@ return static function (ContainerConfigurator $container): void {
     $services = $container->services();
     $services->defaults()->autowire()->autoconfigure();
     $services->set(JsonJourneyController::class)->public();
-    $services->set(TestCommandFilter::class)->tag('common.command_filter')->public();
-    $services->set(TestCommandHandler::class)->tag('common.command_handler')->public();
-    $services->set(TestEventSubscriber::class)->tag('common.event_subscriber')->public();
-    $services->set(TestQueryFilter::class)->tag('common.query_filter')->public();
-    $services->set(TestQueryHandler::class)->tag('common.query_handler')->public();
+    $services->set(TestCommandFilter::class);
+    $services->set(TestCommandHandler::class);
+    $services->set(TestEventSubscriber::class);
+    $services->set(TestQueryFilter::class);
+    $services->set(TestQueryHandler::class);
     $services->set(RecordingMercureHub::class)->public();
-    $services->set(TestTemplateHelper::class)->tag('common.template_helper')->public();
+    $services->set(TestTemplateHelper::class);
     $services->alias(HubInterface::class, RecordingMercureHub::class)->public();
+    $services->alias('test.fixture.'.TestCommandFilter::class, TestCommandFilter::class)->public();
+    $services->alias('test.fixture.'.TestQueryFilter::class, TestQueryFilter::class)->public();
 
     foreach ([
         Authenticator::class, RequestService::class, PasswordHasher::class, PasswordValidator::class,

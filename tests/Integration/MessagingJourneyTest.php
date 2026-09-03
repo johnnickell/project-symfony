@@ -35,12 +35,18 @@ final class MessagingJourneyTest extends TestCase
             $command = new TestCommand('handled');
             $container->get(SynchronousCommandBus::class)->execute($command);
             self::assertSame($command, $container->get(TestCommandHandler::class)->handled?->payload());
-            self::assertSame($command, $container->get(TestCommandFilter::class)->filtered?->payload());
+            self::assertSame(
+                $command,
+                $container->get('test.fixture.'.TestCommandFilter::class)->filtered?->payload(),
+            );
 
             $query = new TestQuery('fetched');
             self::assertSame(['name' => 'fetched'], $container->get(QueryBus::class)->fetch($query));
             self::assertSame($query, $container->get(TestQueryHandler::class)->handled?->payload());
-            self::assertSame($query, $container->get(TestQueryFilter::class)->filtered?->payload());
+            self::assertSame(
+                $query,
+                $container->get('test.fixture.'.TestQueryFilter::class)->filtered?->payload(),
+            );
 
             $event = new TestEvent('observed');
             $container->get(SynchronousEventDispatcher::class)->trigger($event);

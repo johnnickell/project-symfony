@@ -19,9 +19,7 @@ final class TemplateHelperJourneyTest extends TestCase
 
         try {
             $templates = $container->get('test.contract.'.TemplateEngine::class);
-            $helper = $container->get(TestTemplateHelper::class);
-
-            self::assertTrue($templates->hasHelper($helper));
+            self::assertTrue($templates->hasHelper(new TestTemplateHelper()));
         } finally {
             $kernel->shutdown();
         }
