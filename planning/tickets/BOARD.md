@@ -22,9 +22,7 @@ When asked for the next wayfinder target, offer to chart a new feature rather th
 
 ## Ready Frontier
 
-| Rank | Ticket | Parent PRD | Why now |
-| --- | --- | --- | --- |
-| 1 | [T-00003 — Adopt Fight Common 1.2](00003-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Resolve the candidate through this starter, boot the selected Symfony journeys, and commit its receipt. |
+No ticket is currently ready for implementation. The remaining PRD-00002 work awaits Fight Common's 2.0 migration authority.
 
 ## Waiting
 
@@ -40,5 +38,6 @@ No ticket is currently waiting on an unfinished local dependency.
 
 | Ticket | Parent PRD | Outcome |
 |--------|------------|---------|
+| [T-00003 — Establish the Symfony Complete Platform Profile](00003-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Repaired PR #6 around adapter-owned entrypoints, explicit web middleware, private capability-scoped providers, interface-driven compiler-pass autoconfiguration with narrow lazy-service visibility and direct boundary proof, production-binding test exposure, durable locks, and exact receipt authority with no event-sourcing infrastructure. |
 | [T-00002 — Establish the Full-Stack Symfony Web Foundation](00002-TICKET.md) | [PRD-00001](../specs/00001-PRD.md) | Added the Runtime-backed front controller, PHP configuration, Twig-rendered home page, and Compose-managed Nginx-to-PHP-FPM runtime. |
 | [T-00001 — Establish the Canonical Symfony Starter Foundation](00001-TICKET.md) | [PRD-00001](../specs/00001-PRD.md) | Established canonical planning authority, Docker-backed Composer and PHPUnit commands, a `var/cache/<tool>` convention, scoped ignore rules, and a clean production-install check. |

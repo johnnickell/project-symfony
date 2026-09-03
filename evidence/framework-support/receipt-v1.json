@@ -1,0 +1,69 @@
+{
+    "schema_version": "fight-common.framework-support-receipt/v1",
+    "content_id": "1c71f6fc74a73a1976b562043630d403bb7e873b5049d64c6d5705b098b027fe",
+    "candidate": {
+        "package": "johnnickell/fight-common",
+        "version": "1.2.0-dev",
+        "reference": "4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16"
+    },
+    "framework": {
+        "name": "symfony",
+        "version": "v8.1.6",
+        "providers": [
+            "doctrine/doctrine-bundle@3.3.1",
+            "doctrine/orm@3.6.8",
+            "dragonmantank/cron-expression@v3.6.0",
+            "guzzlehttp/guzzle@7.15.5",
+            "guzzlehttp/psr7@2.13.1",
+            "league/flysystem@3.35.3",
+            "lcobucci/jwt@5.6.0",
+            "symfony/filesystem@v8.1.6",
+            "symfony/http-client@v8.1.6",
+            "symfony/mailer@v8.1.5",
+            "symfony/mercure@v0.7.2",
+            "symfony/messenger@v8.1.6",
+            "symfony/process@v8.1.6",
+            "symfony/validator@v8.1.6",
+            "twilio/sdk@8.12.0"
+        ]
+    },
+    "lock_sha256": "cdcb9eccdf8840b52cfff28bf2b2745a794df3149d5d36bb2b9ab8bba79af6b6",
+    "capabilities": {
+        "container.native_contracts": "ship",
+        "container.compiler_passes": "ship",
+        "security.php_hmac_jwt": "wire",
+        "validation.native_services": "wire",
+        "messaging.sync_and_serialized_async": "ship",
+        "persistence.doctrine_transactions": "ship",
+        "cache.psr6": "wire",
+        "http.guzzle_and_explicit_jsend_middleware": "ship",
+        "filesystem.symfony": "ship",
+        "storage.flysystem_local": "wire",
+        "file_transfer.null_fallback": "wire",
+        "process_and_scheduler": "wire",
+        "routing.native_url_generation": "ship",
+        "mail_and_sms.null_fallbacks": "wire",
+        "templating.twig_php": "ship",
+        "observability.null_and_health": "wire",
+        "publication.mercure_configurable": "wire"
+    },
+    "journeys": [
+        {
+            "name": "lowest_booted_symfony_capabilities",
+            "status": "passed",
+            "evidence": "composer-lowest.lock; scripts/verify-dependency-lanes.sh"
+        },
+        {
+            "name": "latest_booted_symfony_capabilities",
+            "status": "passed",
+            "evidence": "composer.lock; tests/Integration; tests/Functional"
+        }
+    ],
+    "result": "passed",
+    "evidence": {
+        "build": "./bin/build",
+        "planning_check": "./bin/planning-check",
+        "receipt_sha256": "6527874a03c9455372f27ed4210cc0665651387d3bb98c6ed40fb7e627d782c2"
+    },
+    "next_action": null
+}

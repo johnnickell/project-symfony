@@ -4,14 +4,12 @@
 
 | PRD | Target | Status | Current outcome |
 | --- | --- | --- | --- |
-| [PRD-00002](specs/00002-PRD.md) | Fight Common 1.2 | ready-for-agent | Resolve, boot, and commit the Symfony support receipt; retain 2.0 preparation as needs-info. |
+| [PRD-00002](specs/00002-PRD.md) | Fight Common 1.2 | needs-info | The complete Symfony profile now has reproducible lowest/latest locks and exact receipt-authority proof; 2.0 preparation remains blocked on its owning package authority. |
 
 ## Route to 1.0
 
-1. Resolve the supported Fight Common 1.2 candidate through this starter's Composer installation.
-2. Activate only selected Symfony capabilities and prove lowest/latest booted journeys.
-3. Commit `evidence/framework-support/receipt-v1.json` after local planning and build evidence pass.
-4. Revisit 2.0 only after Fight Common publishes its migration authority.
+1. The starter has resolved the supported Fight Common 1.2 candidate and committed its Symfony support receipt.
+2. Revisit 2.0 only after Fight Common publishes its migration authority.
 
 ## Completed / Released
 
