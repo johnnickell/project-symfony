@@ -1,10 +1,10 @@
 {
     "schema_version": "fight-common.framework-support-receipt/v1",
-    "content_id": "1c71f6fc74a73a1976b562043630d403bb7e873b5049d64c6d5705b098b027fe",
+    "content_id": "42de887b7acbe1bcb63b42280427ac9ce3bdb5f4e060e99bf903c59772f15bbc",
     "candidate": {
         "package": "johnnickell/fight-common",
         "version": "1.2.0-dev",
-        "reference": "4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16"
+        "reference": "fad24ae9fdcf4ac00fa55c59ef7d35f7c7531911"
     },
     "framework": {
         "name": "symfony",
@@ -27,7 +27,7 @@
             "twilio/sdk@8.12.0"
         ]
     },
-    "lock_sha256": "cdcb9eccdf8840b52cfff28bf2b2745a794df3149d5d36bb2b9ab8bba79af6b6",
+    "lock_sha256": "6f22be5a3bd79484923ed2a11d3ee9751147dd4734f65104a76b8c8489e70f73",
     "capabilities": {
         "container.native_contracts": "ship",
         "container.compiler_passes": "ship",
@@ -63,7 +63,7 @@
     "evidence": {
         "build": "./bin/build",
         "planning_check": "./bin/planning-check",
-        "receipt_sha256": "6527874a03c9455372f27ed4210cc0665651387d3bb98c6ed40fb7e627d782c2"
+        "receipt_sha256": "74ef9180ad4bbf4f44fe9d78cdc6c4e94260da50e6a2068ce05ac85e46186bcb"
     },
     "next_action": null
 }

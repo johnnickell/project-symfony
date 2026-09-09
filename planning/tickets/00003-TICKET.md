@@ -75,3 +75,8 @@ handlers become public while command filters, query filters, template helpers, a
 The focused test passed with 1 test and 7 assertions. The detached canonical `./bin/build` exited `0`: both committed
 dependency lanes passed with 11 tests and 97 assertions, planning validation passed, the full suite passed with 12 tests
 and 104 assertions, and production autoload/kernel boot passed.
+## Supersession
+
+Fight Common's 2026-09-09 authorship-only history rewrite supersedes the commit identity recorded above without
+changing its source tree: `4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16 -> fad24ae9fdcf4ac00fa55c59ef7d35f7c7531911`. T-00006 owns the fresh consumer locks,
+receipt digests, and verification for the rewritten identity; the original certification remains historical fact.

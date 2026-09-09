@@ -6,7 +6,7 @@ const FRAMEWORK_SUPPORT_SCHEMA = 'fight-common.framework-support-receipt/v1';
 const FIGHT_COMMON_PACKAGE = 'johnnickell/fight-common';
 const FIGHT_COMMON_VERSION = '1.2.0-dev';
 const FIGHT_COMMON_LOCK_VERSION = 'dev-develop';
-const FIGHT_COMMON_REFERENCE = '4a798b1db8fdb5e4af7d0ba8c98a88ac53c50c16';
+const FIGHT_COMMON_REFERENCE = 'fad24ae9fdcf4ac00fa55c59ef7d35f7c7531911';
 
 /** @return array<string, array<string, mixed>> */
 function frameworkSupportLockedPackages(string $lockPath): array
