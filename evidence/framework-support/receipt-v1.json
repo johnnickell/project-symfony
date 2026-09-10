@@ -1,6 +1,6 @@
 {
     "schema_version": "fight-common.framework-support-receipt/v1",
-    "content_id": "42de887b7acbe1bcb63b42280427ac9ce3bdb5f4e060e99bf903c59772f15bbc",
+    "content_id": "a75abc426abd551caa74873736ed69d618ba655daf0b8b54e018de046ad4e473",
     "candidate": {
         "package": "johnnickell/fight-common",
         "version": "1.2.0-dev",
@@ -27,7 +27,7 @@
             "twilio/sdk@8.12.0"
         ]
     },
-    "lock_sha256": "6f22be5a3bd79484923ed2a11d3ee9751147dd4734f65104a76b8c8489e70f73",
+    "lock_sha256": "1e328d539d8dccf456642cd511bd80c36e326c281df481a9522eb8dcd6f3b04e",
     "capabilities": {
         "container.native_contracts": "ship",
         "container.compiler_passes": "ship",
@@ -63,7 +63,7 @@
     "evidence": {
         "build": "./bin/build",
         "planning_check": "./bin/planning-check",
-        "receipt_sha256": "74ef9180ad4bbf4f44fe9d78cdc6c4e94260da50e6a2068ce05ac85e46186bcb"
+        "receipt_sha256": "4ce6945535af72e4d9d258f3644f3e3f77f7817f10f9f1fa914f4f00e694faa4"
     },
     "next_action": null
 }

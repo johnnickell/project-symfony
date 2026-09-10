@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Adapter\DependencyInjection;
 
+use stdClass;
 use App\Adapter\DependencyInjection\LazyMessagingServiceVisibilityCompilerPass;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+#[CoversClass(LazyMessagingServiceVisibilityCompilerPass::class)]
 final class LazyMessagingServiceVisibilityCompilerPassTest extends TestCase
 {
     public function testMakesOnlyLazyMessagingServicesPublic(): void
@@ -22,11 +25,12 @@ final class LazyMessagingServiceVisibilityCompilerPassTest extends TestCase
             'query_filter' => 'common.query_filter',
             'template_helper' => 'common.template_helper',
         ] as $id => $tag) {
-            $container->register($id, \stdClass::class)->addTag($tag);
+            $container->register($id, stdClass::class)->addTag($tag);
         }
-        $container->register('unrelated', \stdClass::class);
 
-        (new LazyMessagingServiceVisibilityCompilerPass())->process($container);
+        $container->register('unrelated', stdClass::class);
+
+        new LazyMessagingServiceVisibilityCompilerPass()->process($container);
 
         self::assertTrue($container->getDefinition('command_handler')->isPublic());
         self::assertTrue($container->getDefinition('event_subscriber')->isPublic());

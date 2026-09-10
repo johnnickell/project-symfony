@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\Functional;
 
 use Fight\Common\Adapter\Middleware\Symfony\JsonRequestMiddleware;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
+#[CoversNothing]
 final class JsonMiddlewareTest extends TestCase
 {
     public function testTheFrontControllerComposesJsonMiddlewareAndReturnsANativeJSendResponse(): void

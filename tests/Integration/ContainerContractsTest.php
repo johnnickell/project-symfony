@@ -48,8 +48,10 @@ use Fight\Common\Application\Socket\Publisher;
 use Fight\Common\Application\Templating\TemplateEngine;
 use Fight\Common\Application\Validation\ValidationService;
 use Fight\Common\Domain\Serialization\Serializer;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 
+#[CoversNothing]
 final class ContainerContractsTest extends TestCase
 {
     use BootedTestKernel;

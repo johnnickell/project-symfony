@@ -42,6 +42,7 @@ final class Kernel extends BaseKernel
         if (is_dir(dirname(__DIR__, 2).'/config/packages/'.$this->environment)) {
             $container->import(dirname(__DIR__, 2).'/config/packages/'.$this->environment.'/*.php');
         }
+
         $container->import(dirname(__DIR__, 2).'/config/services.php');
         $container->import(dirname(__DIR__, 2).'/config/common/*.php');
         if ($this->environment === 'test') {
