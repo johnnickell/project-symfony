@@ -72,3 +72,9 @@ tests and 182 assertions, statement coverage was exact at 41/41, and the product
 The rebuilt Compose runtime returned HTTP 200 and ran the FPM master and worker as UID 1000. The exact-head hosted
 build is a separate post-push merge gate: its result is recorded on the pull request, and the branch may not merge
 unless that check passes against the pushed commit.
+
+### Evidence Layout Supersession
+
+The committed framework-support receipt moved from the repository-root `evidence/` namespace to
+`etc/evidence/framework-support/receipt-v1.json`. Its bytes, certification identity, and embedded digests are
+unchanged; only repository ownership and operational references moved.

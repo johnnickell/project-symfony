@@ -6,7 +6,7 @@ $projectRoot = dirname(__DIR__);
 require $projectRoot.'/scripts/framework-support-receipt.php';
 
 $receipt = frameworkSupportReceipt($projectRoot);
-$path = $projectRoot.'/evidence/framework-support/receipt-v1.json';
+$path = $projectRoot.'/etc/evidence/framework-support/receipt-v1.json';
 
 if ($argc === 1) {
     if (!is_file($path) || !hash_equals(frameworkSupportCanonicalJson($receipt), (string) file_get_contents($path))) {
