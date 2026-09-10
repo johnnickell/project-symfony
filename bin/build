@@ -27,7 +27,7 @@ docker run --rm --env APP_SECRET=build-only-secret --volume "$(pwd):/app" \
 
     rm -f var/reports/coverage/clover.xml
     php vendor/bin/phpunit --fail-on-skipped --fail-on-notice --fail-on-warning
-    bash bin/coverage
+    php scripts/check-coverage.php
 
     production_root="$work_root/production"
     mkdir "$production_root"

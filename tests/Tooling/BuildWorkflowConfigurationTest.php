@@ -32,7 +32,7 @@ final class BuildWorkflowConfigurationTest extends TestCase
             'php vendor/bin/deptrac debug:unassigned --no-cache',
             'php vendor/bin/rector process src tests --dry-run --no-progress-bar',
             'php vendor/bin/phpunit --fail-on-skipped --fail-on-notice --fail-on-warning',
-            'bash bin/coverage',
+            'php scripts/check-coverage.php',
             'composer install --no-dev --no-interaction --prefer-dist --no-progress',
             'php scripts/production-autoload-check.php',
         ];

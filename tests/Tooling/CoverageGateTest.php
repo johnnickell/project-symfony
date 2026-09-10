@@ -63,7 +63,11 @@ final class CoverageGateTest extends TestCase
 
     private function runCoverageGate(): Process
     {
-        $process = new Process(['bash', dirname(__DIR__, 2).'/bin/coverage'], $this->directory, timeout: 20);
+        $process = new Process(
+            [PHP_BINARY, dirname(__DIR__, 2).'/scripts/check-coverage.php'],
+            $this->directory,
+            timeout: 20,
+        );
         $process->run();
 
         return $process;
