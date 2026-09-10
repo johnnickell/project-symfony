@@ -20,9 +20,11 @@ use Fight\Common\Application\Messaging\Event\SynchronousEventDispatcher;
 use Fight\Common\Application\Messaging\Query\QueryBus;
 use Fight\Common\Domain\Messaging\Command\CommandMessage;
 use Fight\Common\Domain\Messaging\Event\EventMessage;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Transport\InMemory\InMemoryTransport;
 
+#[CoversNothing]
 final class MessagingJourneyTest extends TestCase
 {
     use BootedTestKernel;

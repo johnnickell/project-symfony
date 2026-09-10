@@ -7,8 +7,10 @@ namespace App\Tests\Integration;
 use App\Tests\Fixture\BootedTestKernel;
 use App\Tests\Fixture\Templating\TestTemplateHelper;
 use Fight\Common\Application\Templating\TemplateEngine;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 
+#[CoversNothing]
 final class TemplateHelperJourneyTest extends TestCase
 {
     use BootedTestKernel;

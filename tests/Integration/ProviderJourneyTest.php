@@ -33,9 +33,11 @@ use Fight\Common\Application\Socket\PrivatePublisher;
 use Fight\Common\Application\Socket\Publisher;
 use Fight\Common\Application\Templating\TemplateEngine;
 use Fight\Common\Domain\Observability\AuditEntry;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
+#[CoversNothing]
 final class ProviderJourneyTest extends TestCase
 {
     use BootedTestKernel;
@@ -151,9 +153,11 @@ final class ProviderJourneyTest extends TestCase
             if (isset($filesystem)) {
                 $filesystem->remove(dirname($filesystemPath));
             }
+
             if (isset($storage) && $storage->hasFile($storagePath)) {
                 $storage->removeFile($storagePath);
             }
+
             $kernel->shutdown();
         }
     }
