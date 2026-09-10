@@ -13,7 +13,7 @@ if (!is_file($authorityFile)) {
 require $projectRoot.'/scripts/framework-support-receipt.php';
 require $authorityFile;
 
-$receiptPath = $projectRoot.'/evidence/framework-support/receipt-v1.json';
+$receiptPath = $projectRoot.'/etc/evidence/framework-support/receipt-v1.json';
 $receipt = json_decode((string) file_get_contents($receiptPath), true, flags: JSON_THROW_ON_ERROR);
 $authority = new Fight\Release\Application\StarterSupportReceiptAuthority();
 
