@@ -17,8 +17,11 @@ owning package publishes the contract, deprecation-removal inventory, and migrat
 
 ## Wayfinder Review
 
-No active Wayfinder map currently exists. When an active map has an unblocked frontier ticket, list it here.
-When asked for the next wayfinder target, offer to chart a new feature rather than fabricating one.
+[Symfony AccessControl Starter Application](../wayfinder/symfony-access-control-application-map.md) is active.
+Its unblocked frontier is
+[WF-002 — Local Development Runtime Contract](../wayfinder/tickets/WF-002-local-development-runtime-contract.md).
+Run `$aios /grill-with-docs WF-002` for the next Wayfinder decision. WF-001 remains gated until the requested
+released package tags are installable.
 
 ## Ready Frontier
 
