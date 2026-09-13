@@ -27,7 +27,9 @@ complete-document ownership. After that audit closes, the next human decision is
 
 ## Ready Frontier
 
-No ticket is currently ready for implementation. The remaining PRD-00002 work awaits Fight Common's 2.0 migration authority.
+| Suggested Order | Ticket | Parent PRD | Why now |
+| --- | --- | --- | --- |
+| 1 | [T-00007 — Establish the Lean Symfony Pre-Submit Quality Gate](00007-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Direct successor to Fight Common T-00087; remove historical certification machinery while preserving Symfony behavior. |
 
 ## Waiting
 
