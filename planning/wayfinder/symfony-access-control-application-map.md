@@ -71,7 +71,8 @@ excluded, and the map links to its resulting epic, PRDs, and executable implemen
 8. **[Complete HTTP Operation Matrix](tickets/WF-008-complete-http-operation-matrix.md) is open.** Account for every
    consumer-relevant HTTP operation and every deliberate non-HTTP exclusion.
 9. **[React SPA Architecture and Journeys](tickets/WF-009-react-spa-architecture-journeys.md) is open.** Set the
-   editable frontend structure, token lifecycle, routing, styling, and human workflows.
+   editable frontend structure, token lifecycle, routing, white-label visual system, and human workflows. Backend
+   decisions remain in WF-002 through WF-008 in this map; WF-009 consumes their public client contract.
 10. **[Implementation Handoff Acceptance Contract](tickets/WF-010-implementation-handoff-acceptance-contract.md) is
     open.** Define the security, testing, documentation, clean-clone build, and handoff gates.
 
