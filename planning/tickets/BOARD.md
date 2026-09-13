@@ -17,11 +17,13 @@ owning package publishes the contract, deprecation-removal inventory, and migrat
 
 ## Wayfinder Review
 
-[Symfony AccessControl Starter Application](../wayfinder/symfony-access-control-application-map.md) is active.
-Its unblocked frontier is
-[WF-002 — Local Development Runtime Contract](../wayfinder/tickets/WF-002-local-development-runtime-contract.md).
-Run `$aios /grill-with-docs WF-002` for the next Wayfinder decision. WF-001 remains gated until the requested
-released package tags are installable.
+No active map currently has an unblocked grillable frontier.
+[Symfony AccessControl Starter Application](../wayfinder/symfony-access-control-application-map.md) remains active:
+[Local Development Runtime Contract](../wayfinder/tickets/WF-002-local-development-runtime-contract.md) is closed,
+while [Released Package Contract Audit](../wayfinder/tickets/WF-001-released-package-contract-audit.md) awaits
+installable AccessControl v0.2.0 reusable schemas and a public-contract delta audit. Symfony retains endpoint and
+complete-document ownership. After that audit closes, the next human decision is
+[ADR HTTP and OpenAPI Contract](../wayfinder/tickets/WF-003-adr-http-openapi-contract.md).
 
 ## Ready Frontier
 

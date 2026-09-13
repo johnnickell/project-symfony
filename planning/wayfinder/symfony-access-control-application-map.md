@@ -47,15 +47,18 @@ excluded, and the map links to its resulting epic, PRDs, and executable implemen
   [Scheduler](https://symfony.com/doc/current/scheduler.html),
   [Messenger](https://symfony.com/doc/current/messenger.html), and
   [Mercure](https://symfony.com/doc/current/mercure.html).
-- WF-001 must audit the requested released tags themselves. The current development revisions are orientation
-  only and cannot satisfy that ticket's evidence gate.
+- WF-001 has [v0.1.0 baseline evidence](research/WF-001-released-package-contract-audit-research.md), but that
+  release lacks reusable schema carriers. John retained package-owned schema information and selected forthcoming
+  v0.2.0; project endpoint/document metadata remains Symfony-owned. Development revisions or an announced tag
+  cannot satisfy the updated audit gate.
 
 ## Decisions so far
 
-1. **[Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md) is open.** Inventory and
-   classify the released public package surface without reaching into package internals.
-2. **[Local Development Runtime Contract](tickets/WF-002-local-development-runtime-contract.md) is open.** Define
-   the isolated Compose topology and operator contract independently of the gated package audit.
+1. **[Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md) is open.** The v0.1.0
+   baseline is recorded; audit the forthcoming v0.2.0 schema resources and public-contract delta before closure.
+2. **[Local Development Runtime Contract](tickets/WF-002-local-development-runtime-contract.md) is closed.**
+   Accepted isolated HTTPS origins, service topology and image policy, explicit readiness, and data-preserving
+   shutdown. Runtime implementation and qualification remain later work.
 3. **[ADR HTTP and OpenAPI Contract](tickets/WF-003-adr-http-openapi-contract.md) is open.** Set the request,
    response, validation, error, versioning, and documentation authority.
 4. **[Doctrine Persistence and Bootstrap Contract](tickets/WF-004-doctrine-persistence-bootstrap-contract.md) is
@@ -69,7 +72,8 @@ excluded, and the map links to its resulting epic, PRDs, and executable implemen
 8. **[Complete HTTP Operation Matrix](tickets/WF-008-complete-http-operation-matrix.md) is open.** Account for every
    consumer-relevant HTTP operation and every deliberate non-HTTP exclusion.
 9. **[React SPA Architecture and Journeys](tickets/WF-009-react-spa-architecture-journeys.md) is open.** Set the
-   editable frontend structure, token lifecycle, routing, styling, and human workflows.
+   editable frontend structure, token lifecycle, routing, white-label visual system, and human workflows. Backend
+   decisions remain in WF-002 through WF-008 in this map; WF-009 consumes their public client contract.
 10. **[Implementation Handoff Acceptance Contract](tickets/WF-010-implementation-handoff-acceptance-contract.md) is
     open.** Define the security, testing, documentation, clean-clone build, and handoff gates.
 
@@ -78,7 +82,7 @@ excluded, and the map links to its resulting epic, PRDs, and executable implemen
 | Ticket | Type | Mode | Status | Depends On | Gate |
 |---|---|---|---|---|---|
 | [WF-001 — Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md) | Research | AFK | **Open** | — | Installable `fight-common` v1.2.0 and `fight-access-control` v0.2.0 |
-| [WF-002 — Local Development Runtime Contract](tickets/WF-002-local-development-runtime-contract.md) | Grilling | HITL | **Open** | — | — |
+| [WF-002 — Local Development Runtime Contract](tickets/WF-002-local-development-runtime-contract.md) | Grilling | HITL | **Closed** | — | — |
 | [WF-003 — ADR HTTP and OpenAPI Contract](tickets/WF-003-adr-http-openapi-contract.md) | Prototype | HITL | **Open** | WF-001 | — |
 | [WF-004 — Doctrine Persistence and Bootstrap Contract](tickets/WF-004-doctrine-persistence-bootstrap-contract.md) | Prototype | HITL | **Open** | WF-001, WF-002 | — |
 | [WF-005 — Authentication and Account Security Contract](tickets/WF-005-authentication-account-security-contract.md) | Grilling | HITL | **Open** | WF-003, WF-004 | — |
@@ -101,20 +105,22 @@ WF-002 through WF-009 ───────────────────�
 WF-010 ──→ epic, PRDs, and executable implementation tickets
 ```
 
-WF-002 is independently takeable. WF-001 remains gated until both requested release tags are installable; a
+WF-002 is closed. WF-001 remains gated on installable AccessControl v0.2.0 with reusable schema
+information and a verified delta audit. Common v1.2.0 and the AccessControl v0.1.0 baseline are verified; a
 development branch, alias, candidate commit, or unpublished package tree is not substitute evidence.
 
 ## Frontier
 
-[WF-002 — Local Development Runtime Contract](tickets/WF-002-local-development-runtime-contract.md) is the one
-next grillable decision. Run `$aios /grill-with-docs WF-002`.
+No decision is currently takeable. [Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md)
+awaits installable AccessControl v0.2.0 schema carriers and a verified delta audit. Once it closes, the next
+human decision is [ADR HTTP and OpenAPI Contract](tickets/WF-003-adr-http-openapi-contract.md).
 
 ## Not yet specified (fog)
 
-- Exact released package capabilities, signatures, semantic guarantees, and documented extension points remain
-  unknown until WF-001 can audit the installable tags.
-- Exact container versions, host ports, health thresholds, named-volume policy, and parallel-worktree project
-  naming remain for WF-002.
+- AccessControl v0.1.0 capabilities are recorded in WF-001 research. The v0.2.0 public-contract delta and reusable
+  schema carriers remain unverified; WF-003 and downstream decisions must wait for that audit.
+- Runtime topology, image selection/pinning policy, host ports, health thresholds, volume policy, and worktree
+  naming are settled in WF-002. Image manifests and running-runtime proof belong to implementation acceptance.
 - Exact endpoint paths, schemas, permission names, pagination defaults, idempotency keys, rate limits, and OpenAPI
   one-pass generation inputs and normalized contract comparison remain downstream decisions.
 - Exact persistence tables, indexes, lock strategies, transaction boundaries, migration sequence, and managed
