@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Adapter\Controller;
+namespace App\Tests\Unit\Adapter\Controller;
 
 use App\Adapter\Controller\HomeController;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -11,9 +11,15 @@ use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Twig\Environment;
 
+/**
+ * Tests the home controller.
+ */
 #[CoversClass(HomeController::class)]
 final class HomeControllerTest extends TestCase
 {
+    /**
+     * Tests configured application-name rendering.
+     */
     public function testIndexRendersTheConfiguredApplicationName(): void
     {
         $parameterBag = $this->createMock(ContainerBagInterface::class);
@@ -31,11 +37,11 @@ final class HomeControllerTest extends TestCase
         $container = $this->createStub(ContainerInterface::class);
         $container->method('has')->willReturnMap([
             ['parameter_bag', true],
-            ['twig', true],
+            ['twig', true]
         ]);
         $container->method('get')->willReturnMap([
             ['parameter_bag', $parameterBag],
-            ['twig', $twig],
+            ['twig', $twig]
         ]);
 
         $controller = new HomeController();

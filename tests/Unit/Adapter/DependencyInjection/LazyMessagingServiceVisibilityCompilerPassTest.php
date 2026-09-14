@@ -2,29 +2,37 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Adapter\DependencyInjection;
+namespace App\Tests\Unit\Adapter\DependencyInjection;
 
-use stdClass;
 use App\Adapter\DependencyInjection\LazyMessagingServiceVisibilityCompilerPass;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * Tests the lazy-messaging compiler pass.
+ */
 #[CoversClass(LazyMessagingServiceVisibilityCompilerPass::class)]
 final class LazyMessagingServiceVisibilityCompilerPassTest extends TestCase
 {
+    /**
+     * Tests lazy messaging service visibility.
+     */
     public function testMakesOnlyLazyMessagingServicesPublic(): void
     {
         $container = new ContainerBuilder();
 
-        foreach ([
-            'command_handler' => 'common.command_handler',
+        foreach (
+            [
+            'command_handler'  => 'common.command_handler',
             'event_subscriber' => 'common.event_subscriber',
-            'query_handler' => 'common.query_handler',
-            'command_filter' => 'common.command_filter',
-            'query_filter' => 'common.query_filter',
-            'template_helper' => 'common.template_helper',
-        ] as $id => $tag) {
+            'query_handler'    => 'common.query_handler',
+            'command_filter'   => 'common.command_filter',
+            'query_filter'     => 'common.query_filter',
+            'template_helper'  => 'common.template_helper'
+            ] as $id => $tag
+        ) {
             $container->register($id, stdClass::class)->addTag($tag);
         }
 

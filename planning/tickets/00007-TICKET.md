@@ -2,7 +2,7 @@
 id: T-00007
 prd: PRD-00002
 title: Establish the Lean Symfony Pre-Submit Quality Gate
-status: ready-for-agent
+status: done
 blocked_by:
 ---
 
@@ -36,13 +36,20 @@ Create the Symfony-owned lean `./bin/build` pre-submit gate required by Fight Co
 
 ## Acceptance Criteria
 
-- [ ] One canonical gate executes each retained suite once and every retained quality check.
-- [ ] The installed package/standard, local paths/exclusions, and direct Unit-only exact coverage are enforced.
-- [ ] `#[CoversClass]` and `#[CoversNothing]` metadata preserve direct coverage ownership without masking gaps.
-- [ ] Symfony-native boundaries and valuable application journeys remain; Tooling and certification lanes are
+- [x] One canonical gate executes each retained suite once and every retained quality check.
+- [x] The installed package/standard, local paths/exclusions, and direct Unit-only exact coverage are enforced.
+- [x] `#[CoversClass]` and `#[CoversNothing]` metadata preserve direct coverage ownership without masking gaps.
+- [x] Symfony-native boundaries and valuable application journeys remain; Tooling and certification lanes are
       absent from ordinary builds.
 
 ## Verification
 
 - Run focused retained checks and `./bin/build` during the implementation ticket.
 - Confirm CI delegates only to `./bin/build`; record its status separately.
+
+## Completion
+
+Completed 2026-09-13. `./bin/build` now performs one Docker-backed planning, Composer, syntax, static-analysis,
+formatting, exact Unit-coverage, Integration, and Functional pass. Fight Common resolves through the released 1.2
+constraint, the project composes its installed PHPCS ruleset, and the former candidate, receipt, lowest-lock,
+production-install, and Tooling-test certification machinery is removed.

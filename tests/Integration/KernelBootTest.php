@@ -8,9 +8,15 @@ use App\Adapter\Kernel;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests project kernel booting.
+ */
 #[CoversNothing]
 final class KernelBootTest extends TestCase
 {
+    /**
+     * Tests project-owned kernel booting.
+     */
     public function testTheProjectOwnedKernelBoots(): void
     {
         $kernel = new Kernel('test', false);

@@ -7,15 +7,23 @@ namespace App\Adapter\DependencyInjection;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * Class LazyMessagingServiceVisibilityCompilerPass
+ */
 final class LazyMessagingServiceVisibilityCompilerPass implements CompilerPassInterface
 {
+    /**
+     * Sets lazy messaging handler visibility for runtime resolution
+     */
     public function process(ContainerBuilder $container): void
     {
-        foreach ([
+        foreach (
+            [
             'common.command_handler',
             'common.event_subscriber',
-            'common.query_handler',
-        ] as $tag) {
+            'common.query_handler'
+            ] as $tag
+        ) {
             foreach (array_keys($container->findTaggedServiceIds($tag)) as $id) {
                 $container->getDefinition($id)->setPublic(true);
             }
