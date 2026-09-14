@@ -4,11 +4,11 @@
 
 | PRD | Target | Status | Current outcome |
 | --- | --- | --- | --- |
-| [PRD-00002](specs/00002-PRD.md) | Fight Common 1.2 | needs-info | The complete Symfony profile now has reproducible lowest/latest locks, exact receipt authority, and the permanent repository-owned pre-submit gate; 2.0 preparation remains blocked on its owning package authority. |
+| [PRD-00002](specs/00002-PRD.md) | Fight Common 1.2 | in-progress | T-00007 owns the lean Symfony gate; historical receipt and dependency-lane records remain intact while 2.0 stays separately needs-info. |
 
 ## Route to 1.0
 
-1. The starter has resolved the supported Fight Common 1.2 candidate and committed its Symfony support receipt.
+1. Implement T-00007's single lean local and hosted `./bin/build` gate with direct Unit-only coverage and retained Symfony journeys.
 2. Revisit 2.0 only after Fight Common publishes its migration authority.
 
 ## Completed / Released
