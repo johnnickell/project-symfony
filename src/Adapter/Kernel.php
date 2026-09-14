@@ -17,13 +17,19 @@ use Fight\Common\Application\Messaging\Event\EventSubscriber;
 use Fight\Common\Application\Messaging\Query\QueryFilter;
 use Fight\Common\Application\Messaging\Query\QueryHandler;
 use Fight\Common\Application\Templating\TemplateHelper;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 
+/**
+ * Class Kernel
+ */
 final class Kernel extends BaseKernel
 {
+    /**
+     * Registers configured Symfony bundles
+     */
     public function registerBundles(): iterable
     {
         /** @var array<class-string, array<string, bool>> $bundles */
@@ -36,6 +42,9 @@ final class Kernel extends BaseKernel
         }
     }
 
+    /**
+     * Configures project-owned service definitions
+     */
     protected function configureContainer(ContainerConfigurator $container): void
     {
         $container->import(dirname(__DIR__, 2).'/config/packages/*.php');
@@ -50,6 +59,9 @@ final class Kernel extends BaseKernel
         }
     }
 
+    /**
+     * Registers messaging autoconfiguration and compiler passes
+     */
     protected function build(ContainerBuilder $container): void
     {
         parent::build($container);
@@ -66,7 +78,7 @@ final class Kernel extends BaseKernel
 
         $container->addCompilerPass(
             new LazyMessagingServiceVisibilityCompilerPass(),
-            PassConfig::TYPE_BEFORE_OPTIMIZATION,
+            PassConfig::TYPE_BEFORE_OPTIMIZATION
         );
 
         $container->addCompilerPass(new CommandFilterCompilerPass());

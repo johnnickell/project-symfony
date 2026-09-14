@@ -29,7 +29,7 @@ complete-document ownership. After that audit closes, the next human decision is
 
 | Suggested Order | Ticket | Parent PRD | Why now |
 | --- | --- | --- | --- |
-| 1 | [T-00007 — Establish the Lean Symfony Pre-Submit Quality Gate](00007-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Direct successor to Fight Common T-00087; remove historical certification machinery while preserving Symfony behavior. |
+No ticket is currently ready for implementation.
 
 ## Waiting
 
@@ -45,6 +45,7 @@ No ticket is currently waiting on an unfinished local dependency.
 
 | Ticket | Parent PRD | Outcome |
 |--------|------------|---------|
+| [T-00007 — Establish the Lean Symfony Pre-Submit Quality Gate](00007-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Replaced candidate certification with one Docker-backed build: released Fight Common 1.2, its installed PHPCS standard, exact Unit coverage, and retained Integration and Functional journeys. |
 | [T-00005 — Establish the Canonical Symfony Pre-Submit Quality Gate](00005-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Made `./bin/build` the single clean-clone local and hosted gate with Composer candidate validation, latest/lowest boot journeys, receipt authority, PHPCS, PHPStan, Deptrac, Rector, exact statement coverage, production installation, and the hardened two-service runtime. |
 | [T-00006 — Re-certify Rewritten Fight Common Candidate](00006-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Re-certified the tree-equivalent rewritten Fight Common candidate with fresh latest/lowest locks, receipt digests, and the canonical build. |
 | [T-00003 — Establish the Symfony Complete Platform Profile](00003-TICKET.md) | [PRD-00002](../specs/00002-PRD.md) | Repaired PR #6 around adapter-owned entrypoints, explicit web middleware, private capability-scoped providers, interface-driven compiler-pass autoconfiguration with narrow lazy-service visibility and direct boundary proof, production-binding test exposure, durable locks, and exact receipt authority with no event-sourcing infrastructure. |

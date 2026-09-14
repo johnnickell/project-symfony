@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional;
 
-use LogicException;
 use App\Adapter\Kernel;
+use LogicException;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Tests the home-page journey.
+ */
 #[CoversNothing]
 final class HomePageTest extends TestCase
 {
+    /**
+     * Tests full-stack home-page rendering.
+     */
     public function testTheHomePageRendersTheFullStackFoundation(): void
     {
         $kernel = new Kernel('test', true);
@@ -23,7 +29,10 @@ final class HomePageTest extends TestCase
             self::assertSame(200, $response->getStatusCode());
             self::assertStringContainsString('Hello, Fight Symfony Starter', (string) $response->getContent());
         } finally {
-            $kernel->terminate(Request::create('/'), $response ?? throw new LogicException('Response was not created.'));
+            $kernel->terminate(
+                Request::create('/'),
+                $response ?? throw new LogicException('Response was not created.')
+            );
             $kernel->shutdown();
         }
     }

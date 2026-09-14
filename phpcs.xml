@@ -2,25 +2,11 @@
 <ruleset name="FightSymfony">
     <description>Fight Symfony Starter coding standard</description>
 
-    <file>config</file>
-    <file>public</file>
-    <file>scripts</file>
     <file>src</file>
     <file>tests</file>
 
-    <exclude-pattern>config/reference.php</exclude-pattern>
     <exclude-pattern>var/*</exclude-pattern>
+    <exclude-pattern>tests/Fixture/*</exclude-pattern>
 
-    <rule ref="PSR12">
-        <exclude name="Generic.Files.LineLength" />
-        <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses" />
-        <exclude name="PSR12.ControlStructures.ControlStructureSpacing" />
-        <exclude name="PSR12.Files.FileHeader.IncorrectOrder" />
-        <exclude name="PSR12.Operators.OperatorSpacing" />
-    </rule>
-    <rule ref="Squiz.Strings.ConcatenationSpacing">
-        <properties>
-            <property name="spacing" value="0" />
-        </properties>
-    </rule>
+    <rule ref="./vendor/johnnickell/fight-common/src/Standards/Phpcs/ruleset.xml" />
 </ruleset>

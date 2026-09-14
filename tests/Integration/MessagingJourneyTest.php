@@ -24,11 +24,17 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Transport\InMemory\InMemoryTransport;
 
+/**
+ * Tests messaging boundaries.
+ */
 #[CoversNothing]
 final class MessagingJourneyTest extends TestCase
 {
     use BootedTestKernel;
 
+    /**
+     * Tests compiler-pass collection of test messaging services.
+     */
     public function testCompilerPassesCollectTestOnlyHandlersAndSubscribers(): void
     {
         [$kernel, $container] = $this->bootTestKernel();
@@ -39,7 +45,7 @@ final class MessagingJourneyTest extends TestCase
             self::assertSame($command, $container->get(TestCommandHandler::class)->handled?->payload());
             self::assertSame(
                 $command,
-                $container->get('test.fixture.'.TestCommandFilter::class)->filtered?->payload(),
+                $container->get('test.fixture.'.TestCommandFilter::class)->filtered?->payload()
             );
 
             $query = new TestQuery('fetched');
@@ -47,7 +53,7 @@ final class MessagingJourneyTest extends TestCase
             self::assertSame($query, $container->get(TestQueryHandler::class)->handled?->payload());
             self::assertSame(
                 $query,
-                $container->get('test.fixture.'.TestQueryFilter::class)->filtered?->payload(),
+                $container->get('test.fixture.'.TestQueryFilter::class)->filtered?->payload()
             );
 
             $event = new TestEvent('observed');
@@ -58,6 +64,9 @@ final class MessagingJourneyTest extends TestCase
         }
     }
 
+    /**
+     * Tests dispatch through the configured serialized transport.
+     */
     public function testMessengerDispatchUsesTheConfiguredSerializedTransport(): void
     {
         [$kernel, $container] = $this->bootTestKernel();

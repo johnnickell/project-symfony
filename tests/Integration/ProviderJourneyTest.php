@@ -13,14 +13,14 @@ use Fight\Common\Application\Auth\Security\PasswordValidator;
 use Fight\Common\Application\Auth\Security\TokenDecoder;
 use Fight\Common\Application\Auth\Security\TokenEncoder;
 use Fight\Common\Application\Cache\MutableCache;
-use Fight\Common\Application\FileTransfer\FileTransferService;
 use Fight\Common\Application\FileStorage\FileStorage;
 use Fight\Common\Application\FileStorage\StorageService;
 use Fight\Common\Application\Filesystem\Filesystem;
+use Fight\Common\Application\FileTransfer\FileTransferService;
 use Fight\Common\Application\HttpClient\HttpService;
 use Fight\Common\Application\Mail\MailService;
-use Fight\Common\Application\Observability\HealthAggregator;
 use Fight\Common\Application\Observability\AuditLog;
+use Fight\Common\Application\Observability\HealthAggregator;
 use Fight\Common\Application\Observability\MetricsCollector;
 use Fight\Common\Application\Process\ProcessBuilder;
 use Fight\Common\Application\Process\ProcessRunner;
@@ -28,20 +28,26 @@ use Fight\Common\Application\Repository\TransactionalUnitOfWork;
 use Fight\Common\Application\Routing\UrlGenerator;
 use Fight\Common\Application\Scheduler\Scheduler;
 use Fight\Common\Application\Sms\SmsService;
-use Fight\Common\Application\Validation\ValidationService;
 use Fight\Common\Application\Socket\PrivatePublisher;
 use Fight\Common\Application\Socket\Publisher;
 use Fight\Common\Application\Templating\TemplateEngine;
+use Fight\Common\Application\Validation\ValidationService;
 use Fight\Common\Domain\Observability\AuditEntry;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
+/**
+ * Tests configured provider boundaries.
+ */
 #[CoversNothing]
 final class ProviderJourneyTest extends TestCase
 {
     use BootedTestKernel;
 
+    /**
+     * Tests focused native provider journeys.
+     */
     public function testBootedNativeProvidersPerformTheirFocusedJourneys(): void
     {
         [$kernel, $container] = $this->bootTestKernel();
@@ -53,21 +59,34 @@ final class ProviderJourneyTest extends TestCase
                 'symfony',
                 $container->get(ValidationService::class)->validate(
                     ['capability' => 'symfony'],
-                    [['field' => 'capability', 'label' => 'Capability', 'rules' => 'required']],
-                )->get('capability'),
+                    [['field' => 'capability', 'label' => 'Capability', 'rules' => 'required']]
+                )->get('capability')
             );
-            self::assertSame('cached', $container->get(MutableCache::class)->read('journey', static fn(): string => 'cached', 60));
-            self::assertSame('https://example.test/platform', (string) $container->get(HttpService::class)->createUri('https://example.test/platform'));
+            self::assertSame(
+                'cached',
+                $container->get(MutableCache::class)->read('journey', static fn(): string => 'cached', 60)
+            );
+            self::assertSame(
+                'https://example.test/platform',
+                (string) $container->get(HttpService::class)->createUri('https://example.test/platform')
+            );
             self::assertSame('/', $container->get(UrlGenerator::class)->generate('homepage'));
-            self::assertSame('', $container->get(FileTransferService::class)->getTransport('default')->retrieveFileContents('not-configured'));
+            $transport = $container->get(FileTransferService::class)->getTransport('default');
+            self::assertSame('', $transport->retrieveFileContents('not-configured'));
             self::assertNull($container->get(MailService::class)->createMessage()->getSubject());
-            self::assertSame('profile', $container->get(SmsService::class)->createMessage('+15555550100', '+15555550101', 'profile')->getBody());
+            self::assertSame(
+                'profile',
+                $container->get(SmsService::class)->createMessage('+15555550100', '+15555550101', 'profile')->getBody()
+            );
             self::assertCount(0, $container->get(HealthAggregator::class)->report()->results());
         } finally {
             $kernel->shutdown();
         }
     }
 
+    /**
+     * Tests credential-bound token provider configuration.
+     */
     public function testCredentialBoundTokenProvidersUseApplicationConfiguration(): void
     {
         putenv('FIGHT_COMMON_HMAC_PUBLIC=project-public-key');
@@ -77,13 +96,19 @@ final class ProviderJourneyTest extends TestCase
         [$kernel, $container] = $this->bootTestKernel();
 
         try {
-            $token = $container->get(TokenEncoder::class)->encode(['subject' => 'platform'], new DateTimeImmutable('+5 minutes'));
+            $token = $container->get(TokenEncoder::class)->encode(
+                ['subject' => 'platform'],
+                new DateTimeImmutable('+5 minutes')
+            );
             self::assertSame('platform', $container->get(TokenDecoder::class)->decode($token)['subject']);
         } finally {
             $kernel->shutdown();
         }
     }
 
+    /**
+     * Tests filesystem, process, template, observability, and publication providers.
+     */
     public function testBootedFilesystemProcessTemplateObservabilityAndPublicationProvidersBehave(): void
     {
         [$kernel, $container] = $this->bootTestKernel();
@@ -129,7 +154,7 @@ final class ProviderJourneyTest extends TestCase
             self::assertTrue($templates->supports('home/index.html.twig'));
             self::assertStringContainsString('Provider Journey', $templates->render(
                 'home/index.html.twig',
-                ['applicationName' => 'Provider Journey'],
+                ['applicationName' => 'Provider Journey']
             ));
 
             $container->get(AuditLog::class)->record(AuditEntry::record('test-suite', 'provider-journey'));
@@ -162,6 +187,9 @@ final class ProviderJourneyTest extends TestCase
         }
     }
 
+    /**
+     * Tests Doctrine transaction commit and rollback behavior.
+     */
     public function testDoctrineTransactionContractCommitsAndRollsBack(): void
     {
         [$kernel, $container] = $this->bootTestKernel();
@@ -173,13 +201,15 @@ final class ProviderJourneyTest extends TestCase
             $unitOfWork = $container->get(TransactionalUnitOfWork::class);
             $unitOfWork->commitTransactional(
                 static fn($manager): int => $manager->getConnection()->executeStatement(
-                    "INSERT INTO journey_receipts (name) VALUES ('committed')",
-                ),
+                    "INSERT INTO journey_receipts (name) VALUES ('committed')"
+                )
             );
 
             try {
                 $unitOfWork->commitTransactional(static function ($manager): never {
-                    $manager->getConnection()->executeStatement("INSERT INTO journey_receipts (name) VALUES ('rolled-back')");
+                    $manager->getConnection()->executeStatement(
+                        "INSERT INTO journey_receipts (name) VALUES ('rolled-back')"
+                    );
                     throw new RuntimeException('rollback proof');
                 });
                 self::fail('The transaction must propagate the rollback exception.');

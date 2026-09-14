@@ -9,9 +9,15 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Tests the JSON middleware journey.
+ */
 #[CoversNothing]
 final class JsonMiddlewareTest extends TestCase
 {
+    /**
+     * Tests JSON middleware composition and JSend output.
+     */
     public function testTheFrontControllerComposesJsonMiddlewareAndReturnsANativeJSendResponse(): void
     {
         $factory = require dirname(__DIR__, 2).'/public/index.php';
@@ -24,7 +30,7 @@ final class JsonMiddlewareTest extends TestCase
             '/_test/json-journey',
             'POST',
             server: ['CONTENT_TYPE' => 'application/json'],
-            content: '{"capability":"messenger"}',
+            content: '{"capability":"messenger"}'
         );
 
         try {
@@ -34,7 +40,7 @@ final class JsonMiddlewareTest extends TestCase
             self::assertSame('application/json', $response->headers->get('Content-Type'));
             self::assertSame(
                 ['status' => 'success', 'data' => ['accepted' => ['capability' => 'messenger']]],
-                json_decode((string) $response->getContent(), true, flags: JSON_THROW_ON_ERROR),
+                json_decode((string) $response->getContent(), true, flags: JSON_THROW_ON_ERROR)
             );
         } finally {
             if (isset($response)) {

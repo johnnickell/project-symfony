@@ -51,11 +51,17 @@ use Fight\Common\Domain\Serialization\Serializer;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Tests configured Fight contract resolution.
+ */
 #[CoversNothing]
 final class ContainerContractsTest extends TestCase
 {
     use BootedTestKernel;
 
+    /**
+     * Tests configured Fight contract resolution from the container.
+     */
     public function testEveryConfiguredFightContractResolvesDirectlyFromTheTestContainer(): void
     {
         putenv('FIGHT_COMMON_HMAC_PUBLIC=project-public-key');
@@ -77,22 +83,24 @@ final class ContainerContractsTest extends TestCase
                 SynchronousEventDispatcher::class, AsynchronousEventDispatcher::class, QueryBus::class,
                 AuditLog::class, HealthAggregator::class, MetricsCollector::class, ProcessRunner::class,
                 TransactionalUnitOfWork::class, UrlGenerator::class, SmsFactory::class, SmsTransport::class,
-                Publisher::class, PrivatePublisher::class, TemplateEngine::class, Serializer::class,
+                Publisher::class, PrivatePublisher::class, TemplateEngine::class, Serializer::class
             ];
 
             foreach ($contracts as $contract) {
                 self::assertInstanceOf($contract, $container->get('test.contract.'.$contract), $contract);
             }
 
-            foreach ([
+            foreach (
+                [
                 StorageService::class,
                 FileTransferService::class,
                 HttpService::class,
                 MailService::class,
                 Scheduler::class,
                 SmsService::class,
-                ValidationService::class,
-            ] as $service) {
+                ValidationService::class
+                ] as $service
+            ) {
                 self::assertInstanceOf($service, $container->get('test.service.'.$service), $service);
             }
         } finally {
