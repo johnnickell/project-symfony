@@ -27,6 +27,6 @@ Composer metadata, installs dependencies, checks PHP syntax, runs the installed 
 PHPStan, Deptrac, Rector, exact Unit coverage, and the retained Integration and Functional journeys.
 
 The Symfony adapter boundary lives under `src/Adapter/`. `public/index.php` explicitly composes the canonical
-Fight Common JSON middleware around `App\Adapter\Kernel`, while console and production checks boot the bare Kernel.
+Fight Common JSON middleware around `App\Adapter\Kernel`.
 Shared providers are registered by capability under `config/common/`; messaging and templating compiler-pass proof
 is test-owned, and production has no event-sourcing infrastructure.
