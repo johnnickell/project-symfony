@@ -20,6 +20,9 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <exclude>
+            <file>src/Adapter/Kernel.php</file>
+        </exclude>
     </source>
     <coverage includeUncoveredFiles="true"
         ignoreDeprecatedCodeUnits="false"
