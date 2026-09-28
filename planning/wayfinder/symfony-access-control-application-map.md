@@ -20,7 +20,9 @@ Application source or introduce a Fight bundle.
 
 **Done** = every linked decision ticket is closed, the operation matrix accounts for every consumer-relevant
 released AccessControl capability or explicitly excludes it as non-HTTP, all remaining fog is resolved or
-excluded, and the map links to its resulting epic, PRDs, and executable implementation tickets.
+excluded, and the map links to its resulting accepted EPIC, requirement TICKETs, and approved TASK handoff under
+the verified [local lifecycle](../CONVENTIONS.md). Existing legacy PRD/ticket references retain their authority;
+this routing clarification changes no WF decision or implementation gate.
 
 ## Notes
 
@@ -102,7 +104,7 @@ WF-002 ────────────────────────�
 WF-004 + WF-005 + WF-006 ─────────────────→ WF-007 ───────────────────────┤
                                                                           └──→ WF-008 ──→ WF-009
 WF-002 through WF-009 ───────────────────────────────────────────────────────────────────→ WF-010
-WF-010 ──→ epic, PRDs, and executable implementation tickets
+WF-010 ──→ accepted EPIC, requirement TICKETs, and approved TASK handoff after lifecycle cutover
 ```
 
 WF-002 is closed. WF-001 remains gated on installable AccessControl v0.2.0 with reusable schema

@@ -1,24 +1,40 @@
+---
+lifecycle: bootstrap
+cutover_review:
+---
+
 # Planning
 
-This directory is the committed source of truth for Fight Symfony Starter planning.
+This directory owns the durable planning record. Read [CONVENTIONS.md](CONVENTIONS.md) for metadata, acceptance,
+legacy coexistence, generation, routing, and explicit-only archive rules.
 
-- `ROADMAP.md` records strategic progress.
-- `epics/` describes destinations.
-- `specs/` describes coherent product requirements.
-- `tickets/` contains executable work; each ticket is canonical for its own status and dependencies.
-- `tickets/BOARD.md` ranks the current execution frontier.
-- `adr/` records architectural decisions.
-- `agents/` contains focused working instructions.
-- `wayfinder/` contains planning-only investigation maps and decision tickets for efforts whose
-  implementation route is not clear enough for an epic or PRD yet.
+- `epics/`: strategic destinations.
+- `tickets/`: requirements for new work; preserved PRD-parented legacy executable tickets remain addressable.
+- `tasks/`: bounded implementation and independent acceptance, normally one PR each.
+- [tickets/BOARD.md](tickets/BOARD.md): the sole human and TASK execution Board, at its stable historical path.
+- `specs/`: continuing/historical legacy PRDs, not a mandatory new-work layer.
+- `adr/`, `agents/`, and `wayfinder/`: architectural decisions, focused guidance, and investigation authorities.
+- [ROADMAP.md](ROADMAP.md): authored strategy with generated EPIC and planning-frontier views.
 
-Every artifact directory keeps a `_…_TEMPLATE.md` copy-ready starting point. `wayfinder/README.md` is the
-continuity index for charting work and its next decision frontier. Archives remain part of this committed
-planning record: use `./bin/archive-planning` only when explicitly asked, review its dry run, then use `--apply`
-to move eligible terminal records and repair local Markdown links.
+## Cutover control
 
-Identifiers are independent five-digit sequences. Ticket identifiers are displayed as `T-NNNNN`. Valid statuses are `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `in-progress`, `done`, and `wontfix`. Blocking is derived from unfinished `blocked_by` edges and is not stored as a status.
+The frontmatter's `lifecycle: bootstrap` permits only the explicitly authorized
+[TASK-00001](tasks/00001-TASK.md) under [T-00008's exception](tickets/00008-TICKET.md#approved-bootstrap-exception).
+John authorized the current checkout and existing branch. Implementation of migration tooling is not independent
+acceptance or general lifecycle activation.
 
-`CONVENTIONS.md` is the canonical reference for planning structure, file naming, ticket lifecycle, BOARD.md, wayfinder maps, epics, PRDs, and pre-PR synchronization.
+After verified independent acceptance and authorized closeout, set `lifecycle: active` and record the durable
+review reference in `cutover_review`. TASK-00001 must be done with accepted review evidence; the validator rejects
+activation otherwise. Missing acceptance keeps bootstrap mode and the human decision visible. The implementation
+contributor cannot supply that acceptance. See [the cutover procedure](CONVENTIONS.md#bootstrap-and-cutover).
 
-Run `./bin/planning-check` after changing planning files. Coordinate-build scratch belongs in gitignored `.runs/`, never here.
+## Maintenance
+
+Copy local templates and inspect live/archive IDs before allocating records. Record scope, use cases, exclusions,
+validation, permissions, and observable acceptance; justify non-applicable concerns. After metadata edits run
+`./bin/planning-check --write` then `./bin/planning-check`. Ordinary validation and the build never rewrite views.
+Edit authored prose outside generated markers. Keep scratch under ignored `.runs/<YYYY-MM-DD>-<slug>/`.
+
+Archive only on an explicit request through `./bin/archive-planning`, dry run before apply. Do not automatically
+convert, renumber, close, move, or archive legacy records. T-00004 remains `needs-info` under PRD-00002 until its
+owning package supplies the accepted migration prerequisites.

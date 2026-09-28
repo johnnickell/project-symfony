@@ -11,32 +11,12 @@ import subprocess
 import sys
 from pathlib import Path
 
+from planning_portfolio import children, frontmatter, load_records, validate_records
+
 ROOT = Path(__file__).resolve().parents[1]
 PLANNING = ROOT / "planning"
 TERMINAL = {"done", "wontfix"}
 LINK = re.compile(r"(\!?\[[^\]]*\]\()([^\s)]+)(\))")
-
-
-def frontmatter(path: Path) -> dict[str, str]:
-    text = path.read_text(encoding="utf-8")
-    if not text.startswith("---\n"):
-        return {}
-    _, block, _ = text.split("---", 2)
-    return {
-        key.strip(): value.strip()
-        for line in block.strip().splitlines()
-        if ":" in line
-        for key, value in [line.split(":", 1)]
-    }
-
-
-def records(directory: str, suffix: str) -> dict[str, Path]:
-    result: dict[str, Path] = {}
-    for path in (PLANNING / directory).glob(f"*{suffix}"):
-        data = frontmatter(path)
-        if identifier := data.get("id"):
-            result[identifier.strip()] = path
-    return result
 
 
 def wayfinder_status(path: Path) -> str:
@@ -57,35 +37,22 @@ def require_terminal(selected: list[Path]) -> None:
             raise ValueError(f"{path.relative_to(ROOT)} is not terminal")
 
 
-def archive_tickets(identifiers: list[str]) -> dict[Path, Path]:
-    current = records("tickets", "-TICKET.md")
-    selected = [current[identifier] for identifier in identifiers]
-    require_terminal(selected)
-    return {path: PLANNING / "tickets/archive" / path.name for path in selected}
-
-
-def archive_specs(identifiers: list[str]) -> dict[Path, Path]:
-    current = records("specs", "-PRD.md")
-    selected = [current[identifier] for identifier in identifiers]
-    require_terminal(selected)
-    all_tickets = records("tickets", "-TICKET.md")
-    for path in selected:
-        identifier = frontmatter(path)["id"]
-        children = [ticket for ticket in all_tickets.values() if frontmatter(ticket).get("prd") == identifier]
-        require_terminal(children)
-    return {path: PLANNING / "specs/archive" / path.name for path in selected}
-
-
-def archive_epics(identifiers: list[str]) -> dict[Path, Path]:
-    current = records("epics", "-EPIC.md")
-    selected = [current[identifier] for identifier in identifiers]
-    require_terminal(selected)
-    all_specs = records("specs", "-PRD.md")
-    for path in selected:
-        identifier = frontmatter(path)["id"]
-        children = [spec for spec in all_specs.values() if frontmatter(spec).get("epic") == identifier]
-        require_terminal(children)
-    return {path: PLANNING / "epics/archive" / path.name for path in selected}
+def archive_records(directory: str, identifiers: list[str]) -> dict[Path, Path]:
+    portfolio = load_records()
+    validate_records(portfolio)
+    moves: dict[Path, Path] = {}
+    for identifier in identifiers:
+        record = portfolio[identifier]
+        if record.archived or record.path.parent != PLANNING / directory:
+            raise ValueError(f"{identifier} is not a live {directory} record")
+        require_terminal([record.path])
+        pending = children(record, portfolio)
+        while pending:
+            child = pending.pop()
+            require_terminal([child.path])
+            pending.extend(children(child, portfolio))
+        moves[record.path] = PLANNING / directory / "archive" / record.path.name
+    return moves
 
 
 def archive_wayfinder(name: str) -> dict[Path, Path]:
@@ -106,7 +73,7 @@ def archive_wayfinder(name: str) -> dict[Path, Path]:
         raise ValueError(f"{path.relative_to(ROOT)} has no linked decision tickets")
     if any(not ticket.is_file() or wayfinder_status(ticket) != "closed" for ticket in ticket_paths):
         raise ValueError(f"{path.relative_to(ROOT)} has unresolved decision tickets")
-    if not re.search(r"\]\(\.\./(?:epics|specs|tickets)/", text):
+    if not re.search(r"\]\(\.\./(?:epics|specs|tickets|tasks)/", text):
         raise ValueError(f"{path.relative_to(ROOT)} lacks a linked implementation handoff")
 
     moves = {path: PLANNING / "wayfinder/archive/maps" / path.name}
@@ -119,7 +86,16 @@ def archive_wayfinder(name: str) -> dict[Path, Path]:
 
 
 def rewrite_links(moves: dict[Path, Path]) -> None:
-    documents = list(ROOT.rglob("*.md"))
+    # Only repository-owned documents: never traverse vendor, ignored evidence, or other worktrees.
+    owned = subprocess.check_output(
+        ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"], cwd=ROOT,
+    ).decode().split("\0")
+    documents = [
+        ROOT / name for name in set(owned)
+        if name.endswith(".md") and (ROOT / name).is_file()
+        and not (ROOT / name).is_symlink() and (ROOT / name).resolve().is_relative_to(ROOT)
+    ]
+    documents.extend(path for path in moves.values() if path not in documents)
     originals = {path.resolve(): path.read_text(encoding="utf-8") for path in documents}
     normalized = {source.resolve(): destination.resolve() for source, destination in moves.items()}
     original_sources = {destination: source for source, destination in normalized.items()}
@@ -127,19 +103,25 @@ def rewrite_links(moves: dict[Path, Path]) -> None:
     for new_source, text in originals.items():
         old_source = original_sources.get(new_source, new_source)
 
-        def replace(match: re.Match[str]) -> str:
-            target = match.group(2)
+        def rewritten_target(target: str) -> str:
             old_target = local_target(old_source, target)
             if old_target is None:
-                return match.group(0)
+                return target
             new_target = normalized.get(old_target, old_target)
             if new_source == old_source and new_target == old_target:
-                return match.group(0)
+                return target
             _path, marker, anchor = target.partition("#")
             relative = os.path.relpath(new_target, new_source.parent).replace(os.sep, "/")
-            return f"{match.group(1)}{relative}{marker}{anchor}{match.group(3)}"
+            return f"{relative}{marker}{anchor}"
 
-        rewritten = LINK.sub(replace, text)
+        rewritten = LINK.sub(
+            lambda match: match.group(1) + rewritten_target(match.group(2)) + match.group(3), text,
+        )
+        # Evidence references are scalar metadata, not Markdown links; repair them too.
+        rewritten = re.sub(
+            r"^((?:review_evidence|verification|cutover_review):[ \t]*)(\S+)[ \t]*$",
+            lambda match: match.group(1) + rewritten_target(match.group(2)), rewritten, flags=re.MULTILINE,
+        )
         if rewritten != text:
             new_source.parent.mkdir(parents=True, exist_ok=True)
             new_source.write_text(rewritten, encoding="utf-8")
@@ -147,24 +129,27 @@ def rewrite_links(moves: dict[Path, Path]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("kind", choices=("tickets", "specs", "epics", "wayfinder"))
+    parser.add_argument("kind", choices=("tasks", "tickets", "specs", "epics", "wayfinder"))
     parser.add_argument("identifiers", nargs="+")
     parser.add_argument("--apply", action="store_true", help="perform the validated archive move")
     args = parser.parse_args()
 
     try:
-        if args.kind == "tickets":
-            moves = archive_tickets(args.identifiers)
-        elif args.kind == "specs":
-            moves = archive_specs(args.identifiers)
-        elif args.kind == "epics":
-            moves = archive_epics(args.identifiers)
+        if args.kind != "wayfinder":
+            moves = archive_records(args.kind, args.identifiers)
         else:
             if len(args.identifiers) != 1:
                 raise ValueError("archive wayfinder accepts exactly one map name")
             moves = archive_wayfinder(args.identifiers[0])
         if any(destination.exists() for destination in moves.values()):
             raise ValueError("an archive destination already exists")
+        for path in [*moves, *moves.values()]:
+            if not path.resolve().is_relative_to(PLANNING.resolve()) or any(
+                parent.is_symlink() for parent in [path, *path.parents] if parent != ROOT
+            ):
+                raise ValueError("archive paths must remain inside owned planning directories")
+        if subprocess.run([str(ROOT / "bin/planning-check")], cwd=ROOT, check=False).returncode:
+            raise ValueError("portfolio validation must pass before archiving")
     except (KeyError, ValueError) as exception:
         print(f"Archive refused: {exception}", file=sys.stderr)
         return 2
@@ -180,6 +165,9 @@ def main() -> int:
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.move(source, destination)
     rewrite_links(moves)
+    refreshed = subprocess.run([str(ROOT / "bin/planning-check"), "--write"], cwd=ROOT, check=False)
+    if refreshed.returncode:
+        return refreshed.returncode
     return subprocess.run([str(ROOT / "bin/planning-check")], cwd=ROOT, check=False).returncode
 
 

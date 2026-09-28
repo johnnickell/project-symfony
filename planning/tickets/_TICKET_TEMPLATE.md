@@ -1,30 +1,44 @@
 ---
-id: T-NNNNN
-prd: PRD-NNNNN
-title: Brief executable outcome
+id: TICKET-NNNNN
+epic: EPIC-NNNNN
+title: Brief requirement outcome
 status: needs-triage
+approved: no
 blocked_by:
 ---
 
-# Brief executable outcome
+# Brief requirement outcome
 
 ## Outcome
 
-State the independently reviewable vertical slice.
+Describe a cohesive group of observable requirements, not a one-PR implementation assignment. Link the EPIC and
+accepted decisions. Follow [CONVENTIONS.md](../CONVENTIONS.md); preserve existing T- IDs and allocate the next unused
+number across live/archive tickets. Record human approval before setting `approved: yes`.
 
-## Scope
+## Use cases and contracts
 
-- In scope:
-- Out of scope:
+Describe actors, success and failure outcomes, commands, queries, events, validation, permissions, and effects.
+Explain categories that do not apply. Identify package-owned contracts and Symfony-owned boundaries.
 
-## Acceptance Criteria
+## Scope and exclusions
 
-- [ ] Observable behavior or artifact.
+Name included requirements, affected documentation, compatibility guarantees, and explicit exclusions.
 
-## Verification
+## Acceptance criteria
 
-- Command and expected evidence.
+- [ ] Observable requirement outcome with sufficient acceptance evidence.
 
-## Completion Notes
+## Dependencies and verification
 
-Record the verified outcome only when terminal.
+Name true requirement blockers and how their completion is established. TASKs supply bounded implementation
+and independent review evidence; approval here does not authorize execution or publication.
+
+## Implementation TASKs
+
+<!-- planning:children -->
+<!-- /planning:children -->
+
+## Progress and closeout
+
+Record accepted child outcomes and remaining requirements. Terminal children prompt explicit closeout; they do not
+automatically satisfy requirements or mark this record done. Preserve dependency edges and separate delivery state.

@@ -14,7 +14,7 @@ and independently verifiable local-development starter rather than a collection 
 
 ## Must decide
 
-- Define vertical implementation slices, epic/PRD/ticket ownership, dependency ordering, acceptance demonstrations,
+- Define vertical implementation slices, EPIC/TICKET/TASK ownership under the verified local lifecycle, dependency ordering, acceptance demonstrations,
   and explicit exclusions without turning this Wayfinder record into executable work.
 - Define exact production-code Unit coverage, meaningful Integration boundaries, limited high-value Functional and
   browser journeys, concurrency probes, negative security cases, and the boundary between tests and tooling checks.
@@ -36,9 +36,10 @@ and independently verifiable local-development starter rather than a collection 
 
 ## Resolution boundary
 
-This ticket may settle the handoff and evidence contract and link the resulting epic, PRDs, and implementation
-tickets. It may not implement, commit generated runtime evidence, publish, release, deploy, or archive this map as
-a completion side effect.
+This ticket may settle the handoff and evidence contract and link the accepted EPIC, requirement TICKETs, and
+approved TASKs under the verified [local lifecycle](../../CONVENTIONS.md). Existing legacy PRD/ticket references
+remain valid. This routing clarification settles no open decision. It may not implement, commit generated runtime
+evidence, publish, release, deploy, or archive this map as a completion side effect.
 
 ## Resolution
 
