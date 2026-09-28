@@ -137,4 +137,6 @@ package contracts and installed dependencies remain unchanged; no production app
 TASK-00001 is authorized in the current checkout on the existing branch. It implements typed validation, marked
 view generation, one stable Board, and legacy-aware archive eligibility. T-00004's explicit legacy continuation is
 recorded without modifying its evidence or status. See the TASK for fresh verification and limitations.
-Independent acceptance and the guarded cutover remain pending; this requirement is not done.
+Independent review requested R1 reconciliation of three current routing/authorization callers. TASK-00001 records
+the correction and revision verification; independent reacceptance and guarded cutover remain pending. This
+requirement is not done.

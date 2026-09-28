@@ -15,8 +15,9 @@ sorts earlier. Follow [CONVENTIONS.md](../CONVENTIONS.md) for authority, blocker
 
 ## Now
 
-Obtain independent Spec and Standards review of [TASK-00001](../tasks/00001-TASK.md), implemented in the authorized
-current checkout on `feature/engineering-alignment-planning`. It is `ready-for-human`, not independently accepted.
+Obtain independent Spec and Standards re-review of [TASK-00001](../tasks/00001-TASK.md) after its R1 caller
+reconciliation in the authorized current checkout on `feature/engineering-alignment-planning`.
+It is `ready-for-human` with `review: revise` until reaccepted, not independently accepted.
 The implementer cannot accept their own work. General cutover remains pending that acceptance and explicit closeout
 under [T-00008](00008-TICKET.md#approved-bootstrap-exception); no other TASK is currently executable.
 
