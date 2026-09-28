@@ -15,11 +15,11 @@ sorts earlier. Follow [CONVENTIONS.md](../CONVENTIONS.md) for authority, blocker
 
 ## Now
 
-Obtain independent Spec and Standards re-review of [TASK-00001](../tasks/00001-TASK.md) after its R1 caller
-reconciliation in the authorized current checkout on `feature/engineering-alignment-planning`.
-It is `ready-for-human` with `review: revise` until reaccepted, not independently accepted.
-The implementer cannot accept their own work. General cutover remains pending that acceptance and explicit closeout
-under [T-00008](00008-TICKET.md#approved-bootstrap-exception); no other TASK is currently executable.
+Decide the separately authorized lifecycle cutover and closeout under
+[T-00008](00008-TICKET.md#approved-bootstrap-exception). [TASK-00001](../tasks/00001-TASK.md#independent-acceptance)
+has independent Spec and Standards acceptance after R1 and is being published under John's landing request.
+It remains `ready-for-human` with `review: accepted` because actual cutover is still pending. Human PR approval/merge
+is separate. The lifecycle remains bootstrap; no other TASK is currently executable.
 
 T-00004 retains its separate Fight Common 2.0 evidence gate. It is not a TASK or permission for package work.
 

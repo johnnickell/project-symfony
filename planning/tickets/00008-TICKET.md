@@ -23,7 +23,7 @@ and may require multiple implementation slices. No new PRD layer is required.
 
 The single-TASK decomposition and bootstrap exception below are approved. John subsequently authorized execution
 in the current checkout on the same branch. This requirement remains non-executable; TASK-00001 owns the work.
-Implementation is prepared for independent review; acceptance and verified cutover remain outstanding.
+Implementation has independent Spec and Standards acceptance; verified cutover and explicit closeout remain outstanding.
 
 ## Scope
 
@@ -137,6 +137,6 @@ package contracts and installed dependencies remain unchanged; no production app
 TASK-00001 is authorized in the current checkout on the existing branch. It implements typed validation, marked
 view generation, one stable Board, and legacy-aware archive eligibility. T-00004's explicit legacy continuation is
 recorded without modifying its evidence or status. See the TASK for fresh verification and limitations.
-Independent review requested R1 reconciliation of three current routing/authorization callers. TASK-00001 records
-the correction and revision verification; independent reacceptance and guarded cutover remain pending. This
-requirement is not done.
+Independent re-review accepted the corrected R1 implementation; TASK-00001 records the exact snapshot, criterion
+coverage and limitations. John requested PR publication through landing. Guarded cutover and explicit requirement
+closeout remain pending; technical acceptance and publication do not activate the lifecycle. This requirement is not done.

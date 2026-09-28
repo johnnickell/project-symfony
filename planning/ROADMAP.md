@@ -13,10 +13,10 @@ while the separate 2.0 migration remains needs-info. Its status is available in 
 
 ## Route to 1.0
 
-1. Verify and independently review [TASK-00001](tasks/00001-TASK.md), authorized in the current checkout on
-   `feature/engineering-alignment-planning`. The migration implements typed records, templates, generation,
-   TASK routing at the stable Board path, and legacy/archive coexistence. Keep the lifecycle in bootstrap mode
-   until independent acceptance and explicit cutover closeout; green implementation checks are not acceptance.
+1. Obtain explicit cutover/closeout for independently accepted [TASK-00001](tasks/00001-TASK.md#independent-acceptance).
+   Its R1 implementation is accepted and John requested PR publication on `feature/engineering-alignment-planning`.
+   The migration implements typed records, templates, generation, TASK routing at the stable Board path, and
+   legacy/archive coexistence. Keep bootstrap mode until separately authorized cutover; publication is not activation.
 2. After verified cutover, decompose and authorize TASKs for guidance/review, gate/coverage, and existing
    presentation/testing alignment. Preserve exact Unit coverage and separate local/hosted evidence. This is
    unversioned foundation work, not release authority or the complete AccessControl starter handoff.
