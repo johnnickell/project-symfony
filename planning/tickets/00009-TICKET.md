@@ -2,7 +2,7 @@
 id: T-00009
 epic: EPIC-00001
 title: Establish Engineering and Independent Review Standards
-status: needs-info
+status: ready-for-human
 blocked_by: T-00008
 approved: yes
 ---
@@ -17,10 +17,11 @@ TASK acceptance, replacing conflicting guidance without importing another applic
 ## Approval and execution boundary
 
 John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md). This is a requirement TICKET,
-not executable work. [T-00008](00008-TICKET.md) has completed the planning cutover; `needs-info` now records only
-the missing accepted TASK handoff, not a request to reapprove the requirement split or lifecycle adoption.
-This requirement is available for decomposition; implementation requires separately accepted and authorized TASK
-scope. The completed T-00008 dependency remains recorded. No TASK or new PRD is created by this record.
+not executable work. [T-00008](00008-TICKET.md) has completed the planning cutover. John approved one documentation
+TASK, [TASK-00002](../tasks/00002-TASK.md), covering all eight acceptance criteria. `ready-for-human` records the
+next decision: grant execution authority and choose the implementation checkout/worktree. Scope acceptance is not
+implementation authorization or independent acceptance. The completed T-00008 dependency remains recorded; no new
+PRD is needed.
 
 ## Scope
 
@@ -96,11 +97,12 @@ Composer contracts and Symfony runtime behavior are unchanged. No production ada
 <!-- planning:children -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| — | None | — | — | — | — |
+| 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | ready-for-human | —; execution authorization missing | — |
 <!-- /planning:children -->
 
 ## Completion Notes
 
-Requirements approved and recorded; T-00008's verified cutover prerequisite is satisfied. Next, decompose this
-requirement into bounded TASKs and obtain their scope acceptance and execution authority. No guidance
-implementation or independent implementation acceptance is claimed.
+Requirements and the single-TASK decomposition are approved; T-00008's verified cutover prerequisite is satisfied.
+TASK-00002 owns the complete documentation outcome and awaits execution authority and checkout/worktree selection.
+No guidance implementation or independent implementation acceptance is claimed. Requirement closeout remains pending
+accepted delivery of its criteria and an explicit closeout review.
