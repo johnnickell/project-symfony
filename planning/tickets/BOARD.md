@@ -18,8 +18,9 @@ sorts earlier. Follow [CONVENTIONS.md](../CONVENTIONS.md) for authority, blocker
 Planning adoption is complete: [TASK-00001](../tasks/00001-TASK.md#cutover-and-closeout) and
 [T-00008](00008-TICKET.md#explicit-closeout-review) are done, PR #14's implementation is merged, and the lifecycle
 is active. No adoption approval remains pending. The cutover follow-up has
-[independent acceptance](../tasks/00001-TASK.md#independent-cutover-acceptance); John requested its publication.
-Human approval/merge of that follow-up is a separate delivery action, not another adoption gate.
+[independent acceptance](../tasks/00001-TASK.md#independent-cutover-acceptance) and is published as
+[PR #15](https://github.com/johnnickell/project-symfony/pull/15). Human approval/merge of that follow-up is a separate
+delivery action, not another adoption gate.
 
 The next planning decision is to decompose the approved
 [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) into bounded TASKs.
@@ -91,7 +92,7 @@ complete-document ownership. After that audit closes, the next human decision is
 <!-- planning:closed -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/14 |
+| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/15 |
 <!-- /planning:closed -->
 
 ## Legacy Work Awaiting Authority
