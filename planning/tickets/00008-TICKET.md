@@ -2,7 +2,7 @@
 id: T-00008
 epic: EPIC-00001
 title: Adopt the Three-Level Planning Lifecycle
-status: in-progress
+status: done
 blocked_by:
 approved: yes
 ---
@@ -23,7 +23,8 @@ and may require multiple implementation slices. No new PRD layer is required.
 
 The single-TASK decomposition and bootstrap exception below are approved. John subsequently authorized execution
 in the current checkout on the same branch. This requirement remains non-executable; TASK-00001 owns the work.
-Implementation has independent Spec and Standards acceptance; verified cutover and explicit closeout remain outstanding.
+Implementation has independent Spec and Standards acceptance. John subsequently authorized the
+[cutover and closeout](../tasks/00001-TASK.md#cutover-and-closeout) after merging PR #14; this requirement is complete.
 
 ## Scope
 
@@ -91,26 +92,26 @@ checkout on `feature/engineering-alignment-planning`; that bounded bootstrap now
 <!-- planning:children -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | ready-for-human | — | https://github.com/johnnickell/project-symfony/pull/14 |
+| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/14 |
 <!-- /planning:children -->
 
 ## Acceptance Criteria
 
-- [ ] AC-01 — Local guidance defines EPIC outcomes, TICKET requirements, and TASK implementation scope, with
+- [x] AC-01 — Local guidance defines EPIC outcomes, TICKET requirements, and TASK implementation scope, with
       readiness/completion rules and explicit separation of requirement approval, review, hosted status, and merge.
-- [ ] AC-02 — The bootstrap plan and execution authority are accepted before implementation; the verified cutover
+- [x] AC-02 — The bootstrap plan and execution authority are accepted before implementation; the verified cutover
       identifies when new records and routing use the migrated model without circular tooling prerequisites.
-- [ ] AC-03 — Templates, identifiers, parent/dependency validation, indexes, and routing support the new hierarchy;
+- [x] AC-03 — Templates, identifiers, parent/dependency validation, indexes, and routing support the new hierarchy;
       the actual portfolio validates without dropping legacy records or weakening dependency checks.
-- [ ] AC-04 — One authoritative execution frontier selects eligible TASKs after cutover. Normal approved work
+- [x] AC-04 — One authoritative execution frontier selects eligible TASKs after cutover. Normal approved work
       reaches that frontier; missing acceptance or unfinished blockers cannot be treated as executable work.
-- [ ] AC-05 — Legacy PRDs and executable tickets retain their original IDs, meanings, links, and evidence.
+- [x] AC-05 — Legacy PRDs and executable tickets retain their original IDs, meanings, links, and evidence.
       Transitional requirement records remain requirements, not silently relabeled TASKs.
-- [ ] AC-06 — T-00004 has a documented continuation or explicitly linked successor that preserves its package gate
+- [x] AC-06 — T-00004 has a documented continuation or explicitly linked successor that preserves its package gate
       and needs-info boundary. Migration completion does not force its completion or its parent's retirement.
-- [ ] AC-07 — Contributor/agent guidance and the actual planning commands agree with the new model; no duplicate
+- [x] AC-07 — Contributor/agent guidance and the actual planning commands agree with the new model; no duplicate
       status authority, implicit archive operation, new mandatory PRD layer, or private reference is required.
-- [ ] AC-08 — Direct planning/routing checks, the canonical build, and independent review establish the delivered
+- [x] AC-08 — Direct planning/routing checks, the canonical build, and independent review establish the delivered
       migration. Product tests of planning tooling and deliberately invalid fixtures are not introduced.
 
 ## Verification
@@ -134,9 +135,25 @@ package contracts and installed dependencies remain unchanged; no production app
 
 ## Completion Notes
 
-TASK-00001 is authorized in the current checkout on the existing branch. It implements typed validation, marked
-view generation, one stable Board, and legacy-aware archive eligibility. T-00004's explicit legacy continuation is
-recorded without modifying its evidence or status. See the TASK for fresh verification and limitations.
-Independent re-review accepted the corrected R1 implementation; TASK-00001 records the exact snapshot, criterion
-coverage and limitations. John requested PR publication through landing. Guarded cutover and explicit requirement
-closeout remain pending; technical acceptance and publication do not activate the lifecycle. This requirement is not done.
+### Explicit closeout review
+
+On 2026-09-27 John's request to finish adoption authorized the previously deferred activation and closeout after
+he merged PR #14. This requirement closes on the accepted TASK outcomes and the verified active lifecycle, not
+merely because its child is terminal. The original independent Spec and Standards acceptance remains at
+[TASK-00001's exact-snapshot review](../tasks/00001-TASK.md#independent-acceptance); the
+[cutover evidence](../tasks/00001-TASK.md#cutover-and-closeout) records the subsequent authorization and verification.
+
+| Requirement criterion | Satisfied outcome and evidence |
+| --- | --- |
+| AC-01 | TASK AC-01: distinct hierarchy, readiness, completion and independent acceptance in local conventions/templates. |
+| AC-02 | TASK AC-02: recorded bootstrap authority, accepted mechanism, and now authorized active cutover with durable review reference. |
+| AC-03 | TASK AC-03/05: mixed-portfolio validation, preserved identities and current idempotent generated views. |
+| AC-04 | TASK AC-04 and cutover routing: one stable Board, no executable requirements, and no invented TASK merely to populate the frontier. |
+| AC-05 | TASK AC-03/06/07: byte-preserved legacy records, explicit compatibility and archive boundaries. |
+| AC-06 | TASK AC-06: T-00004 remains needs-info under PRD-00002 with its owning-package prerequisites unchanged. |
+| AC-07 | TASK AC-01/04/05: consistent callers and handoffs, no new mandatory PRD, competing Board or automatic archive. |
+| AC-08 | TASK AC-08: independent accepted review, direct checks and fresh canonical cutover build; no tooling tests or invalid fixtures. |
+
+No requirement outcome remains outstanding. Alternative rejection/priority/archive paths retain their disclosed
+source-inspection limits; no new hosted or clean-clone certification is claimed. T-00009 through T-00012 remain
+separate unfinished requirements with no implementation TASKs; EPIC-00001 is not closed by this migration.

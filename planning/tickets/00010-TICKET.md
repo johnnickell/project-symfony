@@ -18,9 +18,9 @@ A clean checkout still has a documented, verified path to that verdict.
 ## Approval and execution boundary
 
 John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md). This is a requirement TICKET,
-not an implementation TASK. `needs-info` records the missing verified planning cutover and accepted TASK handoff;
-it does not retract requirement approval. [T-00009](00009-TICKET.md), following T-00008, supplies the accepted
-engineering/review guidance before implementation. No TASK or new PRD is created here.
+not an implementation TASK. Planning cutover is complete; `needs-info` records the missing accepted TASK handoff
+and unfinished predecessor outcomes, not an outstanding adoption approval. [T-00009](00009-TICKET.md), following
+T-00008, supplies the accepted engineering/review guidance before implementation. No TASK or new PRD is created here.
 
 ## Scope
 
@@ -111,5 +111,6 @@ accepted lock without upgrading packages; no production HTTP, persistence, or se
 
 ## Completion Notes
 
-Requirements approved and recorded only. Migration/TASK handoff and predecessor outcomes remain outstanding.
+Requirements approved and recorded only. Planning migration is complete; TASK handoff and predecessor outcomes
+remain outstanding.
 No preparation, gate implementation, local full-build result, or hosted acceptance is claimed here.

@@ -17,13 +17,14 @@ number across live and archive ticket files. No legacy identity is reused, renam
 | — | [T-00005 — Establish the Canonical Symfony Pre-Submit Quality Gate](00005-TICKET.md) | [PRD-00002 — Fight Common 1.2 Adoption and Lean Quality Gate](../specs/00002-PRD.md) | done | — | — |
 | — | [T-00006 — Re-certify Rewritten Fight Common Candidate](00006-TICKET.md) | [PRD-00002 — Fight Common 1.2 Adoption and Lean Quality Gate](../specs/00002-PRD.md) | done | — | — |
 | — | [T-00007 — Establish the Lean Symfony Pre-Submit Quality Gate](00007-TICKET.md) | [PRD-00002 — Fight Common 1.2 Adoption and Lean Quality Gate](../specs/00002-PRD.md) | done | — | — |
-| — | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | [EPIC-00001 — Align Symfony Engineering Standards and Delivery](../epics/00001-EPIC.md) | in-progress | — | — |
-| — | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | [EPIC-00001 — Align Symfony Engineering Standards and Delivery](../epics/00001-EPIC.md) | needs-info | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md); unfinished T-00008 | — |
+| — | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | [EPIC-00001 — Align Symfony Engineering Standards and Delivery](../epics/00001-EPIC.md) | done | — | — |
+| — | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | [EPIC-00001 — Align Symfony Engineering Standards and Delivery](../epics/00001-EPIC.md) | needs-info | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | — |
 | — | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | [EPIC-00001 — Align Symfony Engineering Standards and Delivery](../epics/00001-EPIC.md) | needs-info | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md); unfinished T-00009 | — |
 | — | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | [EPIC-00001 — Align Symfony Engineering Standards and Delivery](../epics/00001-EPIC.md) | needs-info | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md), [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md); unfinished T-00009; unfinished T-00010 | — |
 | — | [T-00012 — Align Behavioral Tests and Framework Diagnostics](00012-TICKET.md) | [EPIC-00001 — Align Symfony Engineering Standards and Delivery](../epics/00001-EPIC.md) | needs-info | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md), [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md); unfinished T-00010; unfinished T-00011 | — |
 <!-- /planning:records -->
 
-[T-00008](00008-TICKET.md#approved-bootstrap-exception) owns TASK-00001's authorized bootstrap and the pending
-verified cutover. Requirement approval is separate from execution authority. T-00004 continues under legacy rules
-with its unmet package gate and PRD-00002 parent intact; no successor or archive operation is implied.
+[T-00008](00008-TICKET.md#explicit-closeout-review) completed TASK-00001's authorized bootstrap and verified
+cutover. T-00009 is now available for TASK decomposition, not execution as a requirement. Requirement approval is
+separate from execution authority. T-00004 continues under legacy rules with its unmet package gate and PRD-00002
+parent intact; no successor or archive operation is implied.

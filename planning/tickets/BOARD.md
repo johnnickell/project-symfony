@@ -4,7 +4,7 @@ This stable path is the sole human-decision and TASK execution Board. Source rec
 are generated. Requirements never become executable merely because they are approved.
 
 <!-- planning:mode -->
-Bootstrap mode: only explicitly authorized TASK-00001 may execute under T-00008's exception. General cutover awaits independent acceptance.
+Active lifecycle: approved, authorized TASKs form the execution frontier.
 <!-- /planning:mode -->
 
 ## "What's Next?" Contract
@@ -15,12 +15,14 @@ sorts earlier. Follow [CONVENTIONS.md](../CONVENTIONS.md) for authority, blocker
 
 ## Now
 
-Decide the separately authorized lifecycle cutover and closeout under
-[T-00008](00008-TICKET.md#approved-bootstrap-exception). [TASK-00001](../tasks/00001-TASK.md#independent-acceptance)
-has independent Spec and Standards acceptance after R1 and is published as
-[PR #14](https://github.com/johnnickell/project-symfony/pull/14) under John's landing request.
-It remains `ready-for-human` with `review: accepted` because actual cutover is still pending. Human PR approval/merge
-is separate. The lifecycle remains bootstrap; no other TASK is currently executable.
+Planning adoption is complete: [TASK-00001](../tasks/00001-TASK.md#cutover-and-closeout) and
+[T-00008](00008-TICKET.md#explicit-closeout-review) are done, PR #14's implementation is merged, and the lifecycle
+is active. No adoption approval remains pending.
+
+The next planning decision is to decompose the approved
+[T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) into bounded TASKs.
+Its T-00008 prerequisite is satisfied; its TASK scope and execution authority are not yet recorded. No TASK is
+currently executable, and this requirement is not itself an implementation assignment.
 
 T-00004 retains its separate Fight Common 2.0 evidence gate. It is not a TASK or permission for package work.
 
@@ -63,7 +65,7 @@ complete-document ownership. After that audit closes, the next human decision is
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | ready-for-human | — | https://github.com/johnnickell/project-symfony/pull/14 |
+| — | None | — | — | — | — |
 <!-- /planning:human -->
 
 ## Needs Info
@@ -87,7 +89,7 @@ complete-document ownership. After that audit closes, the next human decision is
 <!-- planning:closed -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| — | None | — | — | — | — |
+| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/14 |
 <!-- /planning:closed -->
 
 ## Legacy Work Awaiting Authority

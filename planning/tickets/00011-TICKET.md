@@ -17,9 +17,9 @@ Action/Responder responsibilities while preserving its observable behavior and p
 ## Approval and execution boundary
 
 John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md). It groups requirements, not a
-single prescribed PR or an implementation TASK. `needs-info` records the missing verified planning cutover and
-accepted TASK handoff. Implementation follows [T-00009](00009-TICKET.md) and [T-00010](00010-TICKET.md); their
-requirements and this split are approved, but no implementation assignment is implied.
+single prescribed PR or an implementation TASK. Planning cutover is complete; `needs-info` records the missing
+accepted TASK handoff and unfinished predecessor outcomes. Implementation follows [T-00009](00009-TICKET.md) and
+[T-00010](00010-TICKET.md); their requirements and this split are approved, but no implementation assignment is implied.
 
 ## Scope
 

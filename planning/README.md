@@ -1,6 +1,6 @@
 ---
-lifecycle: bootstrap
-cutover_review:
+lifecycle: active
+cutover_review: tasks/00001-TASK.md#independent-acceptance
 ---
 
 # Planning
@@ -18,15 +18,16 @@ legacy coexistence, generation, routing, and explicit-only archive rules.
 
 ## Cutover control
 
-The frontmatter's `lifecycle: bootstrap` permits only the explicitly authorized
-[TASK-00001](tasks/00001-TASK.md) under [T-00008's exception](tickets/00008-TICKET.md#approved-bootstrap-exception).
-John authorized the current checkout and existing branch. Implementation of migration tooling is not independent
-acceptance or general lifecycle activation.
+The lifecycle is **active** following John's 2026-09-27 authorization to finish adoption, the independently accepted
+[TASK-00001](tasks/00001-TASK.md#independent-acceptance), and its
+[cutover verification and closeout](tasks/00001-TASK.md#cutover-and-closeout). PR #14's implementation was already
+merged; this follow-up records the previously deferred activation. New work uses EPIC -> TICKET -> TASK without
+another bootstrap approval. Approved requirements still need separately scoped and authorized implementation TASKs.
 
-After verified independent acceptance and authorized closeout, set `lifecycle: active` and record the durable
-review reference in `cutover_review`. TASK-00001 must be done with accepted review evidence; the validator rejects
-activation otherwise. Missing acceptance keeps bootstrap mode and the human decision visible. The implementation
-contributor cannot supply that acceptance. See [the cutover procedure](CONVENTIONS.md#bootstrap-and-cutover).
+The frontmatter records the durable independent acceptance reference. TASK-00001 must be done with accepted review
+evidence; the validator rejects activation otherwise. The original
+[bootstrap exception](tickets/00008-TICKET.md#approved-bootstrap-exception) remains historical authority, not an
+unfinished gate. See [the cutover procedure](CONVENTIONS.md#bootstrap-and-cutover).
 
 ## Maintenance
 
