@@ -5,7 +5,9 @@ explicitly authorized implementation TASKs under [the local lifecycle](../CONVEN
 legacy PRD/executable-ticket handoffs retain their authority; no new intermediate PRD is required. A map is an
 index of linked decision tickets, not a second source of decisions or execution authority. Start with an active
 map's **Frontier**; when none is available, offer to chart a new feature. Implementation follows the sole
-[Board](../tickets/BOARD.md) and its bootstrap/cutover guard, not the map's decision frontier.
+[Board](../tickets/BOARD.md) and the now-active lifecycle following
+[TASK-00001's cutover](../tasks/00001-TASK.md#cutover-and-closeout), not the map's decision frontier. Adoption
+closeout does not resolve a Wayfinder decision or authorize application implementation.
 
 ## Active maps
 

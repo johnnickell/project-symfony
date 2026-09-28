@@ -18,9 +18,10 @@ behavior or exact Unit coverage.
 ## Approval and execution boundary
 
 John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md). This is a requirement TICKET,
-not a TASK or permission for bulk test deletion. `needs-info` records the missing verified planning cutover and
-accepted TASK handoff. [T-00010](00010-TICKET.md) and [T-00011](00011-TICKET.md) must establish the aligned gate and
-presentation before final portfolio alignment; each predecessor still includes its own necessary behavior tests.
+not a TASK or permission for bulk test deletion. Planning cutover is complete; `needs-info` records the missing
+accepted TASK handoff and unfinished predecessor outcomes. [T-00010](00010-TICKET.md) and [T-00011](00011-TICKET.md)
+must establish the aligned gate and presentation before final portfolio alignment; each predecessor still includes
+its own necessary behavior tests.
 
 ## Scope
 
@@ -104,4 +105,5 @@ validators or test tooling. Composer dependencies and production package APIs re
 ## Completion Notes
 
 Requirements approved and recorded only. No tests have been deleted, diagnostics installed, TASKs created, or
-implementation acceptance claimed; the migrated workflow and predecessor outcomes remain outstanding.
+implementation acceptance claimed. The migrated workflow is active; TASK handoff and predecessor outcomes remain
+outstanding.

@@ -17,9 +17,10 @@ TASK acceptance, replacing conflicting guidance without importing another applic
 ## Approval and execution boundary
 
 John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md). This is a requirement TICKET,
-not executable work. `needs-info` records the missing verified planning cutover and subsequent TASK handoff,
-not a request to reapprove the requirement split. [T-00008](00008-TICKET.md) owns that transition; implementation
-requires separately accepted TASK scope after it. No TASK or new PRD is created by this record.
+not executable work. [T-00008](00008-TICKET.md) has completed the planning cutover; `needs-info` now records only
+the missing accepted TASK handoff, not a request to reapprove the requirement split or lifecycle adoption.
+This requirement is available for decomposition; implementation requires separately accepted and authorized TASK
+scope. The completed T-00008 dependency remains recorded. No TASK or new PRD is created by this record.
 
 ## Scope
 
@@ -100,5 +101,6 @@ Composer contracts and Symfony runtime behavior are unchanged. No production ada
 
 ## Completion Notes
 
-Requirements approved and recorded only. Await T-00008's verified cutover and a separately accepted TASK handoff;
-no guidance implementation or independent implementation acceptance is claimed.
+Requirements approved and recorded; T-00008's verified cutover prerequisite is satisfied. Next, decompose this
+requirement into bounded TASKs and obtain their scope acceptance and execution authority. No guidance
+implementation or independent implementation acceptance is claimed.
