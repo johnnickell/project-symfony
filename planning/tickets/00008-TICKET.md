@@ -142,6 +142,8 @@ he merged PR #14. This requirement closes on the accepted TASK outcomes and the 
 merely because its child is terminal. The original independent Spec and Standards acceptance remains at
 [TASK-00001's exact-snapshot review](../tasks/00001-TASK.md#independent-acceptance); the
 [cutover evidence](../tasks/00001-TASK.md#cutover-and-closeout) records the subsequent authorization and verification.
+The follow-up also has [independent cutover acceptance](../tasks/00001-TASK.md#independent-cutover-acceptance);
+its separately requested publication does not reopen adoption or authorize downstream implementation.
 
 | Requirement criterion | Satisfied outcome and evidence |
 | --- | --- |

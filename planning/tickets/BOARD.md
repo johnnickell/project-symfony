@@ -17,7 +17,9 @@ sorts earlier. Follow [CONVENTIONS.md](../CONVENTIONS.md) for authority, blocker
 
 Planning adoption is complete: [TASK-00001](../tasks/00001-TASK.md#cutover-and-closeout) and
 [T-00008](00008-TICKET.md#explicit-closeout-review) are done, PR #14's implementation is merged, and the lifecycle
-is active. No adoption approval remains pending.
+is active. No adoption approval remains pending. The cutover follow-up has
+[independent acceptance](../tasks/00001-TASK.md#independent-cutover-acceptance); John requested its publication.
+Human approval/merge of that follow-up is a separate delivery action, not another adoption gate.
 
 The next planning decision is to decompose the approved
 [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) into bounded TASKs.
