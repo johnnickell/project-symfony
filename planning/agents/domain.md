@@ -8,4 +8,7 @@ Fight packages provide public contracts. This project provides Symfony-native co
 - Register services, aliases, autoconfiguration, and compiler passes through `config/services.php` and the
   project Kernel. Do not add a Fight bundle.
 - New persistence schemas, migrations, records, mappings, repositories, fixtures, and presentation models belong
-  to this repository and require a local vertical ticket.
+  to this repository. New implementation requires accepted local EPIC/requirement TICKET scope and an explicitly
+  authorized TASK under [the local lifecycle](../CONVENTIONS.md#bootstrap-and-cutover); requirement approval alone
+  is not execution authority. Preserved legacy work follows [its documented exception](../CONVENTIONS.md#hierarchy-and-identities),
+  retaining its PRD/executable-ticket authority and unmet gates.

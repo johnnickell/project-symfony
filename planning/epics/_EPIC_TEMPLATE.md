@@ -2,23 +2,35 @@
 id: EPIC-NNNNN
 title: Brief destination
 status: needs-triage
-target: target-version
+target: unversioned
+approved: no
 ---
 
 # Brief destination
 
 ## Destination
 
-Describe the durable outcome and the boundary of this epic.
+Describe the durable outcome and boundaries. This is not implementation authorization or a release claim.
 
 ## Decisions so far
 
-- Link accepted decisions and their consequences.
+Link accepted decisions. Record human acceptance before setting `approved: yes` and decomposing into requirement
+TICKETs; no mandatory new PRD layer. Follow [CONVENTIONS.md](../CONVENTIONS.md).
 
-## PRDs
+## Scope and exclusions
 
-- PRD-NNNNN — Title
+Define included outcomes, dependencies, compatibility, and work owned elsewhere.
+
+## Completion criteria
+
+State observable satisfaction of the accepted requirement outcomes, not merely terminal child statuses.
+
+## Requirements
+
+<!-- planning:children -->
+<!-- /planning:children -->
 
 ## Progress
 
-Record completed milestones and the next unresolved planning consequence.
+Record accepted outcomes and unresolved decisions. Close explicitly after requirements are satisfied; do not imply
+publication, merge, release, or archive operations. Refresh generated views after source-record changes.

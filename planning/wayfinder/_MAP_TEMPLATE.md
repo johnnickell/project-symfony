@@ -11,7 +11,8 @@
 Describe the implementation-ready planning result.
 
 **Done** = every linked decision ticket is closed, the remaining fog is resolved or excluded, and the map links
-to its resulting epic, PRDs, and/or implementation tickets.
+to its resulting accepted EPIC, requirement TICKETs, and approved TASK handoff under the verified local lifecycle.
+Existing legacy PRD/ticket references remain valid; no new intermediate PRD is required.
 
 ## Notes
 
