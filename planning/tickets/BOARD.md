@@ -22,10 +22,12 @@ is active. No adoption approval remains pending. The cutover follow-up has
 [PR #15](https://github.com/johnnickell/project-symfony/pull/15). Human approval/merge of that follow-up is a separate
 delivery action, not another adoption gate.
 
-The next planning decision is to decompose the approved
-[T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) into bounded TASKs.
-Its T-00008 prerequisite is satisfied; its TASK scope and execution authority are not yet recorded. No TASK is
-currently executable, and this requirement is not itself an implementation assignment.
+John approved the single-TASK decomposition of
+[T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md).
+The next human decision is to authorize execution of
+[TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) and choose its
+implementation checkout/worktree. Its scope is accepted and T-00008 is satisfied; execution authority is not yet
+granted. No TASK is currently executable. Do not begin implementation from requirement or scope approval alone.
 
 T-00004 retains its separate Fight Common 2.0 evidence gate. It is not a TASK or permission for package work.
 
@@ -68,7 +70,7 @@ complete-document ownership. After that audit closes, the next human decision is
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| — | None | — | — | — | — |
+| 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | ready-for-human | —; execution authorization missing | — |
 <!-- /planning:human -->
 
 ## Needs Info

@@ -13,9 +13,10 @@ while the separate 2.0 migration remains needs-info. Its status is available in 
 
 ## Route to 1.0
 
-1. Decompose approved [T-00009](tickets/00009-TICKET.md) into bounded TASKs, then record their execution authority.
+1. Authorize execution and select the checkout/worktree for the approved documentation scope in
+   [TASK-00002](tasks/00002-TASK.md), the single-TASK handoff for [T-00009](tickets/00009-TICKET.md).
    Planning adoption is complete through [TASK-00001's cutover](tasks/00001-TASK.md#cutover-and-closeout);
-   no additional bootstrap approval is needed. There is currently no executable TASK.
+   no additional bootstrap or scope approval is needed. There is currently no executable TASK.
 2. Follow the retained requirement dependencies for gate/coverage and existing presentation/testing alignment.
    Preserve exact Unit coverage and separate local/hosted evidence. This is unversioned foundation work, not
    release authority or the complete AccessControl starter handoff.
@@ -27,7 +28,6 @@ These are decomposition/closeout decisions, not executable TASKs. Parent require
 visible while the [Work Board](tickets/BOARD.md) owns execution and the immediate human decision.
 
 <!-- planning:frontier -->
-- [T-00009 — Establish Engineering and Independent Review Standards](tickets/00009-TICKET.md): Decompose into TASKs after prerequisites.
 - [T-00010 — Establish Reusable Local and Hosted Verification](tickets/00010-TICKET.md): Decompose into TASKs after prerequisites; unfinished T-00009.
 - [T-00011 — Align Owned PHP and Homepage Presentation](tickets/00011-TICKET.md): Decompose into TASKs after prerequisites; unfinished T-00009; unfinished T-00010.
 - [T-00012 — Align Behavioral Tests and Framework Diagnostics](tickets/00012-TICKET.md): Decompose into TASKs after prerequisites; unfinished T-00010; unfinished T-00011.
