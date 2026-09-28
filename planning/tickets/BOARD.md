@@ -17,7 +17,8 @@ sorts earlier. Follow [CONVENTIONS.md](../CONVENTIONS.md) for authority, blocker
 
 Decide the separately authorized lifecycle cutover and closeout under
 [T-00008](00008-TICKET.md#approved-bootstrap-exception). [TASK-00001](../tasks/00001-TASK.md#independent-acceptance)
-has independent Spec and Standards acceptance after R1 and is being published under John's landing request.
+has independent Spec and Standards acceptance after R1 and is published as
+[PR #14](https://github.com/johnnickell/project-symfony/pull/14) under John's landing request.
 It remains `ready-for-human` with `review: accepted` because actual cutover is still pending. Human PR approval/merge
 is separate. The lifecycle remains bootstrap; no other TASK is currently executable.
 
@@ -62,7 +63,7 @@ complete-document ownership. After that audit closes, the next human decision is
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | ready-for-human | — | — |
+| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | ready-for-human | — | https://github.com/johnnickell/project-symfony/pull/14 |
 <!-- /planning:human -->
 
 ## Needs Info

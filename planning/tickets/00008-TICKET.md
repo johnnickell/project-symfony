@@ -91,7 +91,7 @@ checkout on `feature/engineering-alignment-planning`; that bounded bootstrap now
 <!-- planning:children -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | ready-for-human | — | — |
+| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | ready-for-human | — | https://github.com/johnnickell/project-symfony/pull/14 |
 <!-- /planning:children -->
 
 ## Acceptance Criteria

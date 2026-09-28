@@ -7,7 +7,7 @@ Read [CONVENTIONS.md](../CONVENTIONS.md) and the actual TASK before execution.
 <!-- planning:records -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](../tickets/00008-TICKET.md) | ready-for-human | — | — |
+| 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](../tickets/00008-TICKET.md) | ready-for-human | — | https://github.com/johnnickell/project-symfony/pull/14 |
 <!-- /planning:records -->
 
 TASK-00001 is the only pre-cutover bootstrap exception. General routing is gated by the
