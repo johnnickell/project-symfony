@@ -19,6 +19,25 @@ After an independent reviewer accepts the exact snapshot, a separately authorize
 marks the TASK done, sets `lifecycle: active` with review evidence, regenerates views, and verifies again. Keep
 cutover pending if any condition is missing. Publishing, merging, and archiving remain separate permissions.
 
+## Automatic parent completion
+
+When a TASK becomes `done` or `wontfix`, complete eligible parent TICKETs and then EPICs in the same operation.
+Count live and archived children. A live, non-terminal parent with at least one child closes when every child
+is terminal: use `wontfix` if every child is `wontfix`, otherwise `done`. Parents without children or with an
+unfinished child remain open. Preserve already-terminal and archived parents.
+
+Child acceptance and intentional `wontfix` decisions remain with the child records. Parent completion requires
+no separate assessment, independent review, QA, confirmation, or skill invocation. Record any remaining work as
+an unfinished child rather than a separate parent-closeout gate. Parent status does not assert review, merge,
+release, deployment or publication, and completion never archives records automatically.
+
+Run `./bin/planning-check --write` during completion; it closes eligible parents and refreshes views.
+Then run the read-only `./bin/planning-check`. Read-only validation never writes completion metadata.
+
+This rule covers current EPICs and requirements TICKETs, including preserved `T-` requirement IDs. Legacy PRDs,
+legacy executable tickets and the separately accepted planning cutover retain their existing contracts.
+
+
 ## Hierarchy and identities
 
 | Record | Role | Path / new ID |
@@ -94,9 +113,8 @@ independent reviewer may perform both passes. Record criterion-to-evidence mappi
 limitations, and remaining risks. Use `ready-for-human` for implementation awaiting independent review; do not
 prematurely mark it done to satisfy a pre-PR checklist. Revisions use `review: revise` until reaccepted.
 
-A TICKET closes only when its required outcomes are satisfied by accepted TASKs and an explicit closeout review.
-An EPIC closes on satisfied requirement outcomes. Terminal children trigger a closeout decision, not automatic
-completion: `wontfix` is not delivered acceptance. Terminal parents cannot contain unfinished children. Legacy
+Apply [Automatic parent completion](#automatic-parent-completion) when children become terminal; no additional
+parent assessment is required. `wontfix` remains intentional closure without implementation. Terminal parents cannot contain unfinished children. Legacy
 terminal evidence is preserved, not retroactively forced into new review fields. None of these statuses implies
 hosted success, PR publication, merge, release, or deployment.
 
@@ -112,7 +130,7 @@ are generated from TASK metadata. A separate legacy section keeps T-00004 visibl
 
 Generated `<!-- planning:NAME -->` / `<!-- /planning:NAME -->` sections include Board rows, live and archive indexes,
 live EPIC/requirement child tables, and Roadmap EPIC/progress frontiers. Edit the source records, not generated rows.
-The Roadmap's planning frontier surfaces parents needing decomposition or explicit closeout, with blockers; it is
+The Roadmap's planning frontier surfaces parents needing decomposition, with blockers; it is
 not executable work. Author **Now**, strategy, Wayfinder review pointers, and completion prose outside markers.
 Historical generated tables inside archived records are frozen evidence; archive indexes remain live projections.
 

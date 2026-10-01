@@ -36,9 +36,14 @@ T-00004 retains its separate Fight Common 2.0 evidence gate. It is not a TASK or
 No active map currently has an unblocked grillable frontier.
 [Symfony AccessControl Starter Application](../wayfinder/symfony-access-control-application-map.md) remains active:
 [Local Development Runtime Contract](../wayfinder/tickets/WF-002-local-development-runtime-contract.md) is closed,
-while [Released Package Contract Audit](../wayfinder/tickets/WF-001-released-package-contract-audit.md) awaits
-installable AccessControl v0.2.0 reusable schemas and a public-contract delta audit. Symfony retains endpoint and
-complete-document ownership. After that audit closes, the next human decision is
+while [WF-001 — Released Package Contract Audit](../wayfinder/tickets/WF-001-released-package-contract-audit.md)
+has [v0.4.0 audit evidence](../wayfinder/research/WF-001-v0.4.0-contract-delta-research.md) and now awaits installable
+v0.5.0 under John's [upstream resolution plan](../wayfinder/tickets/WF-001-released-package-contract-audit.md#upstream-resolution-plan-and-resume-condition).
+He reports schema fixes, OpenAPI drift regression tests, and new Agent provisioning/associated workflows already
+in progress, with the bugfix TASK in an isolated worktree. Do not create duplicate bug work. Resume WF-001 with
+released fix/regression verification and a full contract delta audit; planned work is not accepted evidence.
+Symfony retains endpoint and complete-document ownership. No local implementation authority is added.
+After WF-001 closes, the next human decision is
 [ADR HTTP and OpenAPI Contract](../wayfinder/tickets/WF-003-adr-http-openapi-contract.md).
 
 ## Active Work

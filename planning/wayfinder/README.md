@@ -13,7 +13,7 @@ closeout does not resolve a Wayfinder decision or authorize application implemen
 
 | Map | Status | Frontier | Boundary |
 |---|---|---|---|
-| [Symfony AccessControl Starter Application](symfony-access-control-application-map.md) | Active | None; [WF-001](tickets/WF-001-released-package-contract-audit.md) is gated | WF-002 is closed. WF-001 has v0.1.0 baseline evidence and awaits installable AccessControl v0.2.0 reusable schemas plus a delta audit; WF-003 follows. |
+| [Symfony AccessControl Starter Application](symfony-access-control-application-map.md) | Active | None; [WF-001 — Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md) awaits installable v0.5.0 | WF-002 is closed. John reports upstream schema fixes, OpenAPI drift regression tests, and new Agent provisioning/associated workflows in progress; the bugfix TASK is isolated. Resume with released verification and a full delta audit, not duplicate bug work. The [v0.4.0 findings](research/WF-001-v0.4.0-contract-delta-research.md) remain unverified as fixed; WF-003 stays blocked. |
 
 Use `_MAP_TEMPLATE.md` and `tickets/_WAYFINDER_TICKET_TEMPLATE.md` for new work. `research/` holds linked
 evidence, never a parallel decision record. Archive only through `../../bin/archive-planning` after a map is Closed,

@@ -317,8 +317,6 @@ def views(records: dict[str, Record], state: str) -> dict[tuple[Path, str], str]
         owned = children(record, records)
         if not owned:
             action = "Accept requirements before decomposition" if record.data.get("approved") != "yes" else "Decompose into TICKETs" if record.kind == "epic" else "Decompose into TASKs after prerequisites"
-        elif all(child.status in TERMINAL for child in owned):
-            action = "Explicit closeout review; terminal children do not imply satisfied requirements"
         else:
             continue
         reasons = unavailable(record, records, state)
@@ -356,6 +354,26 @@ def render_views(documents: dict[Path, str], generated: dict[tuple[Path, str], s
     return rendered
 
 
+def complete_parents(records: dict) -> dict[Path, str]:
+    """Plan bottom-up parent closure from all live and archived child records."""
+    pending = {}
+    for kind, parent_key in (("requirement", "ticket"), ("epic", "epic")):
+        for identifier, record in sorted(records.items()):
+            path, data = record.path, record.data
+            if record.kind != kind or "archive" in path.parts or data["status"] in TERMINAL:
+                continue
+            owned = [child.data for child in children(record, records)]
+            if not owned or any(child["status"] not in TERMINAL for child in owned):
+                continue
+            status = "wontfix" if all(child["status"] == "wontfix" for child in owned) else "done"
+            text = path.read_text()
+            header, body = text[4:].split("\n---\n", 1)
+            header = re.sub(r"^status:[^\n]*$", f"status: {status}", header, count=1, flags=re.MULTILINE)
+            pending[path] = f"---\n{header}\n---\n{body}"
+            data["status"] = status
+    return pending
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true", help="refresh marked views after validation")
@@ -369,7 +387,8 @@ def main() -> int:
                 raise ValueError(f"{record.id}: active work has unresolved gates: {unavailable(record, records, state)}")
         documents = {path: path.read_text(encoding="utf-8") for path in PLANNING.rglob("*.md")}
         validate_links(documents)
-        rendered = render_views(documents, views(records, state))
+        closures = complete_parents(records)
+        rendered = render_views(documents | closures, views(records, state))
         validate_links(rendered)
         ignored = subprocess.run(
             ["git", "-c", f"safe.directory={ROOT.resolve()}", "check-ignore", "-q", ".runs/planning-check"],

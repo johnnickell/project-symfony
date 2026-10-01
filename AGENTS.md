@@ -56,8 +56,18 @@ Before final commit and PR for any feature or bug fix:
 
 1. Record actual TASK implementation and verification; use `ready-for-human` while independent review is pending
 2. Mark a TASK `done` only after independent Spec and Standards acceptance of the exact snapshot and required verification
-3. Update parent requirement and epic progress without premature closeout; preserve legacy PRD authority
+3. Apply automatic parent completion to current requirements and EPICs; preserve legacy PRD authority
 4. Update authored Board **Now**, Wayfinder continuity, and Roadmap strategy when their decisions change
 5. Retain dependency history; unfinished blockers are derived, not removed from metadata
 6. Run `./bin/planning-check --write`, then `./bin/planning-check` to refresh and validate marked views
 7. Run the canonical build and inspect the owned diff before committing; publication, merge, release, and cutover remain separately authorized
+
+When completing a TASK, apply [Automatic parent completion](planning/CONVENTIONS.md#automatic-parent-completion)
+in the same operation; do not leave a separate parent assessment or closeout action for the user.
+
+## Certification retirement
+
+Test owned application behavior and meaningful package integrations. Do not create or restore framework-support
+certification files, receipt readers/generators, dependency certification matrices, or tests of those mechanisms.
+Validate build, configuration and planning tools directly with their owning commands, outside product suites.
+Historical certification notes remain history, not current gates.

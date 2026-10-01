@@ -23,8 +23,10 @@ package contracts and making OpenAPI documentation authoritative?
 - Select the OpenAPI authority and generation/verification workflow so documented operations and schemas cannot
   silently drift from executable HTTP behavior.
 - Generate exactly one OpenAPI 3.1 document in one pass from the installed Fight AccessControl
-  `resources/openapi/` schema carriers plus Symfony-owned Actions, request/response DTOs, routes, security
-  declarations, and project components; never generate and merge separate specs.
+  `openapi/` schema carriers via `openapi/bootstrap.php` plus Symfony-owned Actions, request/response DTOs, routes,
+  security declarations, and project components; never generate and merge separate specs. The
+  [v0.4.0 audit](../research/WF-001-v0.4.0-contract-delta-research.md) corrects the earlier `resources/openapi/`
+  path assumption and records schema findings that must be resolved under WF-001 before this decision proceeds.
 - Make Symfony authoritative for canonical paths, methods, operation IDs, payload and safe-error semantics,
   authentication behavior, and client-consumed realtime event shapes while leaving servers and generated ordering
   free to vary in downstream starters.

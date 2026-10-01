@@ -4,6 +4,10 @@ Research date: 2026-09-12. Authority: public immutable release trees, remote tag
 This is evidence for [Released Package Contract Audit](../tickets/WF-001-released-package-contract-audit.md),
 not proof that this starter has adopted or booted the releases.
 
+**Current follow-up:** the [2026-09-28 v0.4.0 delta audit](WF-001-v0.4.0-contract-delta-research.md) supersedes
+prospective release checks and baseline-only composition advice below. It records verified release availability,
+changed consumer contracts, and unresolved schema findings; WF-001 remains Open.
+
 ## Release identity and limits
 
 | Package | Baseline release | Annotated tag object | Peeled source commit |
@@ -28,9 +32,14 @@ The complete v0.1.0 tree contains no `resources/` directory, OpenAPI document, o
 On 2026-09-12 John retained package-owned carriers as a requirement and selected a forthcoming AccessControl
 v0.2.0 release to supply reusable schema information only. Symfony continues to own all endpoint and
 complete-document metadata; the package is not expected to annotate project operations. v0.1.0 is therefore audited baseline evidence, **not the completed target audit**.
-WF-001 remains Open pending remote v0.2.0 identity, installable metadata, carrier inspection, and a public-contract
-delta audit. WF-003 and its dependent decisions remain blocked. Do not copy schemas into Symfony to bypass this
-gate, infer the future release contents, or treat a pushed development branch as release evidence.
+The original follow-up targeted v0.2.0. John has since reported v0.4.0 released and approved it as the replacement
+audit target; forthcoming v0.5.0 is not a prerequisite. This is a planning amendment, not new release evidence:
+the dated v0.1.0 findings below remain unchanged and must not be attributed to v0.4.0.
+
+The retargeting called for remote v0.4.0 identity, installable metadata, Common v1.2.0 compatibility, carrier
+inspection, and a public-contract delta audit. That [follow-up](WF-001-v0.4.0-contract-delta-research.md) now records
+its evidence and schema findings. WF-003 and dependent decisions remain blocked on disposition of those findings.
+Do not copy schemas into Symfony to bypass this gate or treat a pushed development branch as release evidence.
 
 ## Public capability inventory and boundary classification
 
@@ -109,14 +118,18 @@ AccessControl v0.1.0 constructors require `Application\Repository\UnitOfWork`. C
 deprecated interface, extending `TransactionalUnitOfWork` and additionally requiring `commit()`.
 `DoctrineTransactionalUnitOfWork` alone does not implement that legacy interface. The retained
 [DoctrineUnitOfWork](https://github.com/johnnickell/fight-common/blob/a2cd615d9b5064c9c30e994655536176249cd73b/src/Adapter/Repository/DoctrineUnitOfWork.php)
-or a deliberately compatible consumer adapter is required; WF-004 must audit the v0.2.0 delta before choosing.
+or a deliberately compatible consumer adapter is required for that baseline. WF-004 must consume WF-001's
+v0.4.0 delta audit before choosing; the baseline does not establish v0.4.0 compatibility.
 
 Symfony owns namespace loading, autoconfiguration, selected compiler passes, aliases, environment configuration,
 request scope, all framework adapters, and runtime composition. No Fight bundle or copied package source is needed.
 
 ## Evidence required to complete WF-001
 
-1. Verify and record AccessControl v0.2.0 remote peeled tag and installable metadata.
+The following was the retargeted audit checklist. See the [v0.4.0 outcome and remaining owner decision](WF-001-v0.4.0-contract-delta-research.md#open-questions-and-next-action)
+for current evidence and blockers; this historical checklist does not imply the release is still unavailable.
+
+1. Verify and record AccessControl v0.4.0 remote peeled tag, installable metadata, and Common v1.2.0 compatibility.
 2. Inspect its shipped schema carriers and confirm scan-only scope, dependencies, and OpenAPI compatibility.
 3. Compare all public commands, queries, services, ports, results, and exceptions with this baseline.
 4. Update boundary classifications and downstream assumptions for every material delta.
