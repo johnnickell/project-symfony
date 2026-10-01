@@ -8,8 +8,10 @@
 
 ## Destination
 
-Chart an implementation-ready, local-development Symfony starter built on the released
-`johnnickell/fight-common` v1.2.0 and `johnnickell/fight-access-control` v0.2.0 package contracts. The planned
+Chart an implementation-ready, local-development Symfony starter consuming released Fight package contracts.
+`johnnickell/fight-common` v1.2.0 remains the compatibility target; AccessControl v0.4.0 is the audited baseline,
+and forthcoming `johnnickell/fight-access-control` v0.5.0 is the next audit target under WF-001's upstream resolution
+plan, not an already verified or adopted release. The planned
 application composes MySQL, Redis, Nginx, PHP-FPM, PHP-CLI workers, Cron scheduling, private Mercure SSE, every
 consumer-relevant AccessControl workflow, OpenAPI documentation, and an editable React SPA under `client/`
 compiled into `public/dist/`.
@@ -32,8 +34,10 @@ this routing clarification changes no WF decision or implementation gate.
 - Initial administration is invitation-led, with an idempotent CLI bootstrap and no public first-user or
   self-registration backdoor.
 - Mercure is the selected realtime transport. The SPA is editable starter source, not a shared runtime package.
-- Fight AccessControl owns scan-only reusable schemas under `resources/openapi/`; Symfony owns the canonical paths,
-  methods, operation IDs, wire semantics, authentication behavior, realtime event contract, and complete document.
+- Fight AccessControl v0.4.0 ships scan-only reusable schemas under `openapi/`, loaded through
+  `openapi/bootstrap.php`; the earlier `resources/openapi/` assumption is superseded by release evidence.
+  Symfony owns canonical paths, methods, operation IDs, wire semantics, authentication behavior, the realtime
+  event contract, and the complete document. The catalog mismatch recorded in WF-001 must be resolved.
 - Symfony generates one OpenAPI 3.1 document in one pass by scanning the installed package schema resources and its
   own Actions, DTOs, routes, security declarations, and project-specific components. It never merges two specs.
 - The handwritten client follows the public Fight CMS React/TypeScript/ESBuild/Sass structural baseline, becomes
@@ -49,15 +53,21 @@ this routing clarification changes no WF decision or implementation gate.
   [Scheduler](https://symfony.com/doc/current/scheduler.html),
   [Messenger](https://symfony.com/doc/current/messenger.html), and
   [Mercure](https://symfony.com/doc/current/mercure.html).
-- WF-001 has [v0.1.0 baseline evidence](research/WF-001-released-package-contract-audit-research.md), but that
-  release lacks reusable schema carriers. John retained package-owned schema information and selected forthcoming
-  v0.2.0; project endpoint/document metadata remains Symfony-owned. Development revisions or an announced tag
-  cannot satisfy the updated audit gate.
+- WF-001 preserves [v0.1.0 baseline evidence](research/WF-001-released-package-contract-audit-research.md) and now
+  records the [v0.4.0 released-contract audit](research/WF-001-v0.4.0-contract-delta-research.md). John replaced the
+  earlier v0.2.0 target with v0.4.0. Release availability and declared Common compatibility are verified, but the
+  invitation-status schema contradicts the released view and delivery catalog coverage has gaps. John now reports
+  v0.5.0 fixes, OpenAPI drift regression tests, and new Agent provisioning/associated workflows already in progress
+  upstream, with the bugfix TASK in an isolated worktree. Await its release and audit; planned fixes are not proof.
+  [WF-001](tickets/WF-001-released-package-contract-audit.md#upstream-resolution-plan-and-resume-condition) owns
+  the resume conditions. Do not create duplicate upstream work.
 
 ## Decisions so far
 
-1. **[Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md) is open.** The v0.1.0
-   baseline is recorded; audit the forthcoming v0.2.0 schema resources and public-contract delta before closure.
+1. **[Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md) is open.** The v0.4.0
+   audit establishes release identity, published installable metadata, declared Common compatibility, schema
+   resources, and the public-contract delta. The owner has reported a v0.5.0 upstream correction plan; closure
+   awaits its released artifact, schema/regression verification, and a full delta audit including new Agent workflows.
 2. **[Local Development Runtime Contract](tickets/WF-002-local-development-runtime-contract.md) is closed.**
    Accepted isolated HTTPS origins, service topology and image policy, explicit readiness, and data-preserving
    shutdown. Runtime implementation and qualification remain later work.
@@ -83,7 +93,7 @@ this routing clarification changes no WF decision or implementation gate.
 
 | Ticket | Type | Mode | Status | Depends On | Gate |
 |---|---|---|---|---|---|
-| [WF-001 — Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md) | Research | AFK | **Open** | — | Installable `fight-common` v1.2.0 and `fight-access-control` v0.2.0 |
+| [WF-001 — Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md) | Research | AFK | **Open** | — | Installable v0.5.0; verify schema fixes, regression evidence, and full delta including new Agent workflows |
 | [WF-002 — Local Development Runtime Contract](tickets/WF-002-local-development-runtime-contract.md) | Grilling | HITL | **Closed** | — | — |
 | [WF-003 — ADR HTTP and OpenAPI Contract](tickets/WF-003-adr-http-openapi-contract.md) | Prototype | HITL | **Open** | WF-001 | — |
 | [WF-004 — Doctrine Persistence and Bootstrap Contract](tickets/WF-004-doctrine-persistence-bootstrap-contract.md) | Prototype | HITL | **Open** | WF-001, WF-002 | — |
@@ -97,7 +107,7 @@ this routing clarification changes no WF decision or implementation gate.
 ## Blocking relationships
 
 ```text
-installable package releases ──→ WF-001 ──┬──→ WF-003 ──┐
+v0.5.0 release and audit ──→ WF-001 ──┬──→ WF-003 ──┐
                                    ├──→ WF-004 ──┼──→ WF-005 ──→ WF-006 ──┐
 WF-002 ────────────────────────────┘      │      │                        │
   └───────────────────────────────────────────────────────────────────────┤
@@ -107,20 +117,30 @@ WF-002 through WF-009 ───────────────────�
 WF-010 ──→ accepted EPIC, requirement TICKETs, and approved TASK handoff after lifecycle cutover
 ```
 
-WF-002 is closed. WF-001 remains gated on installable AccessControl v0.2.0 with reusable schema
-information and a verified delta audit. Common v1.2.0 and the AccessControl v0.1.0 baseline are verified; a
-development branch, alias, candidate commit, or unpublished package tree is not substitute evidence.
+WF-002 is closed. WF-001 has audited AccessControl v0.4.0, but its schema findings prevent closure under the
+retained package-owned schema requirement. John reports the upstream correction is in progress for v0.5.0.
+Release availability, fixes, regression results, and new Agent contracts must be verified before WF-003 or WF-004
+can proceed. Neither the isolated bugfix worktree nor an announced release substitutes for that evidence.
 
 ## Frontier
 
-No decision is currently takeable. [Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md)
-awaits installable AccessControl v0.2.0 schema carriers and a verified delta audit. Once it closes, the next
-human decision is [ADR HTTP and OpenAPI Contract](tickets/WF-003-adr-http-openapi-contract.md).
+No decision is currently takeable while the upstream release gate remains open.
+[WF-001 — Released Package Contract Audit](tickets/WF-001-released-package-contract-audit.md) awaits installable
+v0.5.0 under the owner's correction plan. Resume with release identity/compatibility checks, schema-fix and drift
+regression verification, and the full public-contract delta including new Agent provisioning/associated workflows.
+No duplicate bug ticket or new remediation-choice decision is needed. Once WF-001 closes, the next human decision is
+[WF-003 — ADR HTTP and OpenAPI Contract](tickets/WF-003-adr-http-openapi-contract.md).
 
 ## Not yet specified (fog)
 
-- AccessControl v0.1.0 capabilities are recorded in WF-001 research. The v0.2.0 public-contract delta and reusable
-  schema carriers remain unverified; WF-003 and downstream decisions must wait for that audit.
+- WF-001 records the v0.4.0 public-contract delta. v0.5.0 schema fixes and drift regression tests are planned
+  upstream, not verified here; downstream decisions remain blocked until released verification.
+- New v0.5.0 Agent provisioning and associated workflows are announced but not specified by this map. Audit their
+  released public contracts and boundary classifications before updating downstream persistence, security, API,
+  worker, or UI decisions; do not limit the follow-up to checking the old schema findings.
+- WF-004 through WF-008 must consume the audited recoverable delivery, supported TransactionalUnitOfWork,
+  non-null Permission tiers, shared reference/tier fences, and consumer-owned entry-point authorization changes.
+  These released requirements do not settle the database, worker, security, or HTTP decisions.
 - Runtime topology, image selection/pinning policy, host ports, health thresholds, volume policy, and worktree
   naming are settled in WF-002. Image manifests and running-runtime proof belong to implementation acceptance.
 - Exact endpoint paths, schemas, permission names, pagination defaults, idempotency keys, rate limits, and OpenAPI
