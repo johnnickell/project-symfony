@@ -1,5 +1,22 @@
 # AGENTS.md
 
+## Work routing
+
+For “What's next?”, `next`, or an unqualified `/ask-matt`, go straight to the [Board](planning/tickets/BOARD.md)
+before general project orientation. Read its current human decision and active work; otherwise select the first
+executable ready TASK in Board order. Use the [Wayfinder index](planning/wayfinder/README.md) for map status and current frontier pointers.
+Follow [lightweight work routing](planning/CONVENTIONS.md#lightweight-work-routing) for validation,
+bounded evidence reads and planning handoffs. Recommend and stop; load execution guidance when work is invoked.
+This routing path does not require reading README, architecture, full project context, task history or receiving skills.
+
+The Board retains its historical path. During `lifecycle: bootstrap` in `planning/README.md`, only the
+explicitly authorized TASK-00001 exception may execute; general cutover requires independent acceptance.
+
+## Project guidance
+
+For execution or substantive planning changes, load the applicable guidance below. The read-only routing
+path above takes precedence over broad orientation reads; it does not waive engineering or delivery rules.
+
 Read `CONTEXT.md`, `planning/README.md`, `planning/CONVENTIONS.md`, and `planning/agents/` before changing
 behavior. Work in independently verifiable vertical slices. Use the repository-owned `./bin/build`,
 `./bin/phpunit`, `./bin/up`, `./bin/down`, `./bin/composer`, `./bin/console`, `./bin/planning-check`, and
@@ -14,14 +31,6 @@ composition, and every persistence or presentation adapter.
 
 Do not implement login, persistence, browser journeys, releases, publishing, or visibility transitions unless a
 local requirement and approved TASK explicitly authorize that work (preserved legacy work follows its documented exception).
-
-## Work Routing
-
-When asked "What's next?" or invoked without a task, read `planning/tickets/BOARD.md`, the sole Board at its
-stable historical path. Return the human decision under **Now** and the **Active Work** TASK; otherwise return
-the first eligible TASK under **Ready Frontier**, or say none is eligible. Never select a requirement as executable.
-Use `planning/CONVENTIONS.md` for authority and ordering. During `lifecycle: bootstrap` in `planning/README.md`,
-only the explicitly authorized TASK-00001 exception may execute; general cutover requires independent acceptance.
 
 ## Run and Worktree Isolation
 
