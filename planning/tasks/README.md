@@ -9,6 +9,7 @@ Read [CONVENTIONS.md](../CONVENTIONS.md) and the actual TASK before execution.
 | --- | --- | --- | --- | --- | --- |
 | 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](../tickets/00008-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/15 |
 | 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](../tickets/00009-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/19 |
+| 4 | [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](00004-TASK.md) | [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](../tickets/00013-TICKET.md) | ready-for-human | — | — |
 | — | [TASK-00003 — Require Patched PHP Runtimes](00003-TASK.md) | — | done | — | https://github.com/johnnickell/project-symfony/pull/20 |
 <!-- /planning:records -->
 

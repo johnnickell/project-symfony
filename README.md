@@ -61,6 +61,14 @@ resulting immutable image ID. It does not replace the old shared `project-symfon
 FPM; use `./bin/up` for that. A failed base resolution is fatal, not permission to use an older image. Later PHP
 security updates require a deliberate tag/digest and Composer-platform change, not an update-on-start mechanism.
 
+### HttpFoundation security baseline
+
+The root `symfony/http-foundation` constraint is `^8.1.9`; the lock selects 8.1.9. This includes the fix for
+CVE-2026-108082 and the subsequent whitespace-separator correction. For future authorized updates, retain this
+minimum, select the latest compatible stable release, and verify locked/installed identity and
+`./bin/composer audit --locked`. Do not suppress the advisory. Audit results are point-in-time dependency evidence,
+not a deployment or globally clean security claim; no ongoing security gate is introduced here.
+
 ## Quality gate
 
 Fight Common and Fight AccessControl use released `^1.4` and `^0.8` Composer constraints, respectively.

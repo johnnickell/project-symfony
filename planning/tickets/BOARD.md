@@ -33,7 +33,7 @@ delivery action, not another adoption gate.
 [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) and its parent
 [T-00009](00009-TICKET.md) are complete. Human review/merge of
 [PR #19](https://github.com/johnnickell/project-symfony/pull/19) is next; delivery status is on the PR.
-The next planning handoff is `/skill:to-tasks T-00010` for
+The engineering-alignment planning handoff remains `/skill:to-tasks T-00010` for
 [reusable local and hosted verification](00010-TICKET.md), with John accepting the proposed TASK scope before
 execution. No TASK is authorized merely by requirement approval. Detailed evidence remains ignored.
 
@@ -43,6 +43,15 @@ John approved the standalone PHP security-repair scope and creation of
 John subsequently invoked Build TASK-00003 there; independent Review accepted the implementation and applicable
 QA passed. It is published for human review and merge as [PR #20](https://github.com/johnnickell/project-symfony/pull/20).
 This urgent runtime repair remains separate from T-00009 and WF-002's broader topology.
+
+John approved [EPIC-00002 — Remediate Symfony HttpFoundation CVE-2026-108082](../epics/00002-EPIC.md).
+John accepted [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](00013-TICKET.md), completing
+EPIC-00002 requirement decomposition. John also approved
+[TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md), completing TASK
+decomposition for this EPIC. John selected the main checkout and invoked Build TASK-00004, authorizing implementation
+and owned commits on `feature/task-00004-patched-http-foundation`. The implementation handoff awaits independent
+`/skill:review TASK-00004` and applicable QA, coordinated by Build. This covers the latest compatible stable
+HttpFoundation upgrade with a floor of 8.1.9, not unrelated upgrades or ongoing security-gate automation.
 
 T-00004 retains its separate Fight Common 2.0 evidence gate. It is not a TASK or permission for package work.
 
@@ -84,7 +93,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| — | None | — | — | — | — |
+| 4 | [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md) | [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](00013-TICKET.md) | ready-for-human | — | — |
 <!-- /planning:human -->
 
 ## Needs Info
