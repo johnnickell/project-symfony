@@ -4,7 +4,7 @@
     "type": "project",
     "license": "MIT",
     "require": {
-        "php": ">=8.5",
+        "php": ">=8.5.12",
         "doctrine/doctrine-bundle": "^3.0",
         "doctrine/orm": "^3.6",
         "dragonmantank/cron-expression": "^3.0",
@@ -57,7 +57,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.5.4"
+            "php": "8.5.12"
         },
         "preferred-install": {
             "*": "dist"

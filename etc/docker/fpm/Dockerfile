@@ -1,4 +1,6 @@
-FROM php:8.5-fpm
+FROM php:8.5.12-fpm-bookworm@sha256:d3db5340c7ecfb1e3a26af5d3d9de8b4e160cdd75692a830b5cb74b0b85db2cf
+
+RUN php -r 'if (PHP_VERSION !== "8.5.12") { fwrite(STDERR, "Expected patched PHP 8.5.12; refusing this base image\n"); exit(1); }'
 
 WORKDIR /app
 
@@ -16,6 +18,7 @@ RUN groupadd --gid 1000 systemuser \
 
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY ./local.ini /usr/local/etc/php/conf.d/local.ini
 
 RUN chmod +x /entrypoint.sh
 

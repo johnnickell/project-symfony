@@ -3,12 +3,17 @@ set -eu
 
 ./bin/planning-check
 
-image=project-symfony-build
-docker build --file etc/docker/build/Dockerfile --tag "$image" .
+# Do not replace another checkout's shared build tag or run a tag changed mid-build.
+image="project-symfony-build:$(printf '%s' "$(pwd -P)" | shasum -a 256 | cut -c1-12)"
+iid_file=$(mktemp)
+trap 'rm -f "$iid_file"' EXIT HUP INT TERM
+docker build --pull --iidfile "$iid_file" --file etc/docker/build/Dockerfile --tag "$image" .
+image_id=$(cat "$iid_file")
 docker run --rm --env APP_SECRET=build-only-secret --volume "$(pwd):/app" \
-    --workdir /app "$image" sh -ec '
+    --workdir /app "$image_id" sh -ec '
     composer validate --strict
     composer install --no-interaction --prefer-dist --no-progress
+    composer check-platform-reqs
     find config public scripts src -type f -name "*.php" -print0 | xargs -0 -n1 php -l
 
     php vendor/bin/phpcs

@@ -11,6 +11,12 @@
 [PRD-00002](specs/00002-PRD.md) remains the continuing legacy authority: the lean Fight Common 1.2 gate is adopted,
 while the separate 2.0 migration remains needs-info. Its status is available in the [legacy index](specs/README.md).
 
+## Standalone security repair
+
+[TASK-00003 — Require Patched PHP Runtimes](tasks/00003-TASK.md) has accepted scope and execution authority in
+its selected isolated worktree. Independent Review, applicable QA and authorized Land are the pending delivery
+handoffs. This PHP-only repair does not implement WF-002's broader topology or grant production authority.
+
 ## Route to 1.0
 
 1. Authorize execution and select the checkout/worktree for the approved documentation scope in
