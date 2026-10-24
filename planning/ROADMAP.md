@@ -11,6 +11,12 @@
 [PRD-00002](specs/00002-PRD.md) remains the continuing legacy authority: the lean Fight Common 1.2 gate is adopted,
 while the separate 2.0 migration remains needs-info. Its status is available in the [legacy index](specs/README.md).
 
+## Standalone security repair
+
+[TASK-00003 — Require Patched PHP Runtimes](tasks/00003-TASK.md) has independent Review acceptance and applicable
+QA PASS, and is published for human review and merge as [PR #20](https://github.com/johnnickell/project-symfony/pull/20).
+This PHP-only repair does not implement WF-002's broader topology or grant production authority.
+
 ## Route to 1.0
 
 1. Human review/merge of [TASK-00002](tasks/00002-TASK.md)'s

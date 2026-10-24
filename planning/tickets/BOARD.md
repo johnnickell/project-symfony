@@ -37,6 +37,13 @@ The next planning handoff is `/skill:to-tasks T-00010` for
 [reusable local and hosted verification](00010-TICKET.md), with John accepting the proposed TASK scope before
 execution. No TASK is authorized merely by requirement approval. Detailed evidence remains ignored.
 
+John approved the standalone PHP security-repair scope and creation of
+[TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md). The selected isolated worktree is
+`.runs/worktrees/task-00003-patched-php`, on `feature/task-00003-patched-php` from `develop`.
+John subsequently invoked Build TASK-00003 there; independent Review accepted the implementation and applicable
+QA passed. It is published for human review and merge as [PR #20](https://github.com/johnnickell/project-symfony/pull/20).
+This urgent runtime repair remains separate from T-00009 and WF-002's broader topology.
+
 T-00004 retains its separate Fight Common 2.0 evidence gate. It is not a TASK or permission for package work.
 
 ## Wayfinder Review
@@ -103,6 +110,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 | --- | --- | --- | --- | --- | --- |
 | 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/15 |
 | 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/19 |
+| — | [TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md) | — | done | — | https://github.com/johnnickell/project-symfony/pull/20 |
 <!-- /planning:closed -->
 
 ## Legacy Work Awaiting Authority
