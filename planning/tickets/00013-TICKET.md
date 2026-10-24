@@ -2,7 +2,7 @@
 id: TICKET-00013
 epic: EPIC-00002
 title: Require a Patched Compatible HttpFoundation Baseline
-status: in-progress
+status: done
 approved: yes
 blocked_by:
 ---
@@ -84,7 +84,7 @@ it must preserve safe execution and avoid duplicating upstream implementation te
 <!-- planning:children -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 4 | [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md) | [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](00013-TICKET.md) | ready-for-human | — | — |
+| 4 | [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md) | [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](00013-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/21 |
 <!-- /planning:children -->
 
 ## Progress and closeout
@@ -93,9 +93,7 @@ John accepted the single-TICKET decomposition and then approved one implementati
 [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md), covering all six
 acceptance criteria. Requirement and TASK decomposition are complete for EPIC-00002. John selected the main checkout
 and invoked Build TASK-00004, authorizing implementation and owned commits; no other TASK slices remain to be planned.
-The implementation handoff awaits independent Review and applicable QA, coordinated by Build.
-Apply [automatic parent completion](../CONVENTIONS.md#automatic-parent-completion) when authorized child TASKs become
-terminal; no additional parent review gate is introduced. Publication, human merge, release, and deployment remain
-separate from requirement completion.
+TASK-00004 is terminal, so automatic parent completion closes this requirement without a separate parent review gate.
+Publication, human merge, release, and deployment remain separate from requirement completion.
 
-Next: independent `/skill:review TASK-00004`, coordinated by the active Build run.
+Next: human review/merge of [PR #21](https://github.com/johnnickell/project-symfony/pull/21).

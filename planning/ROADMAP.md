@@ -6,7 +6,7 @@
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
 | — | [EPIC-00001 — Align Symfony Engineering Standards and Delivery](epics/00001-EPIC.md) | — | in-progress | — | — |
-| — | [EPIC-00002 — Remediate Symfony HttpFoundation CVE-2026-108082](epics/00002-EPIC.md) | — | in-progress | — | — |
+| — | [EPIC-00002 — Remediate Symfony HttpFoundation CVE-2026-108082](epics/00002-EPIC.md) | — | done | — | — |
 <!-- /planning:epics -->
 
 [PRD-00002](specs/00002-PRD.md) remains the continuing legacy authority: the lean Fight Common 1.2 gate is adopted,
@@ -23,8 +23,8 @@ This PHP-only repair does not implement WF-002's broader topology or grant produ
 [EPIC-00002 — Remediate Symfony HttpFoundation CVE-2026-108082](epics/00002-EPIC.md) is approved for a bounded
 upgrade to the latest compatible stable HttpFoundation release, with a resolution floor of 8.1.9. John accepted
 [TICKET-00013](tickets/00013-TICKET.md) and its single implementation [TASK-00004](tasks/00004-TASK.md), selected the
-main checkout, and invoked Build TASK-00004. Decomposition is complete; the implementation handoff awaits independent
-`/skill:review TASK-00004` and applicable QA, coordinated by Build. This is separate from TASK-00003's PHP repair
+main checkout, and invoked Build TASK-00004. The completed delivery is published for human review/merge as
+[PR #21](https://github.com/johnnickell/project-symfony/pull/21). This is separate from TASK-00003's PHP repair
 and EPIC-00001's unfinished alignment planning, with no deployment authority implied.
 
 ## Route to 1.0

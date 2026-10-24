@@ -49,9 +49,9 @@ John accepted [TICKET-00013 — Require a Patched Compatible HttpFoundation Base
 EPIC-00002 requirement decomposition. John also approved
 [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md), completing TASK
 decomposition for this EPIC. John selected the main checkout and invoked Build TASK-00004, authorizing implementation
-and owned commits on `feature/task-00004-patched-http-foundation`. The implementation handoff awaits independent
-`/skill:review TASK-00004` and applicable QA, coordinated by Build. This covers the latest compatible stable
-HttpFoundation upgrade with a floor of 8.1.9, not unrelated upgrades or ongoing security-gate automation.
+and owned commits on `feature/task-00004-patched-http-foundation`. The completed delivery is published for human
+review/merge as [PR #21](https://github.com/johnnickell/project-symfony/pull/21). This covers the latest compatible
+stable HttpFoundation upgrade with a floor of 8.1.9, not unrelated upgrades or ongoing security-gate automation.
 
 T-00004 retains its separate Fight Common 2.0 evidence gate. It is not a TASK or permission for package work.
 
@@ -93,7 +93,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 4 | [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md) | [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](00013-TICKET.md) | ready-for-human | — | — |
+| — | None | — | — | — | — |
 <!-- /planning:human -->
 
 ## Needs Info
@@ -119,6 +119,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 | --- | --- | --- | --- | --- | --- |
 | 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/15 |
 | 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/19 |
+| 4 | [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md) | [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](00013-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/21 |
 | — | [TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md) | — | done | — | https://github.com/johnnickell/project-symfony/pull/20 |
 <!-- /planning:closed -->
 
