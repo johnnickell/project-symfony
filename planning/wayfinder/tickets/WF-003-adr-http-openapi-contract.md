@@ -14,7 +14,7 @@ package contracts and making OpenAPI documentation authoritative?
 
 ## Must decide
 
-- Prototype invokable Action services, Domain/application delegation, and Responder ownership without creating a
+- Prototype Action `handle()` services, Domain/application delegation, and Responder `respond()` ownership without creating a
   Fight bundle or moving framework types across the adapter boundary.
 - Define request DTO construction, validation, normalization, unknown-field handling, content negotiation, and
   stable response-envelope rules.

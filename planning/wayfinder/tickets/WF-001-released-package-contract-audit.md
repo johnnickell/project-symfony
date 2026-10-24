@@ -3,7 +3,7 @@
 **Labels:** `wayfinder:research`
 **Mode:** AFK
 **Status:** Open
-**Gate:** Installable AccessControl v0.5.0, then verify schema fixes, regression evidence, and the full released-contract delta including new Agent workflows
+**Gate:** —; audit released AccessControl v0.8.0 with Common v1.4.0, including schema fixes, regression evidence and the full delta
 **Map:** [Symfony AccessControl Starter Application](../symfony-access-control-application-map.md)
 **Depends on:** —
 
@@ -33,7 +33,9 @@ future release contents.
 
 ## Resolution
 
-Open. The [v0.4.0 delta audit](../research/WF-001-v0.4.0-contract-delta-research.md) verifies release identity,
+Open. The current audit target is installed AccessControl v0.8.0 with Common v1.4.0, following John's latest-stable
+upgrade request. Release waiting is no longer the prerequisite; schema/regression and full contract verification
+remain open. Installation is not WF acceptance. The [v0.4.0 delta audit](../research/WF-001-v0.4.0-contract-delta-research.md) verifies release identity,
 published installable metadata, declared Common v1.2.0 compatibility, and shipped schema resources, but identifies
 a schema mismatch. John's subsequent upstream plan below supplies the disposition; released verification remains pending. The [v0.1.0 baseline audit](../research/WF-001-released-package-contract-audit-research.md) verifies public
 release identity and consumer contracts against Fight Common v1.2.0. AccessControl v0.1.0 lacks the required
@@ -46,7 +48,8 @@ responses, servers, or document metadata. Those remain Symfony-owned under WF-00
 John subsequently reported that AccessControl v0.4.0 is released, with v0.5.0 forthcoming, and approved
 retargeting this audit to v0.4.0. This supersedes the v0.2.0 target and release wait, not the schema requirement
 or verification gate. At that stage, v0.5.0 was not a prerequisite. The subsequent upstream resolution plan below
-now makes its released artifact the next audit target, without claiming adoption or verified fixes.
+made its released artifact the next audit target at that checkpoint. The current target above supersedes that
+release wait, not the unresolved schema findings or full-delta audit.
 
 ### v0.4.0 audit outcome — 2026-09-28
 
@@ -71,21 +74,22 @@ the bugfix TASK is on an isolated worktree. This is owner-reported planning, not
 accepted regression evidence, or a published release. No upstream TASK ID, PR, or worktree path was supplied.
 Do not create duplicate bug work, modify that worktree, or infer authority to publish the package.
 
-The owner disposition is package correction, retaining package-owned schemas. Await installable v0.5.0, then:
+The owner disposition remains package correction with package-owned schemas. Apply the following retained audit
+obligations to the current v0.8.0 / Common v1.4.0 baseline; the earlier v0.5.0 release wait is historical:
 
-1. Verify immutable release identity, source/dist metadata, shipped resources, and Common v1.2.0 compatibility.
+1. Verify immutable release identity, source/dist metadata, shipped resources, and the selected Common v1.4.0 compatibility.
 2. Recheck F-01's schema/enum parity and F-02's catalog coverage or explicit exclusions; inspect the added drift
    regression tests and their actual verification evidence. Planned tests alone do not establish a passing result.
-3. Audit the full v0.4.0-to-v0.5.0 public-contract delta, not just the bugfix. Inventory the new Agent provisioning
+3. Audit the full v0.4.0-to-v0.8.0 public-contract delta, not just the bugfix. Inventory the new Agent provisioning
    and associated workflows, changed ports, messages, results, errors, security guarantees, and reusable schemas.
    Reclassify HTTP, CLI, worker, and composition-only capabilities from released evidence, without assuming the
    existing Agent surface or boundary classification remains sufficient.
 4. Verify applicable schema composition and record downstream implications before deciding closure. Keep WF-001
    Open and WF-003/dependent decisions blocked until the release audit satisfies the retained gate.
 
-The next action is upstream completion/release followed by this audit, not another request to choose a remediation
-strategy. Do not copy schemas into Symfony, treat the isolated worktree as release authority, or infer endpoint,
+The next action is the released-contract audit, not another upstream release wait or a request to choose a
+remediation strategy. Do not copy schemas into Symfony, treat the isolated worktree as release authority, or infer endpoint,
 persistence, security, or UI decisions from the announced Agent workflows.
 
-Clean root Composer resolution, release pinning, candidate-receipt/lock removal, and build-process cleanup remain
-in the later standalone-adoption slice. No package fix, publication, or application implementation is authorized.
+The authorized dependency upgrade is separate from this audit's acceptance. No package fix, publication,
+application implementation, candidate-certification lane or removal of the reproducible Composer lock is authorized.

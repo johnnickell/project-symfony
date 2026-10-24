@@ -13,10 +13,9 @@ while the separate 2.0 migration remains needs-info. Its status is available in 
 
 ## Route to 1.0
 
-1. Authorize execution and select the checkout/worktree for the approved documentation scope in
-   [TASK-00002](tasks/00002-TASK.md), the single-TASK handoff for [T-00009](tickets/00009-TICKET.md).
-   Planning adoption is complete through [TASK-00001's cutover](tasks/00001-TASK.md#cutover-and-closeout);
-   no additional bootstrap or scope approval is needed. There is currently no executable TASK.
+1. Obtain independent review of [TASK-00002](tasks/00002-TASK.md) convention/layout adoption in the current checkout,
+   including the separately requested latest stable Fight dependency upgrades. Applicable QA follows; acceptance
+   remains pending. [T-00009](tickets/00009-TICKET.md) owns the guidance outcome; planning cutover is already complete.
 2. Follow the retained requirement dependencies for gate/coverage and existing presentation/testing alignment.
    Preserve exact Unit coverage and separate local/hosted evidence. This is unversioned foundation work, not
    release authority or the complete AccessControl starter handoff.

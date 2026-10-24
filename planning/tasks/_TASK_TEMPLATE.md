@@ -43,6 +43,9 @@ Requirement approval is not execution authority; record the explicit authorizati
 
 ## Verification and evidence
 
+Use [execution](../../docs/engineering/EXECUTION.md), [review](../../docs/engineering/REVIEW.md),
+[QA](../../docs/engineering/QA.md) and [handoffs](../../docs/engineering/HANDOFFS.md). Keep detailed results in
+ignored task runs and canonical independent reports, not appended tracked acceptance narratives.
 Name focused checks, before/after evidence, and `./bin/build`. For a bug, reproduce it with a failing regression
 before repair unless technically impossible with a recorded reason. Verify tools/documents directly, without
 tooling tests or invalid fixtures. Record actual counts, warnings, limitations, and evidence references.
@@ -50,11 +53,11 @@ tooling tests or invalid fixtures. Record actual counts, warnings, limitations, 
 ## Coordination
 
 Name dependencies, selected checkout/worktree, feature branch/base, and explicit execution authority. Keep SUBTASK
-coordination under ignored `.runs/<YYYY-MM-DD>-<slug>/`; the TASK retains the complete outcome.
+coordination under ignored `.runs/tasks/<TASK-ID>/runs/<run-id>/`; the TASK retains the complete outcome.
 
 ## Completion notes
 
-Record actual implementation and verification separately from independent Spec and Standards review of the exact
-snapshot. A material contributor cannot independently accept the TASK. Use `ready-for-human` while awaiting review;
+Keep status truthful; implementation/verification and independent acceptance are distinct. Canonical ignored
+reports identify the exact snapshot under the shared evidence contract. A material contributor cannot independently accept the TASK. Use `ready-for-human` while awaiting review;
 `done` requires accepted review and verification references. Record findings, disposition, and risks. Publication,
 merge, hosted checks, release, deployment, and archive authority are separate. Refresh generated views after edits.

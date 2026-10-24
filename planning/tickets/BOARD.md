@@ -32,27 +32,22 @@ delivery action, not another adoption gate.
 
 John approved the single-TASK decomposition of
 [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md).
-The next human decision is to authorize execution of
-[TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) and choose its
-implementation checkout/worktree. Its scope is accepted and T-00008 is satisfied; execution authority is not yet
-granted. No TASK is currently executable. Do not begin implementation from requirement or scope approval alone.
+[TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) is authorized
+on `feature/task-00002-engineering-review-guidance` in the current checkout. Shared convention/layout adoption and
+the requested latest stable Fight dependency upgrades are ready for independent review. The next action is
+`/skill:review TASK-00002` in an independent session, followed by applicable QA. Detailed evidence remains ignored;
+no acceptance or publication is claimed. Do not start another TASK from requirement approval alone.
 
 T-00004 retains its separate Fight Common 2.0 evidence gate. It is not a TASK or permission for package work.
 
 ## Wayfinder Review
 
-No active map currently has an unblocked grillable frontier.
-[Symfony AccessControl Starter Application](../wayfinder/symfony-access-control-application-map.md) remains active:
-[Local Development Runtime Contract](../wayfinder/tickets/WF-002-local-development-runtime-contract.md) is closed,
-while [WF-001 — Released Package Contract Audit](../wayfinder/tickets/WF-001-released-package-contract-audit.md)
-has [v0.4.0 audit evidence](../wayfinder/research/WF-001-v0.4.0-contract-delta-research.md) and now awaits installable
-v0.5.0 under John's [upstream resolution plan](../wayfinder/tickets/WF-001-released-package-contract-audit.md#upstream-resolution-plan-and-resume-condition).
-He reports schema fixes, OpenAPI drift regression tests, and new Agent provisioning/associated workflows already
-in progress, with the bugfix TASK in an isolated worktree. Do not create duplicate bug work. Resume WF-001 with
-released fix/regression verification and a full contract delta audit; planned work is not accepted evidence.
-Symfony retains endpoint and complete-document ownership. No local implementation authority is added.
-After WF-001 closes, the next human decision is
-[ADR HTTP and OpenAPI Contract](../wayfinder/tickets/WF-003-adr-http-openapi-contract.md).
+No unblocked grillable decision is established. The active
+[Symfony AccessControl Starter Application](../wayfinder/symfony-access-control-application-map.md) has an available
+research frontier: [WF-001 — Released Package Contract Audit](../wayfinder/tickets/WF-001-released-package-contract-audit.md).
+The requested released v0.8.0 / Common v1.4.0 baseline is installed; the full contract/schema/regression audit remains
+open. Do not infer fixed findings or application authority from installation, or create duplicate upstream bug work.
+WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is accepted.
 
 ## Active Work
 
@@ -83,7 +78,7 @@ After WF-001 closes, the next human decision is
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | ready-for-human | —; execution authorization missing | — |
+| 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | ready-for-human | — | — |
 <!-- /planning:human -->
 
 ## Needs Info

@@ -13,7 +13,9 @@ legacy coexistence, generation, routing, and explicit-only archive rules.
 - `tasks/`: bounded implementation and independent acceptance, normally one PR each.
 - [tickets/BOARD.md](tickets/BOARD.md): the sole human and TASK execution Board, at its stable historical path.
 - `specs/`: continuing/historical legacy PRDs, not a mandatory new-work layer.
-- `adr/`, `agents/`, and `wayfinder/`: architectural decisions, focused guidance, and investigation authorities.
+- `adr/` and `wayfinder/`: architectural decisions and investigation authorities.
+- [Foundation](FOUNDATION.md), [Architecture](../ARCHITECTURE.md), and [engineering guidance](../docs/engineering/STANDARDS.md):
+  current capabilities, ownership and contributor workflows; the former `planning/agents/` guidance has moved.
 - [ROADMAP.md](ROADMAP.md): authored strategy with generated EPIC and planning-frontier views.
 
 ## Cutover control
@@ -34,7 +36,8 @@ unfinished gate. See [the cutover procedure](CONVENTIONS.md#bootstrap-and-cutove
 Copy local templates and inspect live/archive IDs before allocating records. Record scope, use cases, exclusions,
 validation, permissions, and observable acceptance; justify non-applicable concerns. After metadata edits run
 `./bin/planning-check --write` then `./bin/planning-check`. Ordinary validation and the build never rewrite views.
-Edit authored prose outside generated markers. Keep scratch under ignored `.runs/<YYYY-MM-DD>-<slug>/`.
+Edit authored prose outside generated markers. Use the categorized [scratch layout](../docs/engineering/SCRATCH.md).
+Keep detailed execution/acceptance evidence ignored; do not add planning records merely to store reports.
 
 Archive only on an explicit request through `./bin/archive-planning`, dry run before apply. Do not automatically
 convert, renumber, close, move, or archive legacy records. T-00004 remains `needs-info` under PRD-00002 until its

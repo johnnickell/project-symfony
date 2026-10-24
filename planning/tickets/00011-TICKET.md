@@ -27,7 +27,7 @@ accepted TASK handoff and unfinished predecessor outcomes. Implementation follow
 
 - A visitor requests `GET /` and receives the same successful HTML homepage, including the configured application
   name, route behavior, and rendered content. No new input contract or visual redesign is introduced.
-- A maintainer follows a final invokable Action for the homepage interaction and an explicit Responder owning
+- A maintainer follows a final Action with `handle()` for the homepage interaction and an explicit Responder with `respond()` owning
   successful status, headers, and rendering. Constructor injection makes dependencies visible instead of locating
   them through the controller container.
 - A contributor reads or changes existing owned PHP and finds the accepted strict-types, final/readonly, naming,
@@ -57,8 +57,8 @@ HTML. Exact API envelope/error/OpenAPI decisions remain with
 
 - [ ] AC-01 — `GET /` preserves the existing route, successful status, HTML representation, configured application
       name, and rendered behavior; no new browser or JSON contract is introduced.
-- [ ] AC-02 — A final invokable Action represents the homepage interaction and delegates presentation to an explicit
-      Responder. Status, headers, and rendering belong to the Responder; dependencies are constructor-injected.
+- [ ] AC-02 — A final Action with `handle()` represents the homepage interaction and delegates presentation to an explicit
+      Responder with `respond()`. Status, headers, and rendering belong to the Responder; dependencies are constructor-injected.
 - [ ] AC-03 — No fake use case, CQRS message, business layer, persistence access, policy decision, or transaction
       machinery is introduced for this presentation-only interaction.
 - [ ] AC-04 — The bounded inventory of existing owned PHP and affected tests conforms to the accepted rules or
