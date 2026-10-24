@@ -1,19 +1,39 @@
 # Contributing
 
-Read `AGENTS.md`, `CONTEXT.md`, `planning/README.md`, `planning/CONVENTIONS.md`, and the focused local planning rules before proposing a
-change. New work follows accepted EPIC outcomes, requirement TICKETs, then bounded TASKs, normally one PR each.
-Record execution authority and checkout/worktree choice, preserve existing branch/legacy-record identities, and
-keep the change to one vertical slice. During bootstrap only TASK-00001 may execute under its explicit exception.
-Update capability documentation with behavior, run `./bin/planning-check --write` then `./bin/planning-check` for
-planning changes, and run `./bin/build` before requesting independent Spec and Standards review. The implementer
-cannot accept their own work; record pending review honestly instead of marking the TASK done prematurely.
-The sole execution Board remains `planning/tickets/BOARD.md`; publication and merge require separate authority.
+Read [AGENTS.md](AGENTS.md), [Architecture](ARCHITECTURE.md), [Foundation](planning/FOUNDATION.md),
+[planning conventions](planning/CONVENTIONS.md) and [engineering standards](docs/engineering/STANDARDS.md).
+New work follows accepted EPIC → TICKET → TASK scope; preserved legacy records keep their existing authority.
+Select the checkout/worktree and authorize execution explicitly. Use feature branches from `develop`, never
+commit directly to `develop`/`main`, and preserve unrelated changes.
 
-For a fresh checkout, run `./bin/composer install`. The project runs Composer and PHPUnit in its pinned Docker
-image, so local PHP extensions and host Composer versions do not become an unrecorded prerequisite.
+## Development and verification
 
-Tool caches belong under `var/cache/<tool>` (for example, PHPUnit uses `var/cache/phpunit`). Do not configure
-root-level cache files; `var/` is the single ignored runtime and cache root.
+Use the repository's Docker wrappers:
 
-Do not duplicate Fight Common or Fight AccessControl Domain/Application code. Changes to public shared behavior
-belong in the owning package; Symfony composition and adapters belong here.
+```sh
+./bin/up
+./bin/composer install --no-interaction --prefer-dist --no-progress
+./bin/phpunit
+./bin/build
+```
+
+[Build guidance](docs/engineering/BUILD.md) describes preparation, current gate mechanics, exact Unit-only coverage,
+artifact limitations and the detached long-build protocol. Focused checks do not replace the full gate. Preserve
+required hosted verification separately from local results. Runtime/cache files belong under `var/`, including
+`var/cache/<tool>`; [execution scratch](docs/engineering/SCRATCH.md) uses categorized ignored `.runs/` directories.
+
+## Ownership and delivery
+
+Do not duplicate Fight Common or Fight AccessControl behavior. Public shared changes belong in the package;
+Symfony composition and adapters belong here. Keep current source organization, safe transport boundaries and
+meaningful behavior tests. Use Action `handle()` and Responder `respond()` for authorized presentation changes;
+no invented use case is needed for the HTML homepage.
+
+Follow [Execution](docs/engineering/EXECUTION.md), independent [Review](docs/engineering/REVIEW.md), applicable
+[QA](docs/engineering/QA.md), and authorized [Landing](docs/engineering/LANDING.md). The implementer cannot accept
+their own work. Reports and detailed acceptance evidence remain ignored, not new tracked planning narratives.
+Keep pending status truthful; publication and human merge remain separate.
+
+For shared Pi workflows use [project context](docs/engineering/PROJECT_CONTEXT.md), not copied skills. Native
+`/skill:next` recommends only. Explicit `/skill:build` delegates delivery stages; `./bin/build` only verifies.
+No installation, enrollment, release, database planning cutover or archive follows automatically.

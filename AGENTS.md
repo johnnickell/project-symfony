@@ -1,82 +1,83 @@
-# AGENTS.md
+# Fight Symfony Starter
 
 ## Work routing
 
-For “What's next?”, `next`, or an unqualified `/ask-matt`, go straight to the [Board](planning/tickets/BOARD.md)
-before general project orientation. Read its current human decision and active work; otherwise select the first
-executable ready TASK in Board order. Use the [Wayfinder index](planning/wayfinder/README.md) for map status and current frontier pointers.
-Follow [lightweight work routing](planning/CONVENTIONS.md#lightweight-work-routing) for validation,
-bounded evidence reads and planning handoffs. Recommend and stop; load execution guidance when work is invoked.
-This routing path does not require reading README, architecture, full project context, task history or receiving skills.
-
-The Board retains its historical path. During `lifecycle: bootstrap` in `planning/README.md`, only the
-explicitly authorized TASK-00001 exception may execute; general cutover requires independent acceptance.
+For “What's next?”, `next`, or an unqualified `/ask-matt`, go straight to the
+[Board](planning/tickets/BOARD.md), before general orientation. Follow
+[lightweight routing](planning/CONVENTIONS.md#lightweight-work-routing): run the read-only planning validator once,
+read the current human decision and all active TASKs, otherwise the first executable ready TASK in Board order.
+Use the [Wayfinder inventory](planning/wayfinder/README.md) and current planning handoffs; do not infer completed
+decomposition from closed maps or child counts. Recommend and stop. Full execution guidance loads only when invoked.
+The Board retains its stable path; shared skills use the [routing substitution](docs/engineering/PROJECT_CONTEXT.md#routing-only-context).
 
 ## Project guidance
 
-For execution or substantive planning changes, load the applicable guidance below. The read-only routing
-path above takes precedence over broad orientation reads; it does not waive engineering or delivery rules.
+For execution or substantive planning, read [README](README.md), [Architecture](ARCHITECTURE.md),
+[Foundation](planning/FOUNDATION.md), [planning authority](planning/README.md), [conventions](planning/CONVENTIONS.md),
+and the selected record/parents. Apply [shared skill project context](docs/engineering/PROJECT_CONTEXT.md) to provider
+references; the invocation checkout remains the target. Keep installed skills with their provider, without copies,
+symlinks, global setup or runtime enrollment. Use the installed writing-for-agents skill for instruction changes.
 
-Read `CONTEXT.md`, `planning/README.md`, `planning/CONVENTIONS.md`, and `planning/agents/` before changing
-behavior. Work in independently verifiable vertical slices. Use the repository-owned `./bin/build`,
-`./bin/phpunit`, `./bin/up`, `./bin/down`, `./bin/composer`, `./bin/console`, `./bin/planning-check`, and
-`./bin/exec` commands; `./bin/build` is the single noninteractive local and hosted gate.
+- [Engineering standards](docs/engineering/STANDARDS.md): ownership, interfaces, PHP, HTTP and meaningful tests.
+- [Execution](docs/engineering/EXECUTION.md): implementation, repair, verification and committed handoff.
+- [Review](docs/engineering/REVIEW.md), [QA](docs/engineering/QA.md), [Landing](docs/engineering/LANDING.md): independent
+  acceptance, behavioral evidence and authorized publication, with human merge separate.
+- [Handoffs](docs/engineering/HANDOFFS.md), [Scratch](docs/engineering/SCRATCH.md), [Build](docs/engineering/BUILD.md):
+  next actions, canonical ignored evidence and actual verification mechanics.
 
-## Architecture boundary
+## Non-negotiable boundaries
 
-`johnnickell/fight-common` and `johnnickell/fight-access-control` are consumed only as Composer packages.
-Never copy their Domain or Application source, reach into package internals; there is no Fight bundle. Symfony owns
-its namespace loading, autoconfiguration, compiler passes, aliases, environment configuration, HTTP/security
-composition, and every persistence or presentation adapter.
+Consume Fight Common and Fight AccessControl only as Composer packages. Never copy Domain/Application source,
+reach into package internals or add a Fight bundle. Symfony owns namespace loading, autoconfiguration, aliases,
+compiler passes, environment/HTTP/security composition and persistence/presentation adapters. Keep `src/*` and
+inward dependencies; introduce new boundaries only for demonstrated use cases.
 
-Do not implement login, persistence, browser journeys, releases, publishing, or visibility transitions unless a
-local requirement and approved TASK explicitly authorize that work (preserved legacy work follows its documented exception).
+Use `handle()` for Actions and `respond()` for Responders. Preserve HTML and the explicit web JSON middleware /
+bare-Kernel console split. Do not implement login, persistence, browser journeys, releases, publishing or visibility
+transitions without local requirement and explicit TASK authority; legacy work retains its documented exception.
 
-## Run and Worktree Isolation
+Preserve exact Unit-only owned-production statement coverage and meaningful integration/HTTP journeys. Never
+weaken required hosted proof or public API compatibility to match another application. Do not create or restore
+framework-support certification, receipt machinery or dependency certification matrices. Validate tooling directly
+with owning commands, outside product suites; do not seed invalid fixtures to test the tools.
 
-Coordinate-build scratch belongs in `.runs/<YYYY-MM-DD>-<slug>/`. It is gitignored and must never be staged.
+## Checkout, scratch and evidence
 
-## Branch Conventions
+Choose the current checkout or an isolated worktree explicitly before implementation. Create feature branches
+from `develop`, preferably `feature/task-NNNNN-<slug>`; preserve an existing authorized branch. Never commit directly
+to `develop` or `main`, stage unrelated work, force-push, or infer publication authority from a commit.
 
-Create feature branches from `develop`; prefer `feature/task-NNNNN-<slug>` for new TASKs. Preserve an existing
-user-authorized branch. Choose the current checkout or an isolated worktree explicitly before implementation.
-Never commit directly to `develop` or `main`.
+Use categorized `.runs/` top-level directories from [Scratch](docs/engineering/SCRATCH.md), not loose dated folders.
+Keep worktrees under `.runs/worktrees/`, runtime under `var/`, and tool caches under `var/cache/<tool>`. Preserve
+active/shared resources; archive legacy scratch only through an inspected reversible manifest under explicit authority.
+Never stage scratch. Canonical Review/QA reports and detailed execution evidence remain ignored; do not append new
+tracked acceptance narratives or create planning records merely to store receipts. Existing planning requirements
+and validators remain authoritative until a separately approved and verified storage cutover.
 
-## Pre-Submit Gate
+## Pre-submit gate
 
-For a long non-interactive build, run `screen -dmS <task>-build /bin/zsh -lc './bin/build > /private/tmp/<task>-build.log 2>&1; print -r -- $? > /private/tmp/<task>-build.exit'`, then inspect the log and require an exit file containing `0`; never treat foreground timeout output as a build result.
+Use repository-owned `./bin/build`, `./bin/phpunit`, `./bin/up`, `./bin/down`, `./bin/composer`, `./bin/console`,
+`./bin/planning-check`, and `./bin/exec`. `./bin/build` is the single noninteractive local/hosted gate; it is not the
+shared `/skill:build` coordinator, whose explicit invocation has broader work/review/QA/publication authority.
 
-Always run before committing or creating a PR:
+For a long noninteractive build, use fresh task/run-specific names and paths:
 
-```bash
-./bin/build
+```sh
+screen -dmS <task>-build /bin/zsh -lc './bin/build > /private/tmp/<task>-build.log 2>&1; print -r -- $? > /private/tmp/<task>-build.exit'
 ```
 
-## Planning
+Inspect the owned log and require an exit file containing `0`. Never reuse an old exit as proof or treat a
+foreground timeout as a build result. Run the canonical gate before committing or creating a PR.
 
-See `planning/CONVENTIONS.md` for EPIC -> TICKET -> TASK ownership, legacy PRD/ticket preservation, the stable
-Board, Wayfinder handoffs, templates, metadata, independent acceptance, and explicit-only archive operations. Never
-archive planning records as a completion side effect; run `./bin/archive-planning` only on an explicit request,
-review its dry run, and then apply it.
+Before final commit/publication:
 
-### Pre-PR Sync Checklist
+1. Record actual implementation/checks in ignored task evidence, with counts, coverage, warnings and limitations.
+2. Keep `ready-for-human` while independent Spec/Standards acceptance is pending; a contributor cannot self-accept.
+3. Apply automatic parent completion with any authorized terminal TASK update; no separate parent review gate.
+4. Synchronize affected authored Board/Wayfinder/Roadmap navigation without adding acceptance narratives.
+5. Preserve dependency history. Run `./bin/planning-check --write`, then `./bin/planning-check` for authorized metadata edits.
+6. Run `git diff --check` and `./bin/build`; inspect and stage only owned changes.
+7. Keep acceptance, QA, hosted proof, publication, human merge, release and deployment distinct.
 
-Before final commit and PR for any feature or bug fix:
-
-1. Record actual TASK implementation and verification; use `ready-for-human` while independent review is pending
-2. Mark a TASK `done` only after independent Spec and Standards acceptance of the exact snapshot and required verification
-3. Apply automatic parent completion to current requirements and EPICs; preserve legacy PRD authority
-4. Update authored Board **Now**, Wayfinder continuity, and Roadmap strategy when their decisions change
-5. Retain dependency history; unfinished blockers are derived, not removed from metadata
-6. Run `./bin/planning-check --write`, then `./bin/planning-check` to refresh and validate marked views
-7. Run the canonical build and inspect the owned diff before committing; publication, merge, release, and cutover remain separately authorized
-
-When completing a TASK, apply [Automatic parent completion](planning/CONVENTIONS.md#automatic-parent-completion)
-in the same operation; do not leave a separate parent assessment or closeout action for the user.
-
-## Certification retirement
-
-Test owned application behavior and meaningful package integrations. Do not create or restore framework-support
-certification files, receipt readers/generators, dependency certification matrices, or tests of those mechanisms.
-Validate build, configuration and planning tools directly with their owning commands, outside product suites.
-Historical certification notes remain history, not current gates.
+Never archive tracked planning as a completion side effect. Run `./bin/archive-planning` only on explicit request,
+review its dry run, then apply the exact selection. Scratch relocation is not planning archive authority.

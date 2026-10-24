@@ -13,10 +13,10 @@ while the separate 2.0 migration remains needs-info. Its status is available in 
 
 ## Route to 1.0
 
-1. Authorize execution and select the checkout/worktree for the approved documentation scope in
-   [TASK-00002](tasks/00002-TASK.md), the single-TASK handoff for [T-00009](tickets/00009-TICKET.md).
-   Planning adoption is complete through [TASK-00001's cutover](tasks/00001-TASK.md#cutover-and-closeout);
-   no additional bootstrap or scope approval is needed. There is currently no executable TASK.
+1. Human review/merge of [TASK-00002](tasks/00002-TASK.md)'s
+   [PR #19](https://github.com/johnnickell/project-symfony/pull/19) is next; [T-00009](tickets/00009-TICKET.md) is complete.
+   Decompose [T-00010](tickets/00010-TICKET.md) into proposed TASKs via `/skill:to-tasks T-00010`, then obtain John's
+   TASK-scope acceptance and execution authority. Planning cutover is already complete.
 2. Follow the retained requirement dependencies for gate/coverage and existing presentation/testing alignment.
    Preserve exact Unit coverage and separate local/hosted evidence. This is unversioned foundation work, not
    release authority or the complete AccessControl starter handoff.
@@ -28,8 +28,8 @@ These are decomposition/closeout decisions, not executable TASKs. Parent require
 visible while the [Work Board](tickets/BOARD.md) owns execution and the immediate human decision.
 
 <!-- planning:frontier -->
-- [T-00010 — Establish Reusable Local and Hosted Verification](tickets/00010-TICKET.md): Decompose into TASKs after prerequisites; unfinished T-00009.
-- [T-00011 — Align Owned PHP and Homepage Presentation](tickets/00011-TICKET.md): Decompose into TASKs after prerequisites; unfinished T-00009; unfinished T-00010.
+- [T-00010 — Establish Reusable Local and Hosted Verification](tickets/00010-TICKET.md): Decompose into TASKs after prerequisites.
+- [T-00011 — Align Owned PHP and Homepage Presentation](tickets/00011-TICKET.md): Decompose into TASKs after prerequisites; unfinished T-00010.
 - [T-00012 — Align Behavioral Tests and Framework Diagnostics](tickets/00012-TICKET.md): Decompose into TASKs after prerequisites; unfinished T-00010; unfinished T-00011.
 <!-- /planning:frontier -->
 
@@ -39,4 +39,5 @@ The governed Symfony Starter Foundation is complete: T-00001 and T-00002 have su
 
 Three-level planning adoption is complete under [T-00008](tickets/00008-TICKET.md#explicit-closeout-review):
 TASK-00001 has independent acceptance, PR #14's implementation is merged, and the authorized lifecycle cutover is
-recorded. EPIC-00001 remains in progress for its four remaining requirement areas; this is not a release.
+recorded. [T-00009](tickets/00009-TICKET.md) is also complete through [TASK-00002](tasks/00002-TASK.md).
+EPIC-00001 remains in progress for T-00010 through T-00012; this is not a release.
