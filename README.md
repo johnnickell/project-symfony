@@ -16,8 +16,10 @@ The application is available at http://127.0.0.1:18083/ while the Compose stack 
 noninteractive completion gate used by GitHub Actions. `planning/CONVENTIONS.md` defines the planning structure,
 `planning/README.md` names the local planning authority, while `planning/tickets/BOARD.md` gives the current
 human decision and TASK execution order. New work follows EPIC → TICKET → TASK; preserved legacy records retain
-their original authority. General lifecycle cutover remains guarded by independent acceptance of TASK-00001;
-see the control in `planning/README.md`.
+their original authority. The planning lifecycle is active; a future replacement for tracked planning is not
+implemented. Read [Architecture](ARCHITECTURE.md), [Foundation](planning/FOUNDATION.md), and
+[engineering guidance](docs/engineering/STANDARDS.md). Shared Pi skills use the local
+[project context](docs/engineering/PROJECT_CONTEXT.md), with no copied suite or required Jev enrollment.
 
 `./bin/up` pulls the pinned PHP build base, builds the services, and recreates containers in the background.
 It returns nonzero on preparation/start failure; use `./bin/up --logs` to follow service logs after startup,
@@ -61,11 +63,15 @@ security updates require a deliberate tag/digest and Composer-platform change, n
 
 ## Quality gate
 
-Fight Common is consumed through its released `^1.2` Composer constraint. `./bin/build` validates planning and
+Fight Common and Fight AccessControl use released `^1.4` and `^0.8` Composer constraints, respectively.
+Installing AccessControl does not expose its capabilities as application endpoints. `./bin/build` validates planning and
 Composer metadata, installs dependencies, checks PHP syntax, runs the installed `FightCommon` PHPCS standard,
 PHPStan, Deptrac, Rector, exact Unit coverage, and the retained Integration and Functional journeys.
 
 The Symfony adapter boundary lives under `src/Adapter/`. `public/index.php` explicitly composes the canonical
 Fight Common JSON middleware around `App\Adapter\Kernel`.
 Shared providers are registered by capability under `config/common/`; messaging and templating compiler-pass proof
-is test-owned, and production has no event-sourcing infrastructure.
+is test-owned, and production has no event-sourcing infrastructure. [Build guidance](docs/engineering/BUILD.md)
+documents the current gate and its Unit-artifact limitation; [Scratch](docs/engineering/SCRATCH.md) owns categorized
+ignored evidence and reversible legacy relocation. Independent [Review](docs/engineering/REVIEW.md) and
+[QA](docs/engineering/QA.md) are distinct from a green build and human merge.

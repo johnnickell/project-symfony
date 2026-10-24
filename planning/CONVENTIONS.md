@@ -40,6 +40,23 @@ Routing sources: [TASK Board](tickets/BOARD.md), [Wayfinder inventory](wayfinder
 Records own requirements, status, dependencies, and execution priority. Marked tables are generated views, never
 another status authority. Authored strategy, decisions, completion evidence, and historical records remain intact.
 
+## Map-wide planning order
+
+For a selected Wayfinder map, finish decisions/grilling and write all approved EPIC destinations before TICKET
+planning, then finish all accepted TICKET decompositions before TASK decomposition. Respect authored dependencies
+and an explicit narrower human request; this preference does not create dependencies or block unrelated maps.
+A grill-mode WF decision remains a Wayfinder interview within its boundary, not automatic EPIC creation.
+
+Current handoffs identify phase, target, remaining scope and decision owner. Neither a closed map, terminal parent
+nor a nonempty child table proves decomposition is complete. Missing or contradictory handoffs need owner
+reconciliation, not a portfolio-wide historical reconstruction. A closed map can have unfinished downstream
+planning without being reopened. Return evidence from research/prototypes to the owning decision first.
+
+Use actual accepted IDs and local templates: decisions via Wayfinder, one approved EPIC via grill, TICKETs via
+to-tickets, then TASKs via to-tasks. Stop for each required approval; recommend the next phase without invoking it.
+The Board still owns execution, including unrelated active work. Follow [handoffs](../docs/engineering/HANDOFFS.md)
+for the supported next command or precise missing human input.
+
 ## Bootstrap and cutover
 
 The accepted [T-00008 bootstrap](tickets/00008-TICKET.md#approved-bootstrap-exception) permits only TASK-00001 to
@@ -82,7 +99,7 @@ legacy executable tickets and the separately accepted planning cutover retain th
 | EPIC | Destination, accepted scope, exclusions | `epics/NNNNN-EPIC.md` / `EPIC-NNNNN` |
 | TICKET | Requirements, use cases, observable acceptance; may span PRs | `tickets/NNNNN-TICKET.md` / `TICKET-NNNNN` |
 | TASK | Independently executable/reviewable slice, normally one PR | `tasks/NNNNN-TASK.md` / `TASK-NNNNN` |
-| SUBTASK | Temporary coordination under a TASK | Ignored `.runs/<YYYY-MM-DD>-<slug>/` only |
+| SUBTASK | Temporary coordination under a TASK | Ignored `.runs/tasks/<TASK-ID>/runs/<run-id>/` |
 | Legacy PRD | Continuing or historical requirements | Existing `specs/NNNNN-PRD.md` / `PRD-NNNNN` |
 | ADR | Architecture decision | `adr/NNNN-description.md` |
 | Wayfinder | Investigation maps and WF decisions, not executable work | `wayfinder/`, `WF-NNN-description.md` |
@@ -119,7 +136,9 @@ multiline scalars, duplicate keys, or inline comments. Titles may contain colons
 Use `review: pending|revise|accepted`; `accepted` requires a durable `review_evidence` reference. `verification`
 references the TASK's actual command/results evidence. Evidence fields use a relative Markdown path with an optional
 heading anchor, or a full HTTPS URL (for example `00001-TASK.md#implementation-evidence`). Local files/anchors are
-validated; remote evidence is not fetched. Do not invent proof or treat metadata as independent review.
+validated; remote evidence is not fetched. Keep new detailed reports ignored; use existing durable references or
+authorized HTTPS report locations for tracked metadata, not clone-breaking links to ignored files or new acceptance
+narratives. Do not invent proof or treat metadata as independent review.
 `pr` is blank or a full HTTPS pull-request URL; it does not assert live merge status.
 
 `order` is blank or a positive integer, lower first. Unranked work comes last; IDs break ties for deterministic
@@ -145,7 +164,12 @@ missing execution authority, or pending general cutover prevents TASK selection.
 gates fails validation. Requirements themselves never enter the execution frontier.
 
 TASK completion requires fresh local verification and independent Spec and Standards acceptance of its exact
-branch/base/head and relevant working-tree state. A material contributor cannot accept their own work. One
+branch/base/head and relevant working-tree state under [Review](../docs/engineering/REVIEW.md). Canonical reports
+and detailed execution evidence use [ignored scratch](../docs/engineering/SCRATCH.md), not new tracked acceptance
+narratives. Preserve existing evidence fields and validator requirements; do not fabricate a link or mark done
+when required evidence cannot be resolved. A future planning-store migration remains separately authorized.
+[QA](../docs/engineering/QA.md) governs behavioral applicability and [Landing](../docs/engineering/LANDING.md)
+governs accepted-candidate versus administrative-closeout proof. A material contributor cannot accept their own work. One
 independent reviewer may perform both passes. Record criterion-to-evidence mapping, findings/disposition, warnings,
 limitations, and remaining risks. Use `ready-for-human` for implementation awaiting independent review; do not
 prematurely mark it done to satisfy a pre-PR checklist. Revisions use `review: revise` until reaccepted.
@@ -216,11 +240,12 @@ before committing. TASK-00001 authorizes eligibility implementation, not an arch
 
 Create feature branches from `develop`; for new TASKs prefer `feature/task-NNNNN-<slug>`. Preserve already authorized
 branches. Explicitly choose main checkout or isolated worktree before execution. Keep coordination scratch under
-ignored `.runs/<YYYY-MM-DD>-<slug>/`; never commit it or alter unrelated work.
+the categorized ignored [scratch layout](../docs/engineering/SCRATCH.md); never commit it or alter unrelated work.
 
 Before a commit or PR:
 
-1. Record the TASK's actual results and outstanding review honestly; only mark done after independent acceptance.
+1. Record actual results and outstanding review in ignored task evidence; keep status truthful and mark done only
+   after independent acceptance and required verification. Do not append new tracked acceptance narratives.
 2. Update parent progress and the Roadmap when outcomes change, without prematurely closing requirements.
 3. Recalculate the human decision, active work, and eligible frontier. Retain completed dependency edges.
 4. Refresh generated views; update affected authored Wayfinder continuity without inventing new decisions.
