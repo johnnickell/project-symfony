@@ -7,4 +7,5 @@ or release status. See [the Roadmap](../ROADMAP.md) for strategy and planning de
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
 | — | [EPIC-00001 — Align Symfony Engineering Standards and Delivery](00001-EPIC.md) | — | in-progress | — | — |
+| — | [EPIC-00002 — Remediate Symfony HttpFoundation CVE-2026-108082](00002-EPIC.md) | — | done | — | — |
 <!-- /planning:records -->

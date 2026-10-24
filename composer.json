@@ -19,6 +19,7 @@
         "symfony/filesystem": "^8.1",
         "symfony/framework-bundle": "^8.1",
         "symfony/http-client": "^8.1",
+        "symfony/http-foundation": "^8.1.9",
         "symfony/mailer": "^8.1",
         "symfony/mercure": "^0.7",
         "symfony/messenger": "^8.1",
