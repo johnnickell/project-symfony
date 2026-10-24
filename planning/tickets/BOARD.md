@@ -40,9 +40,9 @@ granted. No TASK is currently executable. Do not begin implementation from requi
 John approved the standalone PHP security-repair scope and creation of
 [TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md). The selected isolated worktree is
 `.runs/worktrees/task-00003-patched-php`, on `feature/task-00003-patched-php` from `develop`.
-John subsequently invoked Build TASK-00003 there; execution is authorized and the next handoff is independent
-Review, then applicable QA and authorized Land. Acceptance remains pending. This urgent runtime repair is
-separate from T-00009 and WF-002's broader topology.
+John subsequently invoked Build TASK-00003 there; independent Review accepted the implementation and applicable
+QA passed. It is published for human review and merge as [PR #20](https://github.com/johnnickell/project-symfony/pull/20).
+This urgent runtime repair remains separate from T-00009 and WF-002's broader topology.
 
 T-00004 retains its separate Fight Common 2.0 evidence gate. It is not a TASK or permission for package work.
 
@@ -91,7 +91,6 @@ After WF-001 closes, the next human decision is
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
 | 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | ready-for-human | —; execution authorization missing | — |
-| — | [TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md) | — | ready-for-human | — | — |
 <!-- /planning:human -->
 
 ## Needs Info
@@ -116,6 +115,7 @@ After WF-001 closes, the next human decision is
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
 | 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/15 |
+| — | [TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md) | — | done | — | https://github.com/johnnickell/project-symfony/pull/20 |
 <!-- /planning:closed -->
 
 ## Legacy Work Awaiting Authority

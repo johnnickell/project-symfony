@@ -13,9 +13,9 @@ while the separate 2.0 migration remains needs-info. Its status is available in 
 
 ## Standalone security repair
 
-[TASK-00003 — Require Patched PHP Runtimes](tasks/00003-TASK.md) has accepted scope and execution authority in
-its selected isolated worktree. Independent Review, applicable QA and authorized Land are the pending delivery
-handoffs. This PHP-only repair does not implement WF-002's broader topology or grant production authority.
+[TASK-00003 — Require Patched PHP Runtimes](tasks/00003-TASK.md) has independent Review acceptance and applicable
+QA PASS, and is published for human review and merge as [PR #20](https://github.com/johnnickell/project-symfony/pull/20).
+This PHP-only repair does not implement WF-002's broader topology or grant production authority.
 
 ## Route to 1.0
 
