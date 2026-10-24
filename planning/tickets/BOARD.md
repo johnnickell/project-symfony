@@ -30,13 +30,12 @@ is active. No adoption approval remains pending. The cutover follow-up has
 [PR #15](https://github.com/johnnickell/project-symfony/pull/15). Human approval/merge of that follow-up is a separate
 delivery action, not another adoption gate.
 
-John approved the single-TASK decomposition of
-[T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md).
-[TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) is authorized
-on `feature/task-00002-engineering-review-guidance` in the current checkout. Shared convention/layout adoption and
-the requested latest stable Fight dependency upgrades are ready for independent review. The next action is
-`/skill:review TASK-00002` in an independent session, followed by applicable QA. Detailed evidence remains ignored;
-no acceptance or publication is claimed. Do not start another TASK from requirement approval alone.
+[TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) and its parent
+[T-00009](00009-TICKET.md) are complete. Human review/merge of
+[PR #19](https://github.com/johnnickell/project-symfony/pull/19) is next; delivery status is on the PR.
+The next planning handoff is `/skill:to-tasks T-00010` for
+[reusable local and hosted verification](00010-TICKET.md), with John accepting the proposed TASK scope before
+execution. No TASK is authorized merely by requirement approval. Detailed evidence remains ignored.
 
 T-00004 retains its separate Fight Common 2.0 evidence gate. It is not a TASK or permission for package work.
 
@@ -78,7 +77,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | ready-for-human | — | — |
+| — | None | — | — | — | — |
 <!-- /planning:human -->
 
 ## Needs Info
@@ -103,6 +102,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
 | 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/15 |
+| 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/19 |
 <!-- /planning:closed -->
 
 ## Legacy Work Awaiting Authority

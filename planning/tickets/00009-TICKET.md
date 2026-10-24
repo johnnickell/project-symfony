@@ -2,7 +2,7 @@
 id: T-00009
 epic: EPIC-00001
 title: Establish Engineering and Independent Review Standards
-status: in-progress
+status: done
 blocked_by: T-00008
 approved: yes
 ---
@@ -56,22 +56,22 @@ source identities in public guidance, new lifecycle redesign beyond T-00008, or 
 
 ## Acceptance Criteria
 
-- [ ] AC-01 — Guidance states inward dependency direction, direct package composition, no renaming/forwarding
+- [x] AC-01 — Guidance states inward dependency direction, direct package composition, no renaming/forwarding
       wrappers, and the explicit owned-orchestration test without authorizing speculative layers or service location.
-- [ ] AC-02 — PHP/naming/documentation rules and justified framework exceptions are actionable, consistent with
+- [x] AC-02 — PHP/naming/documentation rules and justified framework exceptions are actionable, consistent with
       the epic, and distinguish consumer-owned code from immutable public-package contracts.
-- [ ] AC-03 — HTTP rules separate transport translation, presentation, and authoritative policy; preserve the HTML
+- [x] AC-03 — HTTP rules separate transport translation, presentation, and authoritative policy; preserve the HTML
       homepage exception; and route exact API/security decisions to their existing Wayfinder owners.
-- [ ] AC-04 — Test-selection and regression guidance preserve exact Unit-only coverage, meaningful adapter and
+- [x] AC-04 — Test-selection and regression guidance preserve exact Unit-only coverage, meaningful adapter and
       integration behavior, and direct tooling diagnostics without weakening assertions or widening exclusions.
-- [ ] AC-05 — Review guidance defines independent Spec and Standards passes, criterion-to-evidence mapping,
+- [x] AC-05 — Review guidance defines independent Spec and Standards passes, criterion-to-evidence mapping,
       snapshot identity, findings/disposition, warnings, unverified areas, and the next authorized action. One
       independent reviewer may perform both passes; a material implementation contributor cannot accept their work.
-- [ ] AC-06 — TASK handoffs carry implementation and review evidence. Requirement progress, hosted status, PR
+- [x] AC-06 — TASK handoffs carry implementation and review evidence. Requirement progress, hosted status, PR
       publication, merge, release, and deployment remain distinct; missing required evidence prevents acceptance.
-- [ ] AC-07 — Local instructions, contributor documentation, and handoff references agree. Exceptions identify
+- [x] AC-07 — Local instructions, contributor documentation, and handoff references agree. Exceptions identify
       their rationale, owner, affected requirement, acceptance, and verification path without private dependencies.
-- [ ] AC-08 — Direct document/routing review and canonical verification establish the delivered guidance. No
+- [x] AC-08 — Direct document/routing review and canonical verification establish the delivered guidance. No
       owned production code changes or PHPUnit tests of documentation/tooling are introduced.
 
 ## Verification
@@ -98,11 +98,10 @@ Existing Symfony journeys are preserved. No production adapter is modified by th
 <!-- planning:children -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | ready-for-human | — | — |
+| 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/19 |
 <!-- /planning:children -->
 
 ## Completion Notes
 
-Requirements and the single-TASK decomposition are approved; T-00008's verified cutover prerequisite is satisfied.
-TASK-00002 owns the documentation outcome and its authorized implementation handoff. Independent acceptance is
-pending; eligible parent completion is automatic with terminal children, not a separate closeout review.
+[TASK-00002](../tasks/00002-TASK.md) owns the completed outcome and evidence references.
+Parent completion rolls up that terminal child; human review/merge of its PR remains separate.
