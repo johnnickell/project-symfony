@@ -6,9 +6,8 @@ Packagist publication, template enablement, or create-project distribution.
 ## Local development
 
 ```sh
-./bin/up
-./bin/composer install
-./bin/phpunit
+./bin/prepare                      # Explicit startup, locked install and readiness checks
+./bin/phpunit --testsuite Unit     # Focused iteration, not the complete gate
 ./bin/build
 ```
 
@@ -21,9 +20,14 @@ implemented. Read [Architecture](ARCHITECTURE.md), [Foundation](planning/FOUNDAT
 [engineering guidance](docs/engineering/STANDARDS.md). Shared Pi skills use the local
 [project context](docs/engineering/PROJECT_CONTEXT.md), with no copied suite or required Jev enrollment.
 
-`./bin/up` pulls the pinned PHP build base, builds the services, and recreates containers in the background.
-It returns nonzero on preparation/start failure; use `./bin/up --logs` to follow service logs after startup,
-and `./bin/down` to stop the selected Compose stack.
+Prerequisites: Docker with Compose v2 (`up --wait` support), Bash, host Python 3.9+ and Git; no host PHP or Composer.
+`./bin/prepare` is explicit and noninteractive: it runs `./bin/up`, installs the existing Composer lock, then runs
+`./bin/doctor` to check actual CLI/FPM, extensions, Xdebug coverage mode and Composer platform requirements.
+No dependency update or runtime fallback is performed. `./bin/up` pulls the pinned PHP build base, builds the two
+services and recreates them in the background, waiting for FPM process health. Use `./bin/up --logs` to follow logs,
+`./bin/doctor` to inspect an already-prepared service without installing anything, and `./bin/down` to stop only the
+selected stack, preserving volumes. All preparation steps propagate failure. See
+[Build guidance](docs/engineering/BUILD.md#preparation-and-isolation) for worktrees, resources and diagnosis.
 
 ### PHP security rebuild
 
@@ -35,8 +39,10 @@ fixes every session-related issue. The FPM image includes this INI and Compose m
 
 Before rebuilding, inspect `docker compose config` and `docker compose ps -a`: verify the project name, source
 mounts, images and port 18083 belong to this checkout. In a worktree, set a unique `COMPOSE_PROJECT_NAME` and
-use that same value for every wrapper, including shutdown. If another project owns the port, stop here; do not
-stop or replace its services. Concurrent port/topology isolation remains separate work.
+use that same value for every wrapper, including shutdown. Set a free `HTTP_PORT` (default 18083) for concurrent
+preparation. The wrappers refuse foreign project mounts, unknown network ownership and occupied HTTP ports before
+startup mutation. Do not bypass that refusal or stop another checkout's services. This is minimal preparation
+isolation, not the full WF-002 topology.
 
 ```sh
 # With the intended checkout/project selected and its HTTP port free:
@@ -45,7 +51,7 @@ stop or replace its services. Concurrent port/topology isolation remains separat
 ./bin/exec php -v
 ./bin/exec php-fpm -i | grep -E 'PHP Version|session.upload_progress.enabled'
 ./bin/composer install --no-interaction --prefer-dist --no-progress
-./bin/composer check-platform-reqs  # Checks real PHP, not Composer's simulated platform
+./bin/doctor                       # Checks real CLI/FPM, extensions, coverage mode and platform
 ./bin/build
 ```
 
@@ -58,7 +64,9 @@ that metadata alone is not runtime proof.
 
 `./bin/build` always builds with `--pull`, tags the image by a hash of the canonical checkout path, and runs the
 resulting immutable image ID. It does not replace the old shared `project-symfony-build:latest` tag or recreate
-FPM; use `./bin/up` for that. A failed base resolution is fatal, not permission to use an older image. Later PHP
+FPM; use `./bin/up` for that. TASK-00005 adds reusable-service preparation only; TASK-00006 owns switching this
+canonical gate and hosted setup and fixing its Unit-artifact overwrite. A failed base resolution is fatal, not
+permission to use an older image. Later PHP
 security updates require a deliberate tag/digest and Composer-platform change, not an update-on-start mechanism.
 
 ### HttpFoundation security baseline

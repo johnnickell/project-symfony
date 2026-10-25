@@ -3,21 +3,78 @@
 `./bin/build` is the sole complete local gate and the command used by hosted CI. Focused wrappers shorten
 iteration; they do not replace it. A successful gate is not independent Review, QA, publication or merge.
 
-## Current preparation and commands
+## Preparation and isolation
 
 Use repository-owned wrappers, not host PHP/Composer or a sibling vendor directory:
 
 ```sh
-./bin/up
-./bin/composer install --no-interaction --prefer-dist --no-progress
-./bin/phpunit
+./bin/prepare
+./bin/doctor                       # Readiness only; no install or rebuild
+./bin/phpunit --testsuite Unit     # Focused iteration
 ./bin/build
 ```
 
-`./bin/up` explicitly builds/starts the local Nginx and PHP-FPM services; `--logs` follows logs. The PHP Compose
-service is `api`; `./bin/exec` executes there and `./bin/down` stops the selected stack. Inspect project identity,
-mounts and port ownership before startup, especially in worktrees. Current HTTP port is 18083; do not replace
-another checkout's services. No database/worker/browser runtime is provisioned by this starter.
+Prerequisites: Docker with Compose v2 supporting `up --wait`, Bash, host Python 3.9+ and Git. Host PHP/Composer
+are not required. `./bin/prepare` runs these explicit, noninteractive steps, stopping at the first failure:
+
+1. `./bin/up`: inspect ownership and HTTP port, pull/build the pinned FPM base, build Nginx and recreate the selected
+   services. Wait for the FPM master-process healthcheck before starting the server.
+2. `./bin/composer install --no-interaction --prefer-dist --no-progress`: install the accepted lock, including dev
+   tools and allowed plugins, in this checkout. Never substitute `update` or another checkout's `vendor/`.
+3. `./bin/doctor`: check actual CLI/FPM PHP 8.5.12, session upload-progress Off in both, required extensions, active
+   Xdebug coverage mode, installed autoload and real Composer platform requirements. This is capability evidence,
+   not a Unit coverage verdict; run real Unit tests for that.
+
+For separate steps use the same commands; `./bin/up --logs` follows logs. The PHP service is `api`; `./bin/exec`
+executes there. `./bin/down` stops only the selected stack and preserves volumes. All wrappers resolve their own
+checkout, use its Compose file and refuse existing project containers whose Compose working directory or `/app`
+bind belongs elsewhere. Networks must have matching checkout ownership (legacy unlabelled networks require
+matching containers), with no foreign attached containers. Startup refuses an occupied HTTP port before building
+or replacing containers; Docker remains the final authority if a concurrent process takes the port afterward.
+Inspect `docker compose config`, `docker compose ps -a` and `docker compose images` before runtime changes.
+Do not bypass a guard, remove an ambiguous resource or stop another checkout's stack.
+
+Linked worktrees require an explicit unique project name. Choose a free port and export both for the entire
+session, including focused wrappers and shutdown; main checkouts may use the defaults `project-symfony`/18083.
+Create a checkout with ordinary readable source permissions (for example, `umask 022` before `git worktree add`):
+Nginx workers need to traverse the checkout and read `public/`. Do not broadly chmod an existing private tree.
+For example, inside the intended linked worktree, after inspecting project/port ownership:
+
+```sh
+export COMPOSE_PROJECT_NAME=project-symfony-my-task
+export HTTP_PORT=28083
+./bin/prepare
+./bin/exec php -v
+./bin/phpunit --testsuite Unit --fail-on-skipped --fail-on-notice --fail-on-warning
+./bin/coverage
+./bin/down
+```
+
+Each checkout binds only its own root at `/app`. Its `vendor/`, `var/cache/<tool>` (including Composer and PHPUnit)
+and `var/reports/` remain checkout-specific; wrappers reject symlinked mutable roots and mutable-tree symlinks
+escaping the checkout. Do not share these directories or run concurrent writers within one checkout.
+Composer's explicit `COMPOSER_ROOT_VERSION=dev-develop` avoids root-version Git discovery: a linked worktree's
+host `.git` pointer need not resolve in the container. Git/planning commands stay on the host; never mount the
+common Git directory or add wildcard safe-directory trust to make them work inside the service. The image's
+existing safe-directory entry remains scoped to `/app` only. No database, worker, browser or full WF-002 topology
+is provisioned here.
+
+### Failure diagnosis
+
+- Missing/running-service errors: inspect the selected project with `docker compose ps -a` and logs, then run
+  `./bin/prepare`. `./bin/exec`/`./bin/doctor` do not silently start services.
+- Project/mount/network refusal: inspect ownership and choose a unique `COMPOSE_PROJECT_NAME`; retain ambiguous
+  resources for their owner. Port refusal: select a free `HTTP_PORT`, not someone else's shutdown command.
+- Pinned-base/pull/build failure: restore registry/network access and retry explicit preparation. Never remove the
+  digest or fall back to an older PHP image. FPM health failure: inspect `docker compose logs api`.
+- HTTP permission errors: inspect checkout directory/public-file permissions for Nginx workers. Recreate an owned
+  disposable checkout with ordinary permissions rather than changing private/shared source permissions blindly.
+- Composer/install/platform failure: inspect the first failing package/extension or filesystem permission. Preserve
+  `composer.lock`; do not use update, ignore-platform flags or sibling dependencies as recovery.
+- Coverage capability failure: rebuild with `./bin/up`, ensure `XDEBUG_MODE=coverage`, then rerun `./bin/doctor`.
+  Diagnose Unit failures with the real focused command and retain its report before another suite overwrites it.
+
+## Unchanged canonical gate
 
 The current `bin/build` first validates planning on the host, builds `etc/docker/build/Dockerfile`, then runs a
 one-off container against this checkout. It validates Composer and installs the lock, lints PHP, runs the installed
@@ -25,9 +82,10 @@ Fight Common PHPCS standard, PHPStan, Deptrac (including uncovered/unassigned ch
 with exact coverage validation, then Integration and Functional suites. Each suite runs once. Retain all phases,
 warning/skip failure flags and the full Unit-only requirement.
 
-This is the current operational contract, not the future T-00010 design. Explicit preparation with a thin
-running-container PHP phase orchestrator remains separately scoped implementation. Do not claim this guidance
-removed image rebuilds, dependency installation or other gate mechanics.
+TASK-00005 supplies explicit reusable-service preparation only. TASK-00006 owns switching this gate and hosted
+setup to named fail-fast PHP phases in the running service, and durable Unit evidence. The current gate still
+rebuilds an ephemeral image and installs dependencies on every invocation; preparation does not remove those
+mechanics. Hosted setup is unchanged in this slice.
 
 ## Coverage evidence
 

@@ -33,9 +33,13 @@ delivery action, not another adoption gate.
 [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) and its parent
 [T-00009](00009-TICKET.md) are complete. Human review/merge of
 [PR #19](https://github.com/johnnickell/project-symfony/pull/19) is next; delivery status is on the PR.
-The engineering-alignment planning handoff remains `/skill:to-tasks T-00010` for
-[reusable local and hosted verification](00010-TICKET.md), with John accepting the proposed TASK scope before
-execution. No TASK is authorized merely by requirement approval. Detailed evidence remains ignored.
+John accepted the complete two-TASK decomposition of [T-00010 — Reusable Local and Hosted Verification](00010-TICKET.md):
+[TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md), then
+[TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](../tasks/00006-TASK.md).
+TASK-00005 is independently accepted with applicable QA passed and published for human review/merge as
+[PR #22](https://github.com/johnnickell/project-symfony/pull/22). TASK-00006 remains unauthorized and
+unimplemented. T-00011 and T-00012 remain undecomposed with their implementation dependencies retained.
+Detailed evidence remains ignored.
 
 John approved the standalone PHP security-repair scope and creation of
 [TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md). The selected isolated worktree is
@@ -93,7 +97,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| — | None | — | — | — | — |
+| 6 | [TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](../tasks/00006-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | ready-for-human | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md); execution authorization missing | — |
 <!-- /planning:human -->
 
 ## Needs Info
@@ -120,6 +124,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 | 1 | [TASK-00001 — Activate the Three-Level Planning Lifecycle](../tasks/00001-TASK.md) | [T-00008 — Adopt the Three-Level Planning Lifecycle](00008-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/15 |
 | 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/19 |
 | 4 | [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md) | [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](00013-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/21 |
+| 5 | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/22 |
 | — | [TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md) | — | done | — | https://github.com/johnnickell/project-symfony/pull/20 |
 <!-- /planning:closed -->
 

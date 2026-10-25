@@ -2,7 +2,7 @@
 id: T-00010
 epic: EPIC-00001
 title: Establish Reusable Local and Hosted Verification
-status: needs-info
+status: ready-for-human
 blocked_by: T-00009
 approved: yes
 ---
@@ -17,10 +17,13 @@ A clean checkout still has a documented, verified path to that verdict.
 
 ## Approval and execution boundary
 
-John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md). This is a requirement TICKET,
-not an implementation TASK. Planning cutover is complete; `needs-info` records the missing accepted TASK handoff
-and unfinished predecessor outcomes, not an outstanding adoption approval. [T-00009](00009-TICKET.md), following
-T-00008, supplies the accepted engineering/review guidance before implementation. No TASK or new PRD is created here.
+John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md) and accepted its two-TASK
+decomposition: [TASK-00005](../tasks/00005-TASK.md) prepares the Compose PHP service, then
+[TASK-00006](../tasks/00006-TASK.md) switches the local/hosted gate and preserves Unit coverage.
+[T-00009](00009-TICKET.md) is complete; its dependency remains recorded as history. `ready-for-human` now records the pending TASK-00006 authorization/implementation handoff, not missing TASK scope
+or an adoption approval. TASK-00005 is independently accepted with applicable QA passed and is published for human
+review/merge as PR #22. This TICKET is not executable; TASK-00006 remains unauthorized, and approved scope alone
+does not authorize implementation or publication.
 
 ## Scope
 
@@ -106,11 +109,13 @@ accepted lock without upgrading packages; no production HTTP, persistence, or se
 <!-- planning:children -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| — | None | — | — | — | — |
+| 5 | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/22 |
+| 6 | [TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](../tasks/00006-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | ready-for-human | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md); execution authorization missing | — |
 <!-- /planning:children -->
 
 ## Completion Notes
 
-Requirements approved and recorded only. Planning migration is complete; TASK handoff and predecessor outcomes
-remain outstanding.
-No preparation, gate implementation, local full-build result, or hosted acceptance is claimed here.
+John accepted the complete two-TASK decomposition for this requirement. TASK-00005 is done with independent
+acceptance and applicable QA; TASK-00006 remains dependent on that delivered outcome and requires separate execution
+authorization. T-00011 and T-00012 remain separate, undecomposed alignment requirements. No TASK-00006 gate
+implementation, local full-build result or hosted acceptance is claimed here.

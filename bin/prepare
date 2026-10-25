@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$DIR/.."
+
+if [[ $# -ne 0 ]]; then
+    echo 'Usage: ./bin/prepare (select COMPOSE_PROJECT_NAME and HTTP_PORT in the environment)' >&2
+    exit 1
+fi
+
+./bin/up
+./bin/composer install --no-interaction --prefer-dist --no-progress
+./bin/doctor
