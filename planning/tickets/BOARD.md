@@ -36,9 +36,11 @@ delivery action, not another adoption gate.
 John accepted the complete two-TASK decomposition of [T-00010 — Reusable Local and Hosted Verification](00010-TICKET.md):
 [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md), then
 [TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](../tasks/00006-TASK.md).
-TASK-00005 is independently accepted with applicable QA passed and published for human review/merge as
-[PR #22](https://github.com/johnnickell/project-symfony/pull/22). TASK-00006 remains unauthorized and
-unimplemented. T-00011 and T-00012 remain undecomposed with their implementation dependencies retained.
+TASK-00005 is independently accepted with applicable QA passed and merged as
+[PR #22](https://github.com/johnnickell/project-symfony/pull/22). TASK-00006 is independently accepted with
+applicable QA passed and published for human review/merge as
+[PR #23](https://github.com/johnnickell/project-symfony/pull/23). T-00011 and T-00012 remain undecomposed with
+their implementation dependencies retained.
 Detailed evidence remains ignored.
 
 John approved the standalone PHP security-repair scope and creation of
@@ -97,7 +99,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 6 | [TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](../tasks/00006-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | ready-for-human | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md); execution authorization missing | — |
+| — | None | — | — | — | — |
 <!-- /planning:human -->
 
 ## Needs Info
@@ -125,6 +127,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 | 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](../tasks/00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](00009-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/19 |
 | 4 | [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md) | [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](00013-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/21 |
 | 5 | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/22 |
+| 6 | [TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](../tasks/00006-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | done | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md) | https://github.com/johnnickell/project-symfony/pull/23 |
 | — | [TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md) | — | done | — | https://github.com/johnnickell/project-symfony/pull/20 |
 <!-- /planning:closed -->
 

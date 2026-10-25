@@ -33,6 +33,31 @@ if (!is_file(dirname(__DIR__) . '/vendor/autoload.php')) {
     failPreparation('Locked dependencies are missing.');
 }
 
+try {
+    $root = dirname(__DIR__);
+    $lock = json_decode(file_get_contents($root . '/composer.lock'), true, 512, JSON_THROW_ON_ERROR);
+    $installed = json_decode(file_get_contents($root . '/vendor/composer/installed.json'), true, 512, JSON_THROW_ON_ERROR);
+    if (($installed['dev'] ?? false) !== true) {
+        failPreparation('Locked development dependencies are required.');
+    }
+    $identities = static function (array $packages): array {
+        $identities = [];
+        foreach ($packages as $package) {
+            $identities[$package['name']] = [
+                $package['version'], $package['source'] ?? null, $package['dist'] ?? null,
+            ];
+        }
+        ksort($identities);
+
+        return $identities;
+    };
+    if ($identities(array_merge($lock['packages'], $lock['packages-dev'])) !== $identities($installed['packages'])) {
+        failPreparation('Installed package versions/provenance do not match composer.lock.');
+    }
+} catch (Throwable $error) {
+    failPreparation('Unable to inspect locked dependencies: ' . $error->getMessage());
+}
+
 $fpm = [];
 exec('php-fpm -i 2>&1', $fpm, $exit);
 $fpmInfo = implode("\n", $fpm);

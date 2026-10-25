@@ -10,8 +10,9 @@ Use repository-owned wrappers, not host PHP/Composer or a sibling vendor directo
 ```sh
 ./bin/prepare
 ./bin/doctor                       # Readiness only; no install or rebuild
-./bin/phpunit --testsuite Unit     # Focused iteration
-./bin/build
+./bin/phpunit --testsuite Unit --coverage-clover var/reports/coverage/unit/clover.xml
+./bin/coverage                     # Inspect that focused Unit report
+./bin/build                        # Canonical run; no need for the focused pass first
 ```
 
 Prerequisites: Docker with Compose v2 supporting `up --wait`, Bash, host Python 3.9+ and Git. Host PHP/Composer
@@ -22,8 +23,16 @@ are not required. `./bin/prepare` runs these explicit, noninteractive steps, sto
 2. `./bin/composer install --no-interaction --prefer-dist --no-progress`: install the accepted lock, including dev
    tools and allowed plugins, in this checkout. Never substitute `update` or another checkout's `vendor/`.
 3. `./bin/doctor`: check actual CLI/FPM PHP 8.5.12, session upload-progress Off in both, required extensions, active
-   Xdebug coverage mode, installed autoload and real Composer platform requirements. This is capability evidence,
-   not a Unit coverage verdict; run real Unit tests for that.
+   Xdebug coverage mode, installed autoload, installed versions/source/dist identities against the lock (including
+   dev packages), and real Composer platform requirements. This is readiness evidence, not a Unit coverage verdict.
+
+On native Linux, export `APP_UID="$(id -u)" APP_GID="$(id -g)"` before preparation and retain them for every
+wrapper in that session. The FPM image creates its non-root `systemuser` with these numeric IDs so CLI and FPM
+can write the checkout's own `vendor/` and `var/` without changing host ownership or permissions. Both IDs must
+be positive and available in the base image. The defaults remain 1000:1000 for Docker Desktop file sharing;
+do not assume its macOS permission translation proves native Linux bind access. Hosted preparation selects
+and logs the runner's IDs and checkout ownership before building. Existing root/foreign-owned mutable files
+still require their owner's recovery; do not broadly chmod/chown a checkout or run Composer as root.
 
 For separate steps use the same commands; `./bin/up --logs` follows logs. The PHP service is `api`; `./bin/exec`
 executes there. `./bin/down` stops only the selected stack and preserves volumes. All wrappers resolve their own
@@ -44,9 +53,7 @@ For example, inside the intended linked worktree, after inspecting project/port 
 export COMPOSE_PROJECT_NAME=project-symfony-my-task
 export HTTP_PORT=28083
 ./bin/prepare
-./bin/exec php -v
-./bin/phpunit --testsuite Unit --fail-on-skipped --fail-on-notice --fail-on-warning
-./bin/coverage
+./bin/build
 ./bin/down
 ```
 
@@ -62,7 +69,7 @@ is provisioned here.
 ### Failure diagnosis
 
 - Missing/running-service errors: inspect the selected project with `docker compose ps -a` and logs, then run
-  `./bin/prepare`. `./bin/exec`/`./bin/doctor` do not silently start services.
+  `./bin/prepare`. The gate, `./bin/exec` and `./bin/doctor` never silently start services.
 - Project/mount/network refusal: inspect ownership and choose a unique `COMPOSE_PROJECT_NAME`; retain ambiguous
   resources for their owner. Port refusal: select a free `HTTP_PORT`, not someone else's shutdown command.
 - Pinned-base/pull/build failure: restore registry/network access and retry explicit preparation. Never remove the
@@ -70,34 +77,46 @@ is provisioned here.
 - HTTP permission errors: inspect checkout directory/public-file permissions for Nginx workers. Recreate an owned
   disposable checkout with ordinary permissions rather than changing private/shared source permissions blindly.
 - Composer/install/platform failure: inspect the first failing package/extension or filesystem permission. Preserve
-  `composer.lock`; do not use update, ignore-platform flags or sibling dependencies as recovery.
+  `composer.lock`; do not use update, ignore-platform flags or sibling dependencies as recovery. Missing/mismatched
+  installed dependencies require explicit preparation before retrying the gate.
 - Coverage capability failure: rebuild with `./bin/up`, ensure `XDEBUG_MODE=coverage`, then rerun `./bin/doctor`.
-  Diagnose Unit failures with the real focused command and retain its report before another suite overwrites it.
+  Diagnose Unit failures with the focused command above. Missing or malformed Unit evidence cannot pass.
+- A named `[build] FAIL` stops immediately with the command's nonzero status. Read the preceding tool output;
+  later phases have not run. A retained report from an earlier/failed run is not a new successful verdict.
 
-## Unchanged canonical gate
+## Canonical phases
 
-The current `bin/build` first validates planning on the host, builds `etc/docker/build/Dockerfile`, then runs a
-one-off container against this checkout. It validates Composer and installs the lock, lints PHP, runs the installed
-Fight Common PHPCS standard, PHPStan, Deptrac (including uncovered/unassigned checks), Rector dry-run, Unit tests
-with exact coverage validation, then Integration and Functional suites. Each suite runs once. Retain all phases,
-warning/skip failure flags and the full Unit-only requirement.
+The thin `bin/build` resolves the checkout, runs read-only Python planning validation on the host, and invokes
+`scripts/build.php` through guarded `./bin/exec` in the already-running `api` service. PHP runs these named,
+fail-fast phases with inherited tool output:
 
-TASK-00005 supplies explicit reusable-service preparation only. TASK-00006 owns switching this gate and hosted
-setup to named fail-fast PHP phases in the running service, and durable Unit evidence. The current gate still
-rebuilds an ephemeral image and installs dependencies on every invocation; preparation does not remove those
-mechanics. Hosted setup is unchanged in this slice.
+1. Prepared runtime and locked dependencies (the same capability inspection used by doctor).
+2. Strict, noninteractive Composer validation, then actual platform requirements.
+3. PHP syntax for `config/`, `public/`, `scripts/` and `src/`.
+4. Installed Fight Common PHPCS, PHPStan without progress, Deptrac with fail-on-uncovered/report-uncovered/
+   report-skipped, then Deptrac unassigned without cache.
+5. Rector dry-run for `src/` and `tests/`, without progress.
+6. Unit once, generating a fresh distinct Clover artifact; exact Unit coverage validation.
+7. Integration once, then Functional once, both without coverage so they cannot overwrite Unit evidence.
+
+All three suites retain `--fail-on-skipped --fail-on-notice --fail-on-warning`. No focused wrapper is called to
+add a second suite pass. Caches live in `var/cache/<tool>`; reports live in `var/reports/`. The gate performs no
+image build/pull, dependency installation/update or implicit preparation. T-00010 replaces only T-00007's
+per-build ephemeral-image/install mechanics and shared Clover overwrite behavior, not its checks or stronger
+coverage contract. The historical completion records remain unchanged.
 
 ## Coverage evidence
 
-PHPUnit uses Xdebug in the build image, `requireCoverageMetadata`, and production `src/` excluding only the Kernel.
-`scripts/check-coverage.php` requires exact covered/total statement equality and rejects production ignore
-annotations, missing/malformed reports and contradictory metrics. Retain those checks and meaningful assertions.
+The canonical Unit run explicitly writes `var/reports/coverage/unit/clover.xml`, removing that path immediately
+before the run so stale output cannot satisfy the check. `./bin/coverage` and the gate's coverage phase inspect
+that exact path. PHPUnit's shared configuration no longer writes a report for arbitrary suite selections; a
+focused Unit run must request the path explicitly as above. Do not write combined-suite coverage to the Unit path.
 
-Current suites share `var/reports/coverage/clover.xml`; later Integration/Functional runs can overwrite it. The
-canonical log's Unit coverage decision is attributable to the Unit run, but the final XML is not a durable Unit
-artifact. For inspection, retain a distinct copy from a focused Unit run before another suite executes; label
-that focused evidence accurately. T-00010 owns fixing artifact persistence in the canonical gate. Never represent
-a combined suite percentage as Unit coverage or manufacture tests/exclusions to obtain 100%.
+Xdebug supplies coverage; PHPUnit retains `requireCoverageMetadata`, `includeUncoveredFiles`, and production
+`src/` excluding only `src/Adapter/Kernel.php`. `scripts/check-coverage.php` requires exact covered/total statement
+equality and rejects production ignore annotations, missing/malformed reports and contradictory metrics. No
+combined-suite coverage can satisfy this Unit-only contract. Meaningful assertions and all retained journeys
+remain required; do not manufacture tests or exclusions to obtain 100%.
 
 ## Long noninteractive gate
 
@@ -116,6 +135,8 @@ Before commit/PR, refresh authorized planning views with `./bin/planning-check -
 `git diff --check`, and the full gate on the final tree. Inspect owned diffs, counts, Unit denominator/driver,
 warnings, omissions and source stability; do not hide unexpected lock changes from installation.
 
-Hosted CI delegates to this same gate. Local and hosted results are distinct. Preserve explicit clean-clone and
-exact-head hosted requirements in accepted scope; workflow presence alone adds no new acceptance requirement.
-Report the actual tested commit and source-head/merge-candidate relationship, not merely a green branch name.
+Hosted CI explicitly runs `./bin/prepare`, then this same gate, and retains the Unit XML. For a PR it checks out the
+literal source-head SHA rather than GitHub's synthetic merge commit; push runs check out the event SHA. It logs
+that tested OID. Source-head proof does not assert merge-candidate compatibility. Local and hosted results are
+distinct: preserve accepted clean-clone/exact-head requirements, record actual run URL/event/tested OID, and never
+substitute local success or workflow presence for required hosted proof.

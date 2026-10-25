@@ -1,6 +1,10 @@
 services:
   api:
-    build: ./etc/docker/fpm
+    build:
+      context: ./etc/docker/fpm
+      args:
+        APP_UID: "${APP_UID:-1000}"
+        APP_GID: "${APP_GID:-1000}"
     restart: unless-stopped
     tty: true
     working_dir: /app

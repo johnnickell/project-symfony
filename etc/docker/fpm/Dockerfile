@@ -18,8 +18,12 @@ RUN apt-get update \
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-RUN groupadd --gid 1000 systemuser \
-    && useradd --uid 1000 --create-home --shell /bin/bash --gid systemuser systemuser \
+ARG APP_UID=1000
+ARG APP_GID=1000
+
+RUN test "$APP_UID" -gt 0 && test "$APP_GID" -gt 0 \
+    && groupadd --gid "$APP_GID" systemuser \
+    && useradd --uid "$APP_UID" --create-home --shell /bin/bash --gid systemuser systemuser \
     && git config --system --add safe.directory /app
 
 # Git checkouts may use a restrictive host umask; systemuser must read these files.
