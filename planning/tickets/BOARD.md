@@ -39,9 +39,17 @@ John accepted the complete two-TASK decomposition of [T-00010 — Reusable Local
 TASK-00005 is independently accepted with applicable QA passed and merged as
 [PR #22](https://github.com/johnnickell/project-symfony/pull/22). TASK-00006 is independently accepted with
 applicable QA passed and published for human review/merge as
-[PR #23](https://github.com/johnnickell/project-symfony/pull/23). T-00011 and T-00012 remain undecomposed with
-their implementation dependencies retained.
-Detailed evidence remains ignored.
+[PR #23](https://github.com/johnnickell/project-symfony/pull/23). Detailed evidence remains ignored.
+
+John accepted [T-00011](00011-TICKET.md)'s complete single-TASK decomposition:
+[TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md).
+Its prerequisite requirements are complete; execution authorization and checkout/worktree selection are pending.
+John also accepted [T-00012](00012-TICKET.md)'s complete single-TASK decomposition:
+[TASK-00008 — Align Behavioral Evidence and Symfony Diagnostics](../tasks/00008-TASK.md), blocked by TASK-00007.
+Both TASKs await explicit execution authorization and checkout/worktree selection; no implementation has started.
+EPIC-00001's requirement/TASK decomposition is complete. Use `/skill:next` for Board-based selection, not more
+decomposition of these requirements. This does not complete the epic's implementation or the separate AccessControl
+Wayfinder handoff.
 
 John approved the standalone PHP security-repair scope and creation of
 [TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md). The selected isolated worktree is
@@ -99,7 +107,8 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| — | None | — | — | — | — |
+| 7 | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md) | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | ready-for-human | —; execution authorization missing | — |
+| 8 | [TASK-00008 — Align Behavioral Evidence and Symfony Diagnostics](../tasks/00008-TASK.md) | [T-00012 — Align Behavioral Tests and Framework Diagnostics](00012-TICKET.md) | ready-for-human | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md); execution authorization missing; unfinished TASK-00007; unfinished T-00011 | — |
 <!-- /planning:human -->
 
 ## Needs Info
