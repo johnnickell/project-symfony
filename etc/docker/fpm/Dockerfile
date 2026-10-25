@@ -22,11 +22,10 @@ RUN groupadd --gid 1000 systemuser \
     && useradd --uid 1000 --create-home --shell /bin/bash --gid systemuser systemuser \
     && git config --system --add safe.directory /app
 
-COPY ./entrypoint.sh /entrypoint.sh
-COPY ./www.conf /usr/local/etc/php-fpm.d/www.conf
-COPY ./local.ini /usr/local/etc/php/conf.d/local.ini
-
-RUN chmod +x /entrypoint.sh
+# Git checkouts may use a restrictive host umask; systemuser must read these files.
+COPY --chmod=755 ./entrypoint.sh /entrypoint.sh
+COPY --chmod=644 ./www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY --chmod=644 ./local.ini /usr/local/etc/php/conf.d/local.ini
 
 USER systemuser
 

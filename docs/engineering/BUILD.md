@@ -36,6 +36,8 @@ Do not bypass a guard, remove an ambiguous resource or stop another checkout's s
 
 Linked worktrees require an explicit unique project name. Choose a free port and export both for the entire
 session, including focused wrappers and shutdown; main checkouts may use the defaults `project-symfony`/18083.
+Create a checkout with ordinary readable source permissions (for example, `umask 022` before `git worktree add`):
+Nginx workers need to traverse the checkout and read `public/`. Do not broadly chmod an existing private tree.
 For example, inside the intended linked worktree, after inspecting project/port ownership:
 
 ```sh
@@ -65,6 +67,8 @@ is provisioned here.
   resources for their owner. Port refusal: select a free `HTTP_PORT`, not someone else's shutdown command.
 - Pinned-base/pull/build failure: restore registry/network access and retry explicit preparation. Never remove the
   digest or fall back to an older PHP image. FPM health failure: inspect `docker compose logs api`.
+- HTTP permission errors: inspect checkout directory/public-file permissions for Nginx workers. Recreate an owned
+  disposable checkout with ordinary permissions rather than changing private/shared source permissions blindly.
 - Composer/install/platform failure: inspect the first failing package/extension or filesystem permission. Preserve
   `composer.lock`; do not use update, ignore-platform flags or sibling dependencies as recovery.
 - Coverage capability failure: rebuild with `./bin/up`, ensure `XDEBUG_MODE=coverage`, then rerun `./bin/doctor`.
