@@ -2,7 +2,7 @@
 id: T-00010
 epic: EPIC-00001
 title: Establish Reusable Local and Hosted Verification
-status: ready-for-human
+status: done
 blocked_by: T-00009
 approved: yes
 ---
@@ -22,8 +22,8 @@ decomposition: [TASK-00005](../tasks/00005-TASK.md) prepares the Compose PHP ser
 [TASK-00006](../tasks/00006-TASK.md) switches the local/hosted gate and preserves Unit coverage.
 [T-00009](00009-TICKET.md) is complete; its dependency remains recorded as history. TASK-00005 PR #22 is merged.
 John invoked Build TASK-00006 and selected the main checkout on its feature branch; its Coordination records the
-execution boundary. `ready-for-human` now records pending independent TASK-00006 acceptance and required hosted
-proof, not missing scope or execution authority. This TICKET is not executable.
+execution boundary. TASK-00006 is independently accepted with applicable QA passed and is published for human
+review/merge as [PR #23](https://github.com/johnnickell/project-symfony/pull/23). This TICKET is not executable.
 
 ## Scope
 
@@ -110,12 +110,12 @@ accepted lock without upgrading packages; no production HTTP, persistence, or se
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
 | 5 | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/22 |
-| 6 | [TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](../tasks/00006-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | ready-for-human | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md) | — |
+| 6 | [TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](../tasks/00006-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | done | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md) | https://github.com/johnnickell/project-symfony/pull/23 |
 <!-- /planning:children -->
 
 ## Completion Notes
 
 John accepted the complete two-TASK decomposition for this requirement. TASK-00005 is done with independent
-acceptance and applicable QA and is merged as PR #22. TASK-00006 retains that dependency history; execution is
-authorized and independent acceptance/required hosted proof remain pending. T-00011 and T-00012 remain separate,
+acceptance and applicable QA and is merged as PR #22. TASK-00006 retains that dependency history and is complete;
+human review/merge of [PR #23](https://github.com/johnnickell/project-symfony/pull/23) remains separate. T-00011 and T-00012 remain separate,
 undecomposed alignment requirements. Detailed execution evidence remains ignored.

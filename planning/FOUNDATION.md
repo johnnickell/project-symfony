@@ -10,7 +10,7 @@ release, Packagist publication, template enablement or create-project distributi
 | HTTP | Twig-rendered Hello World homepage through Nginx/PHP-FPM; explicit front-controller JSON middleware | No production login, application API or browser journey |
 | Console | Bare-Kernel entry through `scripts/console.php` and `bin/console` | No application command workflows implied |
 | Dependencies | Released Common v1.4.0 and AccessControl v0.8.0 through Composer; no AccessControl use cases are wired | WF-001 still owns the full released-contract/schema audit before application feature implementation |
-| Verification | Prepared Compose `api` gate with named PHP phases, host planning, durable exact Unit coverage and retained Integration/Functional suites | TASK-00006 independent acceptance and exact-head hosted proof remain pending |
+| Verification | Prepared Compose `api` gate with named PHP phases, host planning, durable exact Unit coverage and retained Integration/Functional suites | TASK-00006 is independently accepted with applicable QA passed and published for human review/merge as [PR #23](https://github.com/johnnickell/project-symfony/pull/23) |
 | Planning | Active EPIC → TICKET → TASK lifecycle with preserved legacy records | A future replacement for tracked planning is not implemented |
 | Shared skills | External provider resources with local [project context](../docs/engineering/PROJECT_CONTEXT.md) | Installation and actual runtime qualification remain operator-owned |
 

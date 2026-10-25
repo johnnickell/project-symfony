@@ -11,7 +11,7 @@ Read [CONVENTIONS.md](../CONVENTIONS.md) and the actual TASK before execution.
 | 2 | [TASK-00002 — Codify Symfony Engineering and Independent Review Guidance](00002-TASK.md) | [T-00009 — Establish Engineering and Independent Review Standards](../tickets/00009-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/19 |
 | 4 | [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](00004-TASK.md) | [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](../tickets/00013-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/21 |
 | 5 | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](00005-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](../tickets/00010-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/22 |
-| 6 | [TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](00006-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](../tickets/00010-TICKET.md) | ready-for-human | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](00005-TASK.md) | — |
+| 6 | [TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](00006-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](../tickets/00010-TICKET.md) | done | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](00005-TASK.md) | https://github.com/johnnickell/project-symfony/pull/23 |
 | — | [TASK-00003 — Require Patched PHP Runtimes](00003-TASK.md) | — | done | — | https://github.com/johnnickell/project-symfony/pull/20 |
 <!-- /planning:records -->
 
