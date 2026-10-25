@@ -33,9 +33,9 @@ and EPIC-00001's unfinished alignment planning, with no deployment authority imp
    [PR #19](https://github.com/johnnickell/project-symfony/pull/19) is next; [T-00009](tickets/00009-TICKET.md) is complete.
    John accepted [T-00010](tickets/00010-TICKET.md)'s complete decomposition into
    [TASK-00005](tasks/00005-TASK.md) (preparation), then [TASK-00006](tasks/00006-TASK.md) (local/hosted gate and
-   durable Unit coverage). John selected the main checkout and invoked Build TASK-00005; independent acceptance
-   remains pending. TASK-00006 remains unauthorized and unimplemented.
-   T-00011 and T-00012 remain undecomposed; planning cutover is already complete.
+   durable Unit coverage). TASK-00005 is independently accepted with applicable QA passed and published for
+   human review/merge as [PR #22](https://github.com/johnnickell/project-symfony/pull/22). TASK-00006 remains
+   unauthorized and unimplemented. T-00011 and T-00012 remain undecomposed; planning cutover is already complete.
 2. Follow the retained requirement dependencies for gate/coverage and existing presentation/testing alignment.
    Preserve exact Unit coverage and separate local/hosted evidence. This is unversioned foundation work, not
    release authority or the complete AccessControl starter handoff.
