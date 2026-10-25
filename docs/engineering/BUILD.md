@@ -26,6 +26,14 @@ are not required. `./bin/prepare` runs these explicit, noninteractive steps, sto
    Xdebug coverage mode, installed autoload, installed versions/source/dist identities against the lock (including
    dev packages), and real Composer platform requirements. This is readiness evidence, not a Unit coverage verdict.
 
+On native Linux, export `APP_UID="$(id -u)" APP_GID="$(id -g)"` before preparation and retain them for every
+wrapper in that session. The FPM image creates its non-root `systemuser` with these numeric IDs so CLI and FPM
+can write the checkout's own `vendor/` and `var/` without changing host ownership or permissions. Both IDs must
+be positive and available in the base image. The defaults remain 1000:1000 for Docker Desktop file sharing;
+do not assume its macOS permission translation proves native Linux bind access. Hosted preparation selects
+and logs the runner's IDs and checkout ownership before building. Existing root/foreign-owned mutable files
+still require their owner's recovery; do not broadly chmod/chown a checkout or run Composer as root.
+
 For separate steps use the same commands; `./bin/up --logs` follows logs. The PHP service is `api`; `./bin/exec`
 executes there. `./bin/down` stops only the selected stack and preserves volumes. All wrappers resolve their own
 checkout, use its Compose file and refuse existing project containers whose Compose working directory or `/app`

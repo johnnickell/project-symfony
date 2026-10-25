@@ -21,6 +21,8 @@ implemented. Read [Architecture](ARCHITECTURE.md), [Foundation](planning/FOUNDAT
 [project context](docs/engineering/PROJECT_CONTEXT.md), with no copied suite or required Jev enrollment.
 
 Prerequisites: Docker with Compose v2 (`up --wait` support), Bash, host Python 3.9+ and Git; no host PHP or Composer.
+On native Linux, first select your non-root `APP_UID`/`APP_GID` as described in
+[Build guidance](docs/engineering/BUILD.md#preparation-and-isolation) so container writes match the checkout owner.
 `./bin/prepare` is explicit and noninteractive: it runs `./bin/up`, installs the existing Composer lock, then runs
 `./bin/doctor` to check actual CLI/FPM, extensions, Xdebug coverage mode and Composer platform requirements.
 No dependency update or runtime fallback is performed. `./bin/up` pulls the pinned PHP build base, builds the two

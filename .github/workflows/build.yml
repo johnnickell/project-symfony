@@ -22,6 +22,10 @@ jobs:
       - name: Prepare checkout
         run: |
           git rev-parse HEAD
+          export APP_UID="$(id -u)" APP_GID="$(id -g)"
+          printf 'APP_UID=%s\nAPP_GID=%s\n' "$APP_UID" "$APP_GID" >> "$GITHUB_ENV"
+          id
+          stat -c '%u:%g %a %n' .
           ./bin/prepare
       - name: Canonical gate
         run: ./bin/build
