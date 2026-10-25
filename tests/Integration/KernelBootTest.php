@@ -9,13 +9,13 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Tests project kernel booting.
+ * Tests project Kernel booting
  */
 #[CoversNothing]
 final class KernelBootTest extends TestCase
 {
     /**
-     * Tests project-owned kernel booting.
+     * Tests project-owned Kernel booting
      */
     public function testTheProjectOwnedKernelBoots(): void
     {

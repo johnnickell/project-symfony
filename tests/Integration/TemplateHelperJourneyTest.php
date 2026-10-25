@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Tests template-helper integration.
+ * Tests template-helper integration
  */
 #[CoversNothing]
 final class TemplateHelperJourneyTest extends TestCase
@@ -18,7 +18,7 @@ final class TemplateHelperJourneyTest extends TestCase
     use BootedTestKernel;
 
     /**
-     * Tests compiler-pass registration of the template helper.
+     * Tests compiler-pass registration of the template helper
      */
     public function testBootedTemplateEngineReceivesTheTestHelperFromTheCompilerPass(): void
     {

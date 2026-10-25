@@ -43,10 +43,11 @@ applicable QA passed and published for human review/merge as
 
 John accepted [T-00011](00011-TICKET.md)'s complete single-TASK decomposition:
 [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md).
-Its prerequisite requirements are complete; execution authorization and checkout/worktree selection are pending.
+Its prerequisite requirements are complete. John invoked Build and selected the main checkout; TASK-00007's
+implementation now awaits independent Spec/Standards review, followed by applicable QA.
 John also accepted [T-00012](00012-TICKET.md)'s complete single-TASK decomposition:
 [TASK-00008 — Align Behavioral Evidence and Symfony Diagnostics](../tasks/00008-TASK.md), blocked by TASK-00007.
-Both TASKs await explicit execution authorization and checkout/worktree selection; no implementation has started.
+TASK-00008 still awaits explicit execution authorization and checkout/worktree selection; it has not started.
 EPIC-00001's requirement/TASK decomposition is complete. Use `/skill:next` for Board-based selection, not more
 decomposition of these requirements. This does not complete the epic's implementation or the separate AccessControl
 Wayfinder handoff.
@@ -107,7 +108,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 7 | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md) | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | ready-for-human | —; execution authorization missing | — |
+| 7 | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md) | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | ready-for-human | — | — |
 | 8 | [TASK-00008 — Align Behavioral Evidence and Symfony Diagnostics](../tasks/00008-TASK.md) | [T-00012 — Align Behavioral Tests and Framework Diagnostics](00012-TICKET.md) | ready-for-human | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md); execution authorization missing; unfinished TASK-00007; unfinished T-00011 | — |
 <!-- /planning:human -->
 

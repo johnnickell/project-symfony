@@ -20,7 +20,8 @@ John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md) a
 single-TASK decomposition as [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md).
 [T-00009](00009-TICKET.md) and [T-00010](00010-TICKET.md) are complete; their dependency edges remain history.
 `ready-for-agent` records decision-complete requirement scope, not an executable requirement or permission to start.
-TASK-00007 still needs explicit execution authorization and checkout/worktree selection.
+John subsequently invoked Build TASK-00007 and selected the main checkout; its Coordination records the authority
+and branch. Implementation now awaits independent review, not execution authorization.
 
 ## Scope
 
@@ -99,12 +100,11 @@ contracts are assumptions to preserve, not upgrade targets.
 <!-- planning:children -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 7 | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md) | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | ready-for-human | —; execution authorization missing | — |
+| 7 | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md) | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | ready-for-human | — | — |
 <!-- /planning:children -->
 
 ## Completion Notes
 
 John accepted TASK-00007 as the complete implementation decomposition, including homepage behavior preservation,
-bounded PHP/test convention alignment and independent acceptance evidence. Its record is created; implementation,
-verification and independent acceptance have not begun. Execution authority and checkout/worktree selection remain
-pending. Portfolio-wide test disposition remains with T-00012.
+bounded PHP/test convention alignment and independent acceptance evidence. John subsequently authorized Build in
+the main checkout; TASK-00007 now hands implementation to independent review. Acceptance and applicable QA remain pending. Portfolio-wide test disposition remains with T-00012.

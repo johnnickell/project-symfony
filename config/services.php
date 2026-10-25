@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Adapter\Homepage\HomeAction;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $container): void {
@@ -16,4 +17,8 @@ return static function (ContainerConfigurator $container): void {
             '../src/Adapter/DependencyInjection/',
             '../src/Adapter/Kernel.php',
         ]);
+
+    $services->set(HomeAction::class)
+        ->arg('$applicationName', '%project.application_name%')
+        ->tag('controller.service_arguments');
 };

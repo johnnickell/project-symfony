@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Symfony\Component\Routing\Loader\Configurator;
 
-use App\Adapter\Controller\HomeController;
+use App\Adapter\Homepage\HomeAction;
 
 return static function (RoutingConfigurator $routes): void {
     $routes->add('homepage', '/')
-        ->controller(HomeController::class.'::index')
+        ->controller(HomeAction::class.'::handle')
         ->methods(['GET']);
 
     if ($routes->env() === 'test') {

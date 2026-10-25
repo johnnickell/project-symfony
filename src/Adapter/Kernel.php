@@ -28,11 +28,13 @@ use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 final class Kernel extends BaseKernel
 {
     /**
-     * Registers configured Symfony bundles
+     * @inheritDoc
      */
     public function registerBundles(): iterable
     {
-        /** @var array<class-string, array<string, bool>> $bundles */
+        /**
+         * @var array<class-string, array<string, bool>> $bundles
+         */
         $bundles = require dirname(__DIR__, 2).'/config/bundles.php';
 
         foreach ($bundles as $class => $environments) {
@@ -60,7 +62,7 @@ final class Kernel extends BaseKernel
     }
 
     /**
-     * Registers messaging autoconfiguration and compiler passes
+     * @inheritDoc
      */
     protected function build(ContainerBuilder $container): void
     {

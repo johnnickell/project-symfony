@@ -11,13 +11,13 @@ use stdClass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Tests the lazy-messaging compiler pass.
+ * Tests the lazy-messaging compiler pass
  */
 #[CoversClass(LazyMessagingServiceVisibilityCompilerPass::class)]
 final class LazyMessagingServiceVisibilityCompilerPassTest extends TestCase
 {
     /**
-     * Tests lazy messaging service visibility.
+     * Tests lazy messaging service visibility
      */
     public function testMakesOnlyLazyMessagingServicesPublic(): void
     {
