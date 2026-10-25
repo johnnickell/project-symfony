@@ -36,8 +36,11 @@ and EPIC-00001's unfinished alignment planning, with no deployment authority imp
    durable Unit coverage). TASK-00005 is independently accepted with applicable QA passed and merged as
    [PR #22](https://github.com/johnnickell/project-symfony/pull/22). TASK-00006 is independently accepted with
    applicable QA passed and published for human review/merge as
-   [PR #23](https://github.com/johnnickell/project-symfony/pull/23). T-00011 and T-00012 remain undecomposed;
-   planning cutover is already complete.
+   [PR #23](https://github.com/johnnickell/project-symfony/pull/23). John accepted
+   [TASK-00007](tasks/00007-TASK.md) as [T-00011](tickets/00011-TICKET.md)'s complete decomposition; execution
+   authorization and checkout/worktree selection are pending. John also accepted [TASK-00008](tasks/00008-TASK.md)
+   as [T-00012](tickets/00012-TICKET.md)'s complete decomposition, blocked by TASK-00007 and without execution
+   authority. EPIC-00001 decomposition is complete; its implementation remains unfinished.
 2. Follow the retained requirement dependencies for gate/coverage and existing presentation/testing alignment.
    Preserve exact Unit coverage and separate local/hosted evidence. This is unversioned foundation work, not
    release authority or the complete AccessControl starter handoff.
@@ -48,9 +51,14 @@ and EPIC-00001's unfinished alignment planning, with no deployment authority imp
 These are decomposition/closeout decisions, not executable TASKs. Parent requirements and real blockers remain
 visible while the [Work Board](tickets/BOARD.md) owns execution and the immediate human decision.
 
+EPIC-00001's requirement/TASK decomposition is complete: T-00011 has accepted TASK-00007 and T-00012 has accepted
+TASK-00008, whose implementation is blocked by TASK-00007. Both await execution authorization and checkout/worktree
+selection. Use `/skill:next` for Board-based selection. No additional decomposition or parent-closeout decision is
+pending for this epic; its implementation remains unfinished and the separate AccessControl Wayfinder handoff
+remains open.
+
 <!-- planning:frontier -->
-- [T-00011 — Align Owned PHP and Homepage Presentation](tickets/00011-TICKET.md): Decompose into TASKs after prerequisites.
-- [T-00012 — Align Behavioral Tests and Framework Diagnostics](tickets/00012-TICKET.md): Decompose into TASKs after prerequisites; unfinished T-00011.
+None.
 <!-- /planning:frontier -->
 
 ## Completed / Released

@@ -2,7 +2,7 @@
 id: T-00011
 epic: EPIC-00001
 title: Align Owned PHP and Homepage Presentation
-status: needs-info
+status: ready-for-agent
 blocked_by: T-00009,T-00010
 approved: yes
 ---
@@ -16,10 +16,11 @@ Action/Responder responsibilities while preserving its observable behavior and p
 
 ## Approval and execution boundary
 
-John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md). It groups requirements, not a
-single prescribed PR or an implementation TASK. Planning cutover is complete; `needs-info` records the missing
-accepted TASK handoff and unfinished predecessor outcomes. Implementation follows [T-00009](00009-TICKET.md) and
-[T-00010](00010-TICKET.md); their requirements and this split are approved, but no implementation assignment is implied.
+John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md) and accepted its complete
+single-TASK decomposition as [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md).
+[T-00009](00009-TICKET.md) and [T-00010](00010-TICKET.md) are complete; their dependency edges remain history.
+`ready-for-agent` records decision-complete requirement scope, not an executable requirement or permission to start.
+TASK-00007 still needs explicit execution authorization and checkout/worktree selection.
 
 ## Scope
 
@@ -98,10 +99,12 @@ contracts are assumptions to preserve, not upgrade targets.
 <!-- planning:children -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| — | None | — | — | — | — |
+| 7 | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md) | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | ready-for-human | —; execution authorization missing | — |
 <!-- /planning:children -->
 
 ## Completion Notes
 
-Requirements approved and recorded only. No source refactor, new Action/Responder, TASK, or implementation
-verification has been performed; predecessor outcomes and a separately accepted TASK handoff remain outstanding.
+John accepted TASK-00007 as the complete implementation decomposition, including homepage behavior preservation,
+bounded PHP/test convention alignment and independent acceptance evidence. Its record is created; implementation,
+verification and independent acceptance have not begun. Execution authority and checkout/worktree selection remain
+pending. Portfolio-wide test disposition remains with T-00012.
