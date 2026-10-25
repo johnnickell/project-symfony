@@ -10,13 +10,13 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Tests the JSON middleware journey.
+ * Tests the JSON middleware journey
  */
 #[CoversNothing]
 final class JsonMiddlewareTest extends TestCase
 {
     /**
-     * Tests JSON middleware composition and JSend output.
+     * Tests JSON middleware composition and JSend output
      */
     public function testTheFrontControllerComposesJsonMiddlewareAndReturnsANativeJSendResponse(): void
     {

@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Transport\InMemory\InMemoryTransport;
 
 /**
- * Tests messaging boundaries.
+ * Tests messaging boundaries
  */
 #[CoversNothing]
 final class MessagingJourneyTest extends TestCase
@@ -28,7 +28,7 @@ final class MessagingJourneyTest extends TestCase
     use BootedTestKernel;
 
     /**
-     * Tests compiler-pass collection of test messaging services.
+     * Tests compiler-pass collection of test messaging services
      */
     public function testCompilerPassesCollectTestOnlyHandlersAndSubscribers(): void
     {
@@ -60,7 +60,7 @@ final class MessagingJourneyTest extends TestCase
     }
 
     /**
-     * Tests dispatch through the configured serialized transport.
+     * Tests dispatch through the configured serialized transport
      */
     public function testMessengerDispatchUsesTheConfiguredSerializedTransport(): void
     {

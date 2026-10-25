@@ -2,7 +2,7 @@
 id: T-00011
 epic: EPIC-00001
 title: Align Owned PHP and Homepage Presentation
-status: ready-for-agent
+status: done
 blocked_by: T-00009,T-00010
 approved: yes
 ---
@@ -20,7 +20,8 @@ John approved this requirement area under [EPIC-00001](../epics/00001-EPIC.md) a
 single-TASK decomposition as [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md).
 [T-00009](00009-TICKET.md) and [T-00010](00010-TICKET.md) are complete; their dependency edges remain history.
 `ready-for-agent` records decision-complete requirement scope, not an executable requirement or permission to start.
-TASK-00007 still needs explicit execution authorization and checkout/worktree selection.
+John subsequently invoked Build TASK-00007 and selected the main checkout; its Coordination records the authority
+and branch. Implementation now awaits independent review, not execution authorization.
 
 ## Scope
 
@@ -99,12 +100,12 @@ contracts are assumptions to preserve, not upgrade targets.
 <!-- planning:children -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 7 | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md) | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | ready-for-human | —; execution authorization missing | — |
+| 7 | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md) | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/25 |
 <!-- /planning:children -->
 
 ## Completion Notes
 
-John accepted TASK-00007 as the complete implementation decomposition, including homepage behavior preservation,
-bounded PHP/test convention alignment and independent acceptance evidence. Its record is created; implementation,
-verification and independent acceptance have not begun. Execution authority and checkout/worktree selection remain
-pending. Portfolio-wide test disposition remains with T-00012.
+TASK-00007 completed the complete implementation decomposition, including homepage behavior preservation and
+bounded PHP/test convention alignment; independent Spec/Standards Review accepted candidate A and applicable QA
+passed. Its delivery is published for human review/merge as [PR #25](https://github.com/johnnickell/project-symfony/pull/25).
+Portfolio-wide test disposition remains with T-00012.

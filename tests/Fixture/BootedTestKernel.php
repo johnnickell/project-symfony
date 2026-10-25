@@ -7,9 +7,16 @@ namespace App\Tests\Fixture;
 use App\Adapter\Kernel;
 use Psr\Container\ContainerInterface;
 
+/**
+ * Boots the shared integration journey container
+ */
 trait BootedTestKernel
 {
-    /** @return array{Kernel, ContainerInterface} */
+    /**
+     * Boots the test Kernel and exposes test services
+     *
+     * @return array{Kernel, ContainerInterface}
+     */
     private function bootTestKernel(): array
     {
         $kernel = new Kernel('test', true);

@@ -46,7 +46,8 @@ private input or raw exceptions. Registration does not authenticate an invocatio
 Use Action–Domain–Responder. One final Action represents one interaction and exposes `handle()` as its sole HTTP
 entrypoint. Its Responder exposes `respond()` and owns status, headers and representation. Bind Symfony routes to
 the Action's `handle()` method; do not import Slim callable syntax or PSR response conventions into HttpFoundation.
-This replaces the earlier invokable-Action preference. Existing homepage refactoring remains T-00011 scope.
+This replaces the earlier invokable-Action preference. The homepage example is
+`src/Adapter/Homepage/HomeAction.php` with `HomeResponder.php` in the same presentation boundary.
 
 - Actions map validated input and trusted actor/target context, dispatch one package or justified owned use case,
   and delegate presentation. No business policy, persistence, transaction control or external-provider work.

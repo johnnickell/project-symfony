@@ -53,9 +53,11 @@ Existing lazy messaging visibility is owned adapter behavior, not permission to 
 ## Transport and future integrations
 
 Use `handle()` on HTTP Actions and `respond()` on Responders under the [engineering standards](docs/engineering/STANDARDS.md#http).
-This supersedes the earlier invokable-Action preference without changing current routes in this documentation slice.
-The HTML homepage stays presentation-only. Exact API envelopes, errors, OpenAPI, authentication, persistence and
-worker guarantees remain with their accepted local requirements and Wayfinder decisions.
+This supersedes the earlier invokable-Action preference while preserving the homepage route.
+The HTML homepage stays presentation-only: `Adapter\Homepage\HomeAction::handle()` passes the injected application
+name to `HomeResponder::respond()`, which renders Twig and owns the successful HTML status and headers. Neither
+class locates services or introduces an Application use case. Exact API envelopes, errors, OpenAPI, authentication,
+persistence and worker guarantees remain with their accepted local requirements and Wayfinder decisions.
 
 New schemas, mappings, repositories, migrations, records and presentation models belong here, but implementation
 requires an accepted, authorized TASK. Preserve legacy requirement authority under

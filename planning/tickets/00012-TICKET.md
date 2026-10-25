@@ -100,7 +100,7 @@ validators or test tooling. Composer dependencies and production package APIs re
 <!-- planning:children -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 8 | [TASK-00008 — Align Behavioral Evidence and Symfony Diagnostics](../tasks/00008-TASK.md) | [T-00012 — Align Behavioral Tests and Framework Diagnostics](00012-TICKET.md) | ready-for-human | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md); execution authorization missing; unfinished TASK-00007; unfinished T-00011 | — |
+| 8 | [TASK-00008 — Align Behavioral Evidence and Symfony Diagnostics](../tasks/00008-TASK.md) | [T-00012 — Align Behavioral Tests and Framework Diagnostics](00012-TICKET.md) | ready-for-human | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md); execution authorization missing | — |
 <!-- /planning:children -->
 
 ## Completion Notes

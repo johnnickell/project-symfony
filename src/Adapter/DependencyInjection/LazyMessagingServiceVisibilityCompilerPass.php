@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 final class LazyMessagingServiceVisibilityCompilerPass implements CompilerPassInterface
 {
     /**
-     * Sets lazy messaging handler visibility for runtime resolution
+     * @inheritDoc
      */
     public function process(ContainerBuilder $container): void
     {
