@@ -16,4 +16,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: sh bin/build
+        with:
+          # Verify the literal source head, not only GitHub's synthetic PR merge.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Prepare checkout
+        run: |
+          git rev-parse HEAD
+          ./bin/prepare
+      - name: Canonical gate
+        run: ./bin/build
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: unit-coverage
+          path: var/reports/coverage/unit/clover.xml
+          if-no-files-found: error

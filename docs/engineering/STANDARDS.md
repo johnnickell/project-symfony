@@ -97,8 +97,8 @@ driver, metadata, exclusions, warnings and actual gaps. The current source denom
 exclusions, weaken assertions, or substitute integration/combined coverage. Coverage is a completeness aid, not
 proof of correctness. Preserve meaningful Integration and Functional journeys separately.
 
-[Build](BUILD.md) owns current commands and artifact limitations. Future gate changes must preserve a distinct
-Unit artifact; an all-suite execution is acceptable only with independently attributable Unit-only proof.
+[Build](BUILD.md) owns current commands and the distinct durable Unit artifact. Gate changes must preserve
+independently attributable Unit-only proof; combined-suite coverage cannot substitute.
 
 ## Code and documentation quality
 

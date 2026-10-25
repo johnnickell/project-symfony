@@ -1,30 +1,16 @@
 #!/usr/bin/env sh
 set -eu
 
-./bin/planning-check
+DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+cd "$DIR/.."
 
-# Do not replace another checkout's shared build tag or run a tag changed mid-build.
-image="project-symfony-build:$(printf '%s' "$(pwd -P)" | shasum -a 256 | cut -c1-12)"
-iid_file=$(mktemp)
-trap 'rm -f "$iid_file"' EXIT HUP INT TERM
-docker build --pull --iidfile "$iid_file" --file etc/docker/build/Dockerfile --tag "$image" .
-image_id=$(cat "$iid_file")
-docker run --rm --env APP_SECRET=build-only-secret --volume "$(pwd):/app" \
-    --workdir /app "$image_id" sh -ec '
-    composer validate --strict
-    composer install --no-interaction --prefer-dist --no-progress
-    composer check-platform-reqs
-    find config public scripts src -type f -name "*.php" -print0 | xargs -0 -n1 php -l
+printf '\n[build] START Planning (host)\n'
+if ./bin/planning-check; then
+    printf '[build] PASS Planning (host)\n'
+else
+    code=$?
+    printf '[build] FAIL Planning (host); see validator output\n' >&2
+    exit "$code"
+fi
 
-    php vendor/bin/phpcs
-    php vendor/bin/phpstan analyse --no-progress
-    php vendor/bin/deptrac --fail-on-uncovered --report-uncovered --report-skipped
-    php vendor/bin/deptrac debug:unassigned --no-cache
-    php vendor/bin/rector process src tests --dry-run --no-progress-bar
-
-    rm -f var/reports/coverage/clover.xml
-    php vendor/bin/phpunit --testsuite Unit --fail-on-skipped --fail-on-notice --fail-on-warning
-    php scripts/check-coverage.php
-    php vendor/bin/phpunit --testsuite Integration --fail-on-skipped --fail-on-notice --fail-on-warning
-    php vendor/bin/phpunit --testsuite Functional --fail-on-skipped --fail-on-notice --fail-on-warning
-'
+exec ./bin/exec php scripts/build.php

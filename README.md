@@ -62,12 +62,10 @@ must fail preparation: restore registry access rather than removing the digest, 
 back to cached floating tags. Composer requires PHP >=8.5.12 and simulates 8.5.12 for dependency resolution;
 that metadata alone is not runtime proof.
 
-`./bin/build` always builds with `--pull`, tags the image by a hash of the canonical checkout path, and runs the
-resulting immutable image ID. It does not replace the old shared `project-symfony-build:latest` tag or recreate
-FPM; use `./bin/up` for that. TASK-00005 adds reusable-service preparation only; TASK-00006 owns switching this
-canonical gate and hosted setup and fixing its Unit-artifact overwrite. A failed base resolution is fatal, not
-permission to use an older image. Later PHP
-security updates require a deliberate tag/digest and Composer-platform change, not an update-on-start mechanism.
+`./bin/build` uses the already-running, checkout-owned `api` service; it never builds/pulls images or installs
+packages. Use explicit preparation to adopt the pinned image and locked dependencies. A failed base resolution
+is fatal, not permission to use an older image. Later PHP security updates require a deliberate tag/digest and
+Composer-platform change, not an update-on-start mechanism.
 
 ### HttpFoundation security baseline
 
@@ -80,14 +78,17 @@ not a deployment or globally clean security claim; no ongoing security gate is i
 ## Quality gate
 
 Fight Common and Fight AccessControl use released `^1.4` and `^0.8` Composer constraints, respectively.
-Installing AccessControl does not expose its capabilities as application endpoints. `./bin/build` validates planning and
-Composer metadata, installs dependencies, checks PHP syntax, runs the installed `FightCommon` PHPCS standard,
-PHPStan, Deptrac, Rector, exact Unit coverage, and the retained Integration and Functional journeys.
+Installing AccessControl does not expose its capabilities as application endpoints. After explicit preparation,
+`./bin/build` validates planning on the host, then runs named, fail-fast PHP phases in Compose `api`: runtime/locked
+dependency readiness, strict Composer validation and platform requirements, PHP syntax, the installed `FightCommon`
+PHPCS standard, PHPStan, both Deptrac checks, Rector dry-run, exact Unit coverage, and Integration and Functional
+journeys. Each suite runs once; Unit evidence remains at `var/reports/coverage/unit/clover.xml` after the gate.
+Hosted CI explicitly prepares and uses this same gate against the source head, not a parallel pipeline.
 
 The Symfony adapter boundary lives under `src/Adapter/`. `public/index.php` explicitly composes the canonical
 Fight Common JSON middleware around `App\Adapter\Kernel`.
 Shared providers are registered by capability under `config/common/`; messaging and templating compiler-pass proof
 is test-owned, and production has no event-sourcing infrastructure. [Build guidance](docs/engineering/BUILD.md)
-documents the current gate and its Unit-artifact limitation; [Scratch](docs/engineering/SCRATCH.md) owns categorized
+documents preparation, phases, durable Unit evidence and failure diagnosis; [Scratch](docs/engineering/SCRATCH.md) owns categorized
 ignored evidence and reversible legacy relocation. Independent [Review](docs/engineering/REVIEW.md) and
 [QA](docs/engineering/QA.md) are distinct from a green build and human merge.

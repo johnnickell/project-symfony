@@ -26,9 +26,5 @@
     </source>
     <coverage includeUncoveredFiles="true"
         ignoreDeprecatedCodeUnits="false"
-        pathCoverage="false">
-        <report>
-            <clover outputFile="var/reports/coverage/clover.xml" />
-        </report>
-    </coverage>
+        pathCoverage="false" />
 </phpunit>

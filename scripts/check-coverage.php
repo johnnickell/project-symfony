@@ -80,7 +80,7 @@ try {
         throw new RuntimeException(sprintf('Coverage-ignore directive found in production PHP: %s', $directiveFile));
     }
 
-    $report = 'var/reports/coverage/clover.xml';
+    $report = 'var/reports/coverage/unit/clover.xml';
     $metrics = $coverageMetrics($report);
     $statements = $metrics['statements'];
     $coveredStatements = $metrics['covered'];
@@ -111,3 +111,4 @@ try {
 }
 
 printf("Statement coverage is exact: %s/%s statements covered\n", $coveredStatements, $statements);
+printf("Unit Clover: %s; SHA256: %s\n", $report, hash_file('sha256', $report));
