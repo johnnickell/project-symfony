@@ -4,10 +4,4 @@ set -euo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$DIR/.."
 
-docker compose build --pull api
-docker compose build server
-docker compose up -d --force-recreate
-
-if [[ "${1:-}" == "--logs" ]]; then
-    docker compose logs -f
-fi
+exec python3 scripts/compose.py up "$@"

@@ -4,10 +4,16 @@ RUN php -r 'if (PHP_VERSION !== "8.5.12") { fwrite(STDERR, "Expected patched PHP
 
 WORKDIR /app
 
+ENV XDEBUG_MODE=coverage \
+    COMPOSER_CACHE_DIR=/app/var/cache/composer \
+    COMPOSER_ROOT_VERSION=dev-develop
+
 RUN apt-get update \
     && apt-get install --no-install-recommends --yes git unzip libicu-dev libzip-dev \
     && docker-php-ext-configure intl \
     && docker-php-ext-install intl zip \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer

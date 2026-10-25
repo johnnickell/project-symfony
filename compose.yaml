@@ -4,6 +4,11 @@ services:
     restart: unless-stopped
     tty: true
     working_dir: /app
+    healthcheck:
+      test: ["CMD-SHELL", "test -s /tmp/php-fpm.pid && kill -0 $$(cat /tmp/php-fpm.pid)"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
     environment:
       APP_ENV: dev
       APP_DEBUG: "1"
@@ -17,7 +22,7 @@ services:
   server:
     build: ./etc/docker/nginx
     ports:
-      - "18083:80"
+      - "${HTTP_PORT:-18083}:80"
     restart: unless-stopped
     tty: true
     volumes:
@@ -27,8 +32,10 @@ services:
       - app-network
     depends_on:
       api:
-        condition: service_started
+        condition: service_healthy
 
 networks:
   app-network:
     driver: bridge
+    labels:
+      project-symfony.checkout: "${PROJECT_SYMFONY_CHECKOUT:-${PWD}}"

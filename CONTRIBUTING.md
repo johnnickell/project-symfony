@@ -11,9 +11,9 @@ commit directly to `develop`/`main`, and preserve unrelated changes.
 Use the repository's Docker wrappers:
 
 ```sh
-./bin/up
-./bin/composer install --no-interaction --prefer-dist --no-progress
-./bin/phpunit
+./bin/prepare
+./bin/doctor
+./bin/phpunit --testsuite Unit
 ./bin/build
 ```
 
