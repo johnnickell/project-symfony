@@ -41,12 +41,12 @@ TASK-00005 is independently accepted with applicable QA passed and merged as
 applicable QA passed and published for human review/merge as
 [PR #23](https://github.com/johnnickell/project-symfony/pull/23). Detailed evidence remains ignored.
 
-John accepted [T-00011](00011-TICKET.md)'s complete single-TASK decomposition:
-[TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md).
-Its prerequisite requirements are complete. John invoked Build and selected the main checkout; TASK-00007's
-implementation now awaits independent Spec/Standards review, followed by applicable QA.
+[T-00011](00011-TICKET.md) is complete through
+[TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md), independently
+accepted with applicable QA passed and published for human review/merge as
+[PR #25](https://github.com/johnnickell/project-symfony/pull/25).
 John also accepted [T-00012](00012-TICKET.md)'s complete single-TASK decomposition:
-[TASK-00008 — Align Behavioral Evidence and Symfony Diagnostics](../tasks/00008-TASK.md), blocked by TASK-00007.
+[TASK-00008 — Align Behavioral Evidence and Symfony Diagnostics](../tasks/00008-TASK.md).
 TASK-00008 still awaits explicit execution authorization and checkout/worktree selection; it has not started.
 EPIC-00001's requirement/TASK decomposition is complete. Use `/skill:next` for Board-based selection, not more
 decomposition of these requirements. This does not complete the epic's implementation or the separate AccessControl
@@ -108,8 +108,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 <!-- planning:human -->
 | Order | Record | Parent | Status | Blockers / gates | PR |
 | --- | --- | --- | --- | --- | --- |
-| 7 | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md) | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | ready-for-human | — | — |
-| 8 | [TASK-00008 — Align Behavioral Evidence and Symfony Diagnostics](../tasks/00008-TASK.md) | [T-00012 — Align Behavioral Tests and Framework Diagnostics](00012-TICKET.md) | ready-for-human | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md); execution authorization missing; unfinished TASK-00007; unfinished T-00011 | — |
+| 8 | [TASK-00008 — Align Behavioral Evidence and Symfony Diagnostics](../tasks/00008-TASK.md) | [T-00012 — Align Behavioral Tests and Framework Diagnostics](00012-TICKET.md) | ready-for-human | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md); execution authorization missing | — |
 <!-- /planning:human -->
 
 ## Needs Info
@@ -138,6 +137,7 @@ WF-002 is closed. WF-003 and dependent decisions remain blocked until WF-001 is 
 | 4 | [TASK-00004 — Upgrade HttpFoundation and Enforce the Patched Baseline](../tasks/00004-TASK.md) | [TICKET-00013 — Require a Patched Compatible HttpFoundation Baseline](00013-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/21 |
 | 5 | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/22 |
 | 6 | [TASK-00006 — Run One Reusable Local and Hosted Gate with Durable Unit Coverage](../tasks/00006-TASK.md) | [T-00010 — Establish Reusable Local and Hosted Verification](00010-TICKET.md) | done | [TASK-00005 — Prepare the Compose PHP Service for Reusable Verification](../tasks/00005-TASK.md) | https://github.com/johnnickell/project-symfony/pull/23 |
+| 7 | [TASK-00007 — Align Homepage Presentation and Owned PHP Conventions](../tasks/00007-TASK.md) | [T-00011 — Align Owned PHP and Homepage Presentation](00011-TICKET.md) | done | — | https://github.com/johnnickell/project-symfony/pull/25 |
 | — | [TASK-00003 — Require Patched PHP Runtimes](../tasks/00003-TASK.md) | — | done | — | https://github.com/johnnickell/project-symfony/pull/20 |
 <!-- /planning:closed -->
 

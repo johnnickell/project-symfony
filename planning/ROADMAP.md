@@ -37,11 +37,12 @@ and EPIC-00001's unfinished alignment planning, with no deployment authority imp
    [PR #22](https://github.com/johnnickell/project-symfony/pull/22). TASK-00006 is independently accepted with
    applicable QA passed and published for human review/merge as
    [PR #23](https://github.com/johnnickell/project-symfony/pull/23). John accepted
-   [TASK-00007](tasks/00007-TASK.md) as [T-00011](tickets/00011-TICKET.md)'s complete decomposition; John subsequently
-   invoked Build in the main checkout. Its implementation awaits independent review and applicable QA.
+   [TASK-00007](tasks/00007-TASK.md) as [T-00011](tickets/00011-TICKET.md)'s complete decomposition.
+   T-00011 is complete: TASK-00007 is independently accepted with applicable QA passed and is published for
+   human review/merge as [PR #25](https://github.com/johnnickell/project-symfony/pull/25).
    John also accepted [TASK-00008](tasks/00008-TASK.md)
-   as [T-00012](tickets/00012-TICKET.md)'s complete decomposition, blocked by TASK-00007 and without execution
-   authority. EPIC-00001 decomposition is complete; its implementation remains unfinished.
+   as [T-00012](tickets/00012-TICKET.md)'s complete decomposition, without execution authority.
+   EPIC-00001 implementation remains unfinished.
 2. Follow the retained requirement dependencies for gate/coverage and existing presentation/testing alignment.
    Preserve exact Unit coverage and separate local/hosted evidence. This is unversioned foundation work, not
    release authority or the complete AccessControl starter handoff.
@@ -52,12 +53,12 @@ and EPIC-00001's unfinished alignment planning, with no deployment authority imp
 These are decomposition/closeout decisions, not executable TASKs. Parent requirements and real blockers remain
 visible while the [Work Board](tickets/BOARD.md) owns execution and the immediate human decision.
 
-EPIC-00001's requirement/TASK decomposition is complete: T-00011 has accepted TASK-00007 and T-00012 has accepted
-TASK-00008, whose implementation is blocked by TASK-00007. TASK-00007 awaits independent review and applicable QA
-under John's main-checkout Build invocation; TASK-00008 still needs execution authority and checkout selection.
-Use `/skill:next` for Board-based selection. No additional decomposition or parent-closeout decision is pending
-for this epic; its implementation remains unfinished and the separate AccessControl Wayfinder handoff
-remains open.
+EPIC-00001's requirement/TASK decomposition is complete. T-00011 is complete through TASK-00007, which is
+independently accepted with applicable QA passed and published for human review/merge as
+[PR #25](https://github.com/johnnickell/project-symfony/pull/25). T-00012 has accepted TASK-00008, which still
+needs execution authority and checkout selection. Use `/skill:next` for Board-based selection. No additional
+decomposition or parent-closeout decision is pending for this epic; its implementation remains unfinished and the
+separate AccessControl Wayfinder handoff remains open.
 
 <!-- planning:frontier -->
 None.
