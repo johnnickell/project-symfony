@@ -45,7 +45,11 @@ Do not make a tracked PR-metadata commit merely to move a candidate still awaiti
 Run focused checks, planning validation, diff check and the canonical [build](BUILD.md) on the final owned tree
 before committing/publishing. Refresh views only for authorized metadata changes. Stage explicit owned paths.
 Use the local [PR template](../../.github/pull_request_template.md) and verify title `TASK-NNNNN — <TASK title>`,
-base `develop`, correct head branch and exact remote OID. Reuse the existing TASK PR; never create duplicates after
+the bound target base, correct head branch and exact remote OID. Before reconciliation, pre-publication and
+final handoff resolve the live GitHub default against Symfony's `develop` policy and existing subject PR using
+the resolved provider's `.pi/skills/land/scripts/bind-target.py` with target `--root`, `--policy develop` and
+existing `--pr`/`--head`. Retain its observation and use the bound base throughout. Stale `origin/HEAD` is not
+authority; default/policy/PR conflicts require explicit owner disposition, not silent retargeting. Reuse the existing TASK PR; never create duplicates after
 an uncertain request. Required final-head checks cannot reuse A's run for B. Preserve draft status/resources
 while proof is missing. Publication receipt and PR body record delivery without another tracked evidence commit.
 
@@ -53,7 +57,19 @@ Publish sanitized required captures only within publication authority using avai
 Inspect partial results before retrying, and confirm audience access. Local paths are not published PR evidence.
 An unavailable capture/upload path is a named delivery prerequisite, not fabricated success.
 
-Remove only ownership-proven disposable task resources. Preserve canonical reports, active/dirty/shared resources,
-branches and unrelated stacks. Remove an isolated worktree without force from the base only after delivery is
-verified, as the final tool operation. Keep the current checkout when that was selected. Never archive planning
-records as a completion side effect. End with the actual PR URL, evidence/limits, cleanup result and human merge.
+Publication, current authored/generated handoff synchronization and eligible local resource retirement are
+separate required obligations. Apply the resolved provider's `docs/engineering/LANDING.md` cleanup-only intake,
+inventory/preservation, live-consumer, Git/Docker retirement and postcondition/resume sections (TASK-00534 plus
+qualified TASK-00537) with Symfony's gates. Remove eligible clean inactive isolated worktrees/local refs only
+with exact publication/merge proof and zero unpublished commits, from a safe checkout, without force. Removal
+is not the final tool operation: verify filesystem/registration/ref absence and retained data/evidence/runtime.
+
+Verified merged cleanup-only needs no metadata correction PR or repeated acceptance gate. Discover orphan stacks
+independently of registered worktrees, corroborating paths/source/topology/data ownership rather than names.
+After the worker exits continue from the safe checkout with original model/ledger/authority, preserving active
+coordinators. Positively qualify Docker VM read-only sharing using all containers (including stopped), parent
+mounts, host cwd/writers and stable preservation manifests. Unknown readers hold; never shut down the shared VM.
+Preserve active/dirty/shared resources, independent reports, credentials and durable data. Resume only missing
+effects; a held resource means incomplete cleanup with an exact finite recovery action, not successful Land.
+Never archive planning records as a completion side effect. End with actual delivery state and distinct cleanup
+results; human merge is separate.
