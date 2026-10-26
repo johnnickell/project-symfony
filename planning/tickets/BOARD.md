@@ -1,5 +1,13 @@
 # Work Board
 
+## Current delivery handoffs
+
+<!-- planning:delivery -->
+| Subject | Recorded delivery | Exact PR |
+|---|---|---|
+| None | — | — |
+<!-- /planning:delivery -->
+
 ## Routing index
 
 Read only current human decisions and active work below; otherwise the first ready TASK.
@@ -22,6 +30,15 @@ eligible TASK under **Ready Frontier**. If no work is eligible, say so. Do not s
 sorts earlier. Follow [CONVENTIONS.md](../CONVENTIONS.md) for authority, blockers, and completion.
 
 ## Now
+
+Current delivery reconciliation (2026-10-26): PRs #15, #19, #20, #21, #22, #23 and #25 are verified MERGED into
+`develop` and integrated in base `89bc37b067efb3743bc4220adbfb5e99b6839615`. No merge action remains for these
+subjects. The original publication statements below are preserved historical checkpoints, not current merge
+instructions or recurring live-query subjects. Exact PR/head/merge/time/ancestry evidence is retained by central
+TASK-00519. This does not assert new acceptance, QA, deployment or release and does not clear T-00004/WF-001.
+TASK-00008's execution-authorization/checkout decision and the existing independent planning frontier remain unchanged.
+
+### Preserved planning and publication checkpoints
 
 Planning adoption is complete: [TASK-00001](../tasks/00001-TASK.md#cutover-and-closeout) and
 [T-00008](00008-TICKET.md#explicit-closeout-review) are done, PR #14's implementation is merged, and the lifecycle

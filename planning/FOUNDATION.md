@@ -16,5 +16,6 @@ release, Packagist publication, template enablement or create-project distributi
 
 [Architecture](../ARCHITECTURE.md) owns boundaries. The [Board](tickets/BOARD.md) owns executable priority,
 [Roadmap](ROADMAP.md) owns strategy, and [Wayfinder](wayfinder/README.md) owns unresolved decisions.
-Historical receipts are not fresh proof. This foundation is not a persistence, authentication, release or
+The publication-stage wording above is a historical checkpoint: [current Board reconciliation](tickets/BOARD.md#now)
+records PR #23 merged/integrated, with no remaining merge action. Historical receipts are not fresh proof. This foundation is not a persistence, authentication, release or
 public-readiness claim.

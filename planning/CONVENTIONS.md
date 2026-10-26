@@ -40,6 +40,31 @@ Routing sources: [TASK Board](tickets/BOARD.md), [Wayfinder inventory](wayfinder
 Records own requirements, status, dependencies, and execution priority. Marked tables are generated views, never
 another status authority. Authored strategy, decisions, completion evidence, and historical records remain intact.
 
+## Current delivery handoffs
+
+A live TASK's explicit `delivery: awaiting-merge` plus canonical `pr` URL is a publication snapshot, not permanent
+OPEN/readiness authority. Land sets it only from verified publication; `done`, old links and historical prose
+never create it. Board/Roadmap `planning:delivery` blocks derive only from markers. Offline validation checks
+exact origin/URL/subject identity, rejects conflicting subjects/marked archives/parents and stale views.
+
+`./bin/planning-check --check-delivery [TASK-ID …]` is read-only: at most 16 marked PRs, one 15-second/16-KiB
+lookup each. Exact repository/URL/number/title/develop policy base/subject feature branch/full head and complete
+state must agree. OPEN retains acceptance/QA/delivery holds; draft means Land prerequisites, not human merge.
+MERGED resolves only for already-`done` work with valid merge OID/time and published-head → merge → local-HEAD
+ancestry, using five-second local Git reads with replacement objects/lazy fetches disabled. Continue routing
+without routine cleanup requests. Nonterminal, unintegrated, CLOSED-without-merge, unavailable or mismatched
+evidence holds the affected route for its exact requirement/Git/Land/evidence owner; never infer acceptance.
+
+At authorized Work/Land/substantive planning intake run `--reconcile-delivery` before record edits. It verifies
+that same evidence, retires only resolved markers with exact PR/base/head/branch/merge/time/local-HEAD evidence,
+rolls up eligible parents and refreshes views. Inspect affected authored Board/Roadmap/README claims separately;
+preserve historical checkpoints and independent reports. Repetition is a no-op; retired history is not queried.
+Later merges resolve read-only until the next authorized mutation, not a watcher/post-exit update. Review/QA/
+routing never write or dispatch Land. Validation/live errors prevent planned writes; inspect disk after I/O
+failure before retry. All explicit modes are mutually exclusive. Ordinary checks and `--write` remain offline;
+live modes do not fetch, merge, publish, check CI or infer acceptance. [Local Landing](../docs/engineering/LANDING.md)
+binds publication to the live default/policy and consumes the qualified cleanup lifecycle.
+
 ## Map-wide planning order
 
 For a selected Wayfinder map, finish decisions/grilling and write all approved EPIC destinations before TICKET

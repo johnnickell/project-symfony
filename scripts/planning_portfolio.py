@@ -11,6 +11,8 @@ import re
 import subprocess
 import sys
 
+from planning_delivery import delivery_identity, verify_delivery, reconcile_delivery, delivery_table
+
 ROOT = Path(__file__).resolve().parents[1]
 PLANNING = ROOT / "planning"
 VALID_STATUSES = {
@@ -376,11 +378,25 @@ def complete_parents(records: dict) -> dict[Path, str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--write", action="store_true", help="refresh marked views after validation")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--write", action="store_true", help="offline marked-view refresh")
+    mode.add_argument("--check-delivery", nargs="*", metavar="TASK-ID", help="bounded read-only live verification")
+    mode.add_argument("--reconcile-delivery", nargs="*", metavar="TASK-ID", help="authorized evidence-preserving retirement and view refresh")
     args = parser.parse_args()
+    writing = args.write or args.reconcile_delivery is not None
     try:
         records = load_records()
         validate_records(records)
+        delivery_records = {key: (record.path, record.data) for key, record in records.items()}
+        identity_errors = delivery_identity(ROOT, delivery_records)
+        if identity_errors:
+            raise ValueError("; ".join(identity_errors))
+        retirements = {}
+        if args.reconcile_delivery is not None:
+            resolved, delivery_errors = verify_delivery(ROOT, delivery_records, args.reconcile_delivery)
+            if delivery_errors:
+                raise ValueError("; ".join(delivery_errors))
+            retirements = reconcile_delivery(delivery_records, resolved)
         state = lifecycle(records)
         for record in records.values():
             if record.kind == "task" and record.status == "in-progress" and unavailable(record, records, state):
@@ -388,7 +404,10 @@ def main() -> int:
         documents = {path: path.read_text(encoding="utf-8") for path in PLANNING.rglob("*.md")}
         validate_links(documents)
         closures = complete_parents(records)
-        rendered = render_views(documents | closures, views(records, state))
+        generated = views(records, state)
+        for path in (PLANNING / "tickets/BOARD.md", PLANNING / "ROADMAP.md"):
+            generated[path, "delivery"] = delivery_table(ROOT, delivery_records, path)
+        rendered = render_views(documents | closures | retirements, generated)
         validate_links(rendered)
         ignored = subprocess.run(
             ["git", "-c", f"safe.directory={ROOT.resolve()}", "check-ignore", "-q", ".runs/planning-check"],
@@ -397,7 +416,7 @@ def main() -> int:
         if ignored.returncode != 0:
             raise ValueError(".runs/ must be gitignored")
         stale = [path for path, text in rendered.items() if documents.get(path) != text]
-        if stale and not args.write:
+        if stale and not writing:
             raise ValueError("stale generated views (run ./bin/planning-check --write): " + ", ".join(str(p.relative_to(ROOT)) for p in stale))
         for path in stale:
             if path.is_symlink():
@@ -408,6 +427,11 @@ def main() -> int:
         active = sum(record.status not in TERMINAL for record in records.values())
         tasks = sum(record.kind == "task" for record in records.values())
         print(f"Planning validation passed: {len(records)} records, {active} active, {tasks} TASKs; lifecycle={state}; refreshed={len(stale)}")
+        if args.check_delivery is not None:
+            _, errors = verify_delivery(ROOT, delivery_records, args.check_delivery)
+            for error in errors:
+                print(error)
+            return 1 if errors else 0
         return 0
     except (ValueError, OSError) as exception:
         print(f"Planning validation failed: {exception}", file=sys.stderr)
