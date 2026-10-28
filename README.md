@@ -1,8 +1,8 @@
 # Fight Symfony Starter
 
-Current delivery actions use the [Board's explicit handoffs](planning/tickets/BOARD.md#current-delivery-handoffs),
-not historical PR/acceptance checkpoints. [Delivery conventions](planning/CONVENTIONS.md#current-delivery-handoffs)
-keep ordinary checks offline and bound live checking/authorized intake retirement separately.
+[Land closeout](planning/CONVENTIONS.md#publication-closeout) owns accepted TASK/current-doc closure, exact live
+PR validation and eligible owned local Git/Docker/storage retirement. Human merge remains separate, without a
+tracked pending-merge queue or recurring post-merge planning chore. Historical evidence stays; planning is offline.
 
 Public Symfony starter for Fight Common and Fight AccessControl. Source visibility does not imply a release,
 Packagist publication, template enablement, or create-project distribution.

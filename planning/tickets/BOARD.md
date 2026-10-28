@@ -1,13 +1,5 @@
 # Work Board
 
-## Current delivery handoffs
-
-<!-- planning:delivery -->
-| Subject | Recorded delivery | Exact PR |
-|---|---|---|
-| None | — | — |
-<!-- /planning:delivery -->
-
 ## Routing index
 
 Read only current human decisions and active work below; otherwise the first ready TASK.

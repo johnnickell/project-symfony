@@ -7,8 +7,8 @@ For “What's next?”, `next`, or an unqualified `/ask-matt`, go straight to th
 [lightweight routing](planning/CONVENTIONS.md#lightweight-work-routing): run the read-only planning validator once,
 read the current human decision and all active TASKs, otherwise the first executable ready TASK in Board order.
 Use the [Wayfinder inventory](planning/wayfinder/README.md) and current planning handoffs; do not infer completed
-decomposition from closed maps or child counts. Recommend and stop. Before repeating delivery actions run `./bin/planning-check --check-delivery` for relevant markers;
-exact merged/integrated `done` resolves read-only without routine cleanup requests. Full execution guidance loads only when invoked.
+decomposition from closed maps or child counts. Recommend and stop. Historical publication checkpoints do not
+create current merge actions or recurring post-merge planning work. Full execution guidance loads only when invoked.
 The Board retains its stable path; shared skills use the [routing substitution](docs/engineering/PROJECT_CONTEXT.md#routing-only-context).
 
 ## Project guidance
@@ -26,9 +26,10 @@ symlinks, global setup or runtime enrollment. Use the installed writing-for-agen
 - [Handoffs](docs/engineering/HANDOFFS.md), [Scratch](docs/engineering/SCRATCH.md), [Build](docs/engineering/BUILD.md):
   next actions, canonical ignored evidence and actual verification mechanics.
 
-At authorized Work/Land/substantive planning intake run `./bin/planning-check --reconcile-delivery` before record
-edits under [current delivery handoffs](planning/CONVENTIONS.md#current-delivery-handoffs); inspect affected authored
-claims separately. Review/QA/routing never write. Ordinary checks and view refresh stay offline.
+Land owns [publication closeout](planning/CONVENTIONS.md#publication-closeout): accepted TASK/current-doc closure,
+exact live own-PR/default/head/remote validation and eligible owned local Git/Docker/storage retirement. Human
+merge and open-PR remote-head preservation remain separate. No tracked pending-merge queue or recurring
+post-merge bookkeeping. Planning checks stay offline; preserve historical acceptance/publication and reports.
 
 ## Non-negotiable boundaries
 
