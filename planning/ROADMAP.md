@@ -1,14 +1,7 @@
 # Roadmap
 
-## Current delivery handoffs
-
-<!-- planning:delivery -->
-| Subject | Recorded delivery | Exact PR |
-|---|---|---|
-| None | — | — |
-<!-- /planning:delivery -->
-
-Current delivery actions use the [Board reconciliation](tickets/BOARD.md#now) and explicit delivery view above.
+[Land closeout](CONVENTIONS.md#publication-closeout) owns exact live subject validation and eligible local retirement.
+The [Board observation](tickets/BOARD.md#now) preserves the historical integration facts.
 PR #15/#19/#20/#21/#22/#23/#25 publication checkpoints are preserved history; those subjects are verified
 merged/integrated and request no merge or historical requery. Planning and unrelated qualification holds remain.
 

@@ -57,6 +57,12 @@ Publish sanitized required captures only within publication authority using avai
 Inspect partial results before retrying, and confirm audience access. Local paths are not published PR evidence.
 An unavailable capture/upload path is a named delivery prerequisite, not fabricated success.
 
+Land closes independently accepted TASKs, eligible parents and applicable current Board/Roadmap/README/docs
+during delivery. Preserve historical acceptance/publication and canonical independent reports. Keep exact live
+delivery/cleanup results in the durable ignored receipt and actual PR, not a tracked marker/table, persistent
+pending-merge queue or recurring post-merge planning chore. Human merge remains separate; preserve open-PR
+remote heads. Planning checks stay offline.
+
 Publication, current authored/generated handoff synchronization and eligible local resource retirement are
 separate required obligations. Apply the resolved provider's `docs/engineering/LANDING.md` cleanup-only intake,
 inventory/preservation, live-consumer, Git/Docker retirement and postcondition/resume sections (TASK-00534 plus
@@ -69,7 +75,12 @@ independently of registered worktrees, corroborating paths/source/topology/data 
 After the worker exits continue from the safe checkout with original model/ledger/authority, preserving active
 coordinators. Positively qualify Docker VM read-only sharing using all containers (including stopped), parent
 mounts, host cwd/writers and stable preservation manifests. Unknown readers hold; never shut down the shared VM.
-Preserve active/dirty/shared resources, independent reports, credentials and durable data. Resume only missing
-effects; a held resource means incomplete cleanup with an exact finite recovery action, not successful Land.
+Preserve active/dirty/shared resources, independent reports, credentials and durable data. Capture exact
+creating-container mounts and named/image-anonymous volume creation provenance before creator removal.
+Inventory created versus merely used/shared containers, networks, volumes, images and caches with size, discard
+authority, dependencies and disposition. Reobserve exact identity and all consumers, including stopped ones,
+before each normal exact effect. Unknown/shared/durable/excluded or denied inspection holds without force/prune,
+shared shutdown or suppressed cleanup errors. Resume only missing authorized effects and verify actual absence/
+preservation; a held resource means incomplete cleanup with an exact finite recovery action, not successful Land.
 Never archive planning records as a completion side effect. End with actual delivery state and distinct cleanup
 results; human merge is separate.
