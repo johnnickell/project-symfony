@@ -19,6 +19,10 @@ and the selected record/parents. Apply [shared skill project context](docs/engin
 references; the invocation checkout remains the target. Keep installed skills with their provider, without copies,
 symlinks, global setup or runtime enrollment. Use the installed writing-for-agents skill for instruction changes.
 
+For Docker preparation/teardown, isolated worktrees, guarded source removal and build-cache evidence, follow
+[local tooling](docs/engineering/LOCAL_TOOLING.md). Use normal `./bin/build` for fresh planning and qualified
+application reuse; use `--force` for deliberate fresh application execution.
+
 - [Engineering standards](docs/engineering/STANDARDS.md): ownership, interfaces, PHP, HTTP and meaningful tests.
 - [Execution](docs/engineering/EXECUTION.md): implementation, repair, verification and committed handoff.
 - [Review](docs/engineering/REVIEW.md), [QA](docs/engineering/QA.md), [Landing](docs/engineering/LANDING.md): independent

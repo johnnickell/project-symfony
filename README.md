@@ -98,3 +98,5 @@ is test-owned, and production has no event-sourcing infrastructure. [Build guida
 documents preparation, phases, durable Unit evidence and failure diagnosis; [Scratch](docs/engineering/SCRATCH.md) owns categorized
 ignored evidence and reversible legacy relocation. Independent [Review](docs/engineering/REVIEW.md) and
 [QA](docs/engineering/QA.md) are distinct from a green build and human merge.
+
+See [local Docker, worktree and build-cache operations](docs/engineering/LOCAL_TOOLING.md) for explicit main/worktree selection, guarded teardown and fresh versus reused gate evidence.

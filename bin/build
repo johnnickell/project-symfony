@@ -1,16 +1,4 @@
 #!/usr/bin/env sh
 set -eu
-
-DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-cd "$DIR/.."
-
-printf '\n[build] START Planning (host)\n'
-if ./bin/planning-check; then
-    printf '[build] PASS Planning (host)\n'
-else
-    code=$?
-    printf '[build] FAIL Planning (host); see validator output\n' >&2
-    exit "$code"
-fi
-
-exec ./bin/exec php scripts/build.php
+cd "$(dirname "$0")/.."
+exec python3 -B scripts/build.py "$@"
