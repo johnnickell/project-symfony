@@ -106,3 +106,5 @@ Validate these tools directly with native Compose/Worktrunk and normal gates, ou
 Local development builds set native `BUILDX_NO_DEFAULT_ATTESTATIONS=1` for the build command so cached executable layers retain a stable immutable image identity instead of a timestamped attestation index. Release/publication commands retain their own policy. Layers and actual image IDs remain verified; this does not permit publishing local images.
 
 Use `./bin/runtime docker ps` to list all selected-checkout containers and their published ports, including plain-run tool previews. `docker compose ps` lists Compose services only.
+
+Symfony generates ignored `config/reference.php` on container compilation. The local gate treats this exact file as a verified output artifact alongside coverage; authored configuration remains an input.
