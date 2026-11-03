@@ -14,3 +14,8 @@ graphify-out/
 /.zed/
 .phpactor.json
 Thumbs.db
+
+# Local gate cache and native worktree configuration
+/var/build.json
+/var/build.lock
+/var/worktrees/

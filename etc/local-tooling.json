@@ -1,0 +1,34 @@
+{
+  "project": "project-symfony",
+  "running": [
+    "api"
+  ],
+  "gate": [
+    "./bin/.build-full"
+  ],
+  "outputs": [
+    "var/reports/coverage/unit",
+    "config/reference.php"
+  ],
+  "runtime_probes": [
+    [
+      "exec",
+      "-T",
+      "api",
+      "sh",
+      "-ec",
+      "php -r 'echo json_encode([PHP_VERSION, get_loaded_extensions(), ini_get_all(null, false)]);'; composer --version; git --version"
+    ]
+  ],
+  "directories": [
+    "var/cache"
+  ],
+  "environment": {
+    "PROJECT_SYMFONY_CHECKOUT": "{checkout}"
+  },
+  "images": [
+    "api",
+    "server"
+  ],
+  "mount_git": false
+}

@@ -19,6 +19,10 @@ and the selected record/parents. Apply [shared skill project context](docs/engin
 references; the invocation checkout remains the target. Keep installed skills with their provider, without copies,
 symlinks, global setup or runtime enrollment. Use the installed writing-for-agents skill for instruction changes.
 
+For Docker preparation/teardown, isolated worktrees, guarded source removal and build-cache evidence, follow
+[local tooling](docs/engineering/LOCAL_TOOLING.md). Use normal `./bin/build` for fresh planning and qualified
+application reuse; use `--force` for deliberate fresh application execution.
+
 - [Engineering standards](docs/engineering/STANDARDS.md): ownership, interfaces, PHP, HTTP and meaningful tests.
 - [Execution](docs/engineering/EXECUTION.md): implementation, repair, verification and committed handoff.
 - [Review](docs/engineering/REVIEW.md), [QA](docs/engineering/QA.md), [Landing](docs/engineering/LANDING.md): independent
@@ -54,7 +58,7 @@ from `develop`, preferably `feature/task-NNNNN-<slug>`; preserve an existing aut
 to `develop` or `main`, stage unrelated work, force-push, or infer publication authority from a commit.
 
 Use categorized `.runs/` top-level directories from [Scratch](docs/engineering/SCRATCH.md), not loose dated folders.
-Keep worktrees under `.runs/worktrees/`, runtime under `var/`, and tool caches under `var/cache/<tool>`. Preserve
+Keep source worktrees outside `.runs/`, runtime under `var/`, and tool caches under `var/cache/<tool>`. Preserve
 active/shared resources; archive legacy scratch only through an inspected reversible manifest under explicit authority.
 Never stage scratch. Canonical Review/QA reports and detailed execution evidence remain ignored; do not append new
 tracked acceptance narratives or create planning records merely to store receipts. Existing planning requirements

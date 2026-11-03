@@ -5,10 +5,10 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$DIR/.."
 
 if [[ $# -ne 0 ]]; then
-    echo 'Usage: ./bin/prepare (select COMPOSE_PROJECT_NAME and HTTP_PORT in the environment)' >&2
+    echo 'Usage: ./bin/prepare (prepares this registered checkout; no arguments)' >&2
     exit 1
 fi
 
-./bin/up
+./bin/up --worktree "$PWD"
 ./bin/composer install --no-interaction --prefer-dist --no-progress
 ./bin/doctor

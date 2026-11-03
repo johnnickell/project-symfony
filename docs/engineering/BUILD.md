@@ -34,28 +34,26 @@ do not assume its macOS permission translation proves native Linux bind access. 
 and logs the runner's IDs and checkout ownership before building. Existing root/foreign-owned mutable files
 still require their owner's recovery; do not broadly chmod/chown a checkout or run Composer as root.
 
-For separate steps use the same commands; `./bin/up --logs` follows logs. The PHP service is `api`; `./bin/exec`
-executes there. `./bin/down` stops only the selected stack and preserves volumes. All wrappers resolve their own
-checkout, use its Compose file and refuse existing project containers whose Compose working directory or `/app`
-bind belongs elsewhere. Networks must have matching checkout ownership (legacy unlabelled networks require
-matching containers), with no foreign attached containers. Startup refuses an occupied HTTP port before building
-or replacing containers; Docker remains the final authority if a concurrent process takes the port afterward.
-Inspect `docker compose config`, `docker compose ps -a` and `docker compose images` before runtime changes.
-Do not bypass a guard, remove an ambiguous resource or stop another checkout's stack.
+For separate steps use the same commands. The PHP service is `api`; `./bin/exec` executes there without
+starting services. Use `./bin/runtime docker compose logs --follow` for logs. Follow
+[local tooling](LOCAL_TOOLING.md) for explicit main/worktree selection and guarded removal. Existing project
+containers must carry this checkout's ownership label and exact source mount; networks/volumes must have
+matching native ownership and no foreign consumers. Unknown legacy resources remain held for their owner.
 
-Linked worktrees require an explicit unique project name. Choose a free port and export both for the entire
-session, including focused wrappers and shutdown; main checkouts may use the defaults `project-symfony`/18083.
-Create a checkout with ordinary readable source permissions (for example, `umask 022` before `git worktree add`):
-Nginx workers need to traverse the checkout and read `public/`. Do not broadly chmod an existing private tree.
-For example, inside the intended linked worktree, after inspecting project/port ownership:
+Inside a registered linked worktree use:
 
 ```sh
-export COMPOSE_PROJECT_NAME=project-symfony-my-task
-export HTTP_PORT=28083
-./bin/prepare
+./bin/up --worktree "$PWD"
+./bin/composer install --no-interaction --prefer-dist --no-progress
+./bin/doctor
 ./bin/build
-./bin/down
+./bin/down --worktree "$PWD"
 ```
+
+Ports are allocated dynamically on loopback for isolated projects. Inspect the actual mapping through
+`./bin/runtime docker compose ps`; ambient Compose project/file overrides do not select the target.
+Main retains its normal port and explicit environment. Source must remain readable by Nginx; do not broadly
+change permissions on a private/shared checkout.
 
 Each checkout binds only its own root at `/app`. Its `vendor/`, `var/cache/<tool>` (including Composer and PHPUnit)
 and `var/reports/` remain checkout-specific; wrappers reject symlinked mutable roots and mutable-tree symlinks
@@ -68,12 +66,11 @@ is provisioned here.
 
 ### Failure diagnosis
 
-- Missing/running-service errors: inspect the selected project with `docker compose ps -a` and logs, then run
+- Missing/running-service errors: inspect the selected project with `./bin/runtime docker compose ps -a` and logs, then run
   `./bin/prepare`. The gate, `./bin/exec` and `./bin/doctor` never silently start services.
-- Project/mount/network refusal: inspect ownership and choose a unique `COMPOSE_PROJECT_NAME`; retain ambiguous
-  resources for their owner. Port refusal: select a free `HTTP_PORT`, not someone else's shutdown command.
+- Project/mount/network refusal: inspect exact registration/resource ownership and retain ambiguous resources for their owner. Worktree ports are allocated on loopback; never stop another checkout to recover a port.
 - Pinned-base/pull/build failure: restore registry/network access and retry explicit preparation. Never remove the
-  digest or fall back to an older PHP image. FPM health failure: inspect `docker compose logs api`.
+  digest or fall back to an older PHP image. FPM health failure: inspect `./bin/runtime docker compose logs api`.
 - HTTP permission errors: inspect checkout directory/public-file permissions for Nginx workers. Recreate an owned
   disposable checkout with ordinary permissions rather than changing private/shared source permissions blindly.
 - Composer/install/platform failure: inspect the first failing package/extension or filesystem permission. Preserve
@@ -86,7 +83,7 @@ is provisioned here.
 
 ## Canonical phases
 
-The thin `bin/build` resolves the checkout, runs read-only Python planning validation on the host, and invokes
+The thin `bin/build` resolves the checkout, runs read-only Python planning validation on the host, and checks its local original gate receipt. A qualifying hit reuses application evidence under [local tooling](LOCAL_TOOLING.md); `--force` executes freshly. On a miss it invokes
 `scripts/build.php` through guarded `./bin/exec` in the already-running `api` service. PHP runs these named,
 fail-fast phases with inherited tool output:
 
