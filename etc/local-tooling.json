@@ -30,5 +30,6 @@
     "api",
     "server"
   ],
-  "mount_git": false
+  "mount_git": false,
+  "https_preview": {"service": "server", "network": "app-network", "port": 80}
 }
