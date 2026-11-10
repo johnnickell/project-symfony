@@ -51,7 +51,9 @@ containers, hold the affected teardown instead of being treated as disposable.
 A normal `bin/build` first runs offline planning validation freshly. The checkout-local `var/build.json` points
 to the original successful full-gate receipt and log under ignored `.runs/build/`. Reuse requires identical
 source, installed dependencies/lockfile, governing instructions, environment, actual image/container/runtime
-identities and generated artifacts, plus unchanged original evidence. Ordinary planning record Markdown is
+identities and generated artifacts, plus unchanged original evidence. Docker inspect mount entries are
+ordered by their unique container destination before hashing; their full contents remain covered, as do
+container IDs, start times, images and configuration. Equivalent map enumeration order is not runtime drift. Ordinary planning record Markdown is
 excluded from application inputs; planning conventions, agent instructions, ADRs, templates and executable
 planning inputs remain covered. Symlink targets and bytes/modes are covered. Missing, changed or unreadable
 evidence cannot qualify a hit. Concurrent builds refuse the same checkout's lock.
