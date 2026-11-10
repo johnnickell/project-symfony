@@ -84,6 +84,9 @@ def runtime(root, config, include_data=True):
     identities = []
     for c in containers:
         identities.append({key: c[key] for key in ('Id', 'Created', 'Image', 'Config', 'HostConfig', 'Mounts')})
+        # Docker versions may enumerate the mount-point map in arbitrary order.
+        # Destination identifies each mount; retain every field in its record.
+        identities[-1]['Mounts'] = sorted(c['Mounts'], key=lambda mount: mount['Destination'])
         identities[-1]['StartedAt'] = c['State']['StartedAt']
     probes = []
     for probe in [*config.get('runtime_probes', []), *(config.get('data_probes', []) if include_data else [])]:
