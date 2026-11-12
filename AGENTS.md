@@ -13,6 +13,13 @@ The Board retains its stable path; shared skills use the [routing substitution](
 
 ## Project guidance
 
+Keep verification proportional to the changed behavior. Each added check must cover a concrete risk that
+existing checks do not already cover. Do not duplicate dependency installation, validation, test suites or
+release lanes for unchanged inputs. Reuse qualifying build evidence; run dependency preparation only on a
+cache miss. Validate tooling with its owning commands, without adding tests of wrappers, checks or release
+machinery. Investigate flaky failures; do not hide them with retries or accept a warm rerun as proof that a
+clean build works. Expand release certification only for an explicitly approved compatibility requirement.
+
 For execution or substantive planning, read [README](README.md), [Architecture](ARCHITECTURE.md),
 [Foundation](planning/FOUNDATION.md), [planning authority](planning/README.md), [conventions](planning/CONVENTIONS.md),
 and the selected record/parents. Apply [shared skill project context](docs/engineering/PROJECT_CONTEXT.md) to provider
