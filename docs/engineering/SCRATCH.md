@@ -18,7 +18,12 @@ Use these directories directly beneath ignored `.runs/`, creating only those wit
 | `notes/<subject>/` | Research or working notes, not application runtime |
 | `handoffs/<subject>/` | Cross-task/package handoffs |
 | `prototypes/<subject>/<experiment>/` | Disposable design evidence |
-| `worktrees/` | Explicitly chosen registered Git worktrees, managed through Git |
+| `worktrees/<slug>/` | Explicitly chosen registered source worktrees under the canonical base checkout, managed through Git |
+
+Resolve the canonical base checkout through Git common-directory and registered-worktree metadata. Create
+source worktrees at `<repo_path>/.runs/worktrees/<slug>/`, not inside another linked checkout. Generated runtime
+files remain under `var/`; the source location does not turn execution evidence into runtime input. Preserve
+existing registered paths unless relocation is explicitly authorized.
 
 No new loose date/task folders at `.runs/` root, no separate `land/`, and no compatibility symlinks. Unique run IDs
 prevent overwrites. Canonical Review/QA live at the base checkout resolved through Git metadata; only their
