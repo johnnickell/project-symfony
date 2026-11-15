@@ -65,7 +65,8 @@ from `develop`, preferably `feature/task-NNNNN-<slug>`; preserve an existing aut
 to `develop` or `main`, stage unrelated work, force-push, or infer publication authority from a commit.
 
 Use categorized `.runs/` top-level directories from [Scratch](docs/engineering/SCRATCH.md), not loose dated folders.
-Keep source worktrees outside `.runs/`, runtime under `var/`, and tool caches under `var/cache/<tool>`. Preserve
+Create source worktrees at `<repo_path>/.runs/worktrees/<slug>/` under the canonical base checkout resolved
+through Git metadata. Keep runtime under `var/` and tool caches under `var/cache/<tool>`. Preserve
 active/shared resources; archive legacy scratch only through an inspected reversible manifest under explicit authority.
 Never stage scratch. Canonical Review/QA reports and detailed execution evidence remain ignored; do not append new
 tracked acceptance narratives or create planning records merely to store receipts. Existing planning requirements
